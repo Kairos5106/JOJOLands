@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class MyLinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
-    private int size;
+    protected int size;
 
     public MyLinkedList(){
         this.head = null;
@@ -36,12 +36,25 @@ public class MyLinkedList<E> {
      * Postcondition: LinkedList will contain at least more than 1 element
      */
     public void addLast(E e){
-        Node<E> lastNode = new Node<>(e);
-        tail.next = lastNode;
-        tail = lastNode;
-        size++;
         if(size == 0){
-            head = tail;
+            addFirst(e);
+        }
+        else if(size==1){
+            head.next = new Node<>(e);
+            tail = head.next;
+            size++;
+        }
+        else{ // has issues
+            Node<E> pointer = null;
+            for (int i = 0; i < size; i++) {
+                if(i==0){pointer=head;}else{pointer=pointer.next;}
+                if(i==size-1){
+                    pointer.next = new Node<>(e);
+                    tail = pointer.next;
+                    size++;
+                    break;
+                }
+            }
         }
     }
 
@@ -62,9 +75,8 @@ public class MyLinkedList<E> {
         }
         else{
             Node<E> pointer = head;
-            Node<E> temp, temp1;
+            Node<E> temp;
             temp = null;
-            temp1 = null;
             for (int currentIndex = 1; currentIndex < size; currentIndex++) {
                 pointer = pointer.next;
                 if(currentIndex >= index - 1){
@@ -253,13 +265,28 @@ public class MyLinkedList<E> {
     public E set(int index, E e){
         // Initialize required variables
         Node<E> result = null;
-        Node<E> temp1 = null;
-        Node<E> temp2 = null;
+        Node<E> temp = null;
         Node<E> pointer = null;
-        // Initiate linear search for item
-        for (int i = 0; i < size; i++) {
-            if(i==0){pointer = head;}else{pointer=pointer.next;}
-
+        if(index == 0){
+            result = head;
+            temp = head.next;
+            head = new Node<>(e);
+            head.next = temp;
+            return result.element;
+        }
+        else{
+            // Initiate linear search for item
+            for (int i = 0; i < size; i++) {
+                if(i==0){pointer=head;}else{pointer=pointer.next;}
+                if(i==index-1){
+                    result = pointer.next;
+                    temp = pointer.next.next;
+                    pointer.next = null; // deleting item at specified index
+                    pointer.next = new Node<>(e); // setting new item at specified index
+                    pointer.next.next = temp;
+                    return result.element;
+                }
+            }
         }
         return null;
     }
@@ -279,6 +306,7 @@ public class MyLinkedList<E> {
             pointer = null;
         }
         head = tail = null;
+        size = 0;
     }
 
     public void print(){
@@ -288,6 +316,7 @@ public class MyLinkedList<E> {
             System.out.print(pointer.element);
             if(index != size - 1){System.out.print(", ");}
         }
+        System.out.println();
     }
 
     public void reverse(){
@@ -301,5 +330,41 @@ public class MyLinkedList<E> {
             System.out.print(list.get(index).element);
             if(index != 0){System.out.print(", ");}
         }
+        System.out.println();
+    }
+
+    public E getMiddleValue(){ // consider even and odd list sizes. consider small list sizes
+        // Initalize required variables
+        Node<E> pointer = null;
+        Node<E> temp = null;
+        int mid, mid1, mid2;
+        mid1 = 0;
+        mid2 = 0;
+        boolean odd = false;
+        // Calculate midpoint
+        if(size % 2 == 1){ // size = odd
+            mid = ((size + 1) / 2 - 1); // minus 1 because need to convert into index form
+            odd = true;
+        }
+        else{
+            mid = size / 2;
+            // convert to index form
+            mid1 = mid - 1;
+            mid2 = mid;
+        }
+        for (int index = 0; index < size; index++) {
+            if(index==0){pointer=head;}else{pointer=pointer.next;}
+            if(odd){
+                if(index==mid){
+                    return pointer.element;
+                }
+            }
+            if(!odd){
+                if(index==mid1){
+                    return pointer.element;
+                }
+            }
+        }
+        return null;
     }
 }
