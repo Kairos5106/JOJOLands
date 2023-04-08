@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MyLinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
@@ -229,38 +231,75 @@ public class MyLinkedList<E> {
 
     public int lastIndexOf(E e){
         // Initialize required variables
-        int[] indexList = new int[size];
+        boolean[] indexList = new boolean[size];
         Node<E> pointer = null;
-
-        // Execute linear search for items in list and marking "1" in indexList at specified index if found item
-        for (int i = 0; i < indexList.length; i++) {
-            
-        }
-
-        // Return last index of item in indexList
-        for (int i = indexList.length - 1; i >= 0; i--) {
-            if(indexList[i] == 1){
-                return i;
+        // Execute linear search for items in list and marking "true" in indexList at specified index if found item
+        for (int index = 0; index < indexList.length; index++) {
+            if(index==0){pointer = head;}else{pointer=pointer.next;}
+            if(pointer.element.equals(e)){
+                indexList[index] = true;
             }
         }
-        
+        // Return last index of item in indexList
+        for (int index = indexList.length - 1; index >= 0; index--) {
+            if(indexList[index] == true){
+                return index;
+            }
+        }  
         // Default return
         return -1;
     }
 
     public E set(int index, E e){
+        // Initialize required variables
+        Node<E> result = null;
+        Node<E> temp1 = null;
+        Node<E> temp2 = null;
+        Node<E> pointer = null;
+        // Initiate linear search for item
+        for (int i = 0; i < size; i++) {
+            if(i==0){pointer = head;}else{pointer=pointer.next;}
 
+        }
+        return null;
     }
 
     public void clear(){
-
+        Node<E> pointer = null;
+        Node<E> pointerNext = null;
+        for (int index = 0; index < size - 1; index++) {
+            if(index==0){
+                pointer = head;
+                pointerNext = pointer.next;
+            }
+            else{
+                pointer = pointerNext;
+                pointerNext = pointerNext.next;
+            }
+            pointer = null;
+        }
+        head = tail = null;
     }
 
     public void print(){
-
+        Node<E> pointer = null;
+        for (int index = 0; index < size; index++) {
+            if(index==0){pointer = head;}else{pointer=pointer.next;}
+            System.out.print(pointer.element);
+            if(index != size - 1){System.out.print(", ");}
+        }
     }
 
     public void reverse(){
-
+        Node<E> pointer = null;
+        ArrayList<Node<E>> list = new ArrayList<>();
+        for (int index = 0; index < size; index++) {
+            if(index==0){pointer = head;}else{pointer=pointer.next;}
+            list.add(pointer);
+        }
+        for (int index = list.size() - 1; index >= 0; index--) {
+            System.out.print(list.get(index).element);
+            if(index != 0){System.out.print(", ");}
+        }
     }
 }
