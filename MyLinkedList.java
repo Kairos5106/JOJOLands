@@ -90,11 +90,11 @@ public class MyLinkedList<E> {
         }
     }
 
-    /* Purpose: Removes the first item in the list
-     * @return E: element of the first item that was removed
+    /* Purpose: Removes the first node in the list
+     * @return E: element of the first node that was removed
      * Precondition: 
      * - List must not be empty
-     * - List has 1 item
+     * - List has 1 node
      * Postcondition: - First element of list is removed
      */
     public E removeFirst(){
@@ -112,10 +112,10 @@ public class MyLinkedList<E> {
         return temp.element;
     }
 
-    /* Purpose: Removes the last item in the list
+    /* Purpose: Removes the last node in the list
      * Precondition: List must not be empty
-     * Postconditon: Last item in list will be removed
-     * @return E: element of the last item that was removed
+     * Postconditon: Last node in list will be removed
+     * @return E: element of the last node that was removed
      */
     public E removeLast(){
         Node<E> temp = null;
@@ -142,9 +142,9 @@ public class MyLinkedList<E> {
         return temp.element;
     }
 
-    /* Purpose: Removes the item at specified index
-     * @param index: the index of item to be removed from the list
-     * @return E: element of the item that was removed
+    /* Purpose: Removes the node at specified index
+     * @param index: the index of node to be removed from the list
+     * @return E: element of the node that was removed
      * Precondition: 
      */
     public E remove(int index){
@@ -194,9 +194,9 @@ public class MyLinkedList<E> {
         return false;
     }
 
-    /* Purpose: Returns the element of the item at specified index
-     * @param index: index of the item element
-     * @return element of the item at specified index
+    /* Purpose: Returns the element of the node at specified index
+     * @param index: index of the node element
+     * @return element of the node at specified index
      */
     public E get(int index){
         Node<E> pointer = null;
@@ -245,14 +245,14 @@ public class MyLinkedList<E> {
         // Initialize required variables
         boolean[] indexList = new boolean[size];
         Node<E> pointer = null;
-        // Execute linear search for items in list and marking "true" in indexList at specified index if found item
+        // Execute linear search for nodes in list and marking "true" in indexList at specified index if found node
         for (int index = 0; index < indexList.length; index++) {
             if(index==0){pointer = head;}else{pointer=pointer.next;}
             if(pointer.element.equals(e)){
                 indexList[index] = true;
             }
         }
-        // Return last index of item in indexList
+        // Return last index of node in indexList
         for (int index = indexList.length - 1; index >= 0; index--) {
             if(indexList[index] == true){
                 return index;
@@ -262,6 +262,11 @@ public class MyLinkedList<E> {
         return -1;
     }
 
+    /* Purpose: Replaces the node at the index = index with the object e of type E and
+     *          returns the element of the replaced node.
+     * @param index: the position of the node to be replaced, e: object of type E to be the replacer
+     * @return the element of the node that was replaced
+     */
     public E set(int index, E e){
         // Initialize required variables
         Node<E> result = null;
@@ -275,14 +280,14 @@ public class MyLinkedList<E> {
             return result.element;
         }
         else{
-            // Initiate linear search for item
+            // Initiate linear search for node
             for (int i = 0; i < size; i++) {
                 if(i==0){pointer=head;}else{pointer=pointer.next;}
                 if(i==index-1){
                     result = pointer.next;
                     temp = pointer.next.next;
-                    pointer.next = null; // deleting item at specified index
-                    pointer.next = new Node<>(e); // setting new item at specified index
+                    pointer.next = null; // deleting node at specified index
+                    pointer.next = new Node<>(e); // setting new node at specified index
                     pointer.next.next = temp;
                     return result.element;
                 }
@@ -291,6 +296,10 @@ public class MyLinkedList<E> {
         return null;
     }
 
+    /* Purpose: Deletes all of the existing nodes from the linked list
+     * Precondition: list should not be empty
+     * Postcondition: the list will be emptied
+     */
     public void clear(){
         Node<E> pointer = null;
         Node<E> pointerNext = null;
@@ -309,6 +318,7 @@ public class MyLinkedList<E> {
         size = 0;
     }
 
+    /* Purpose: Displays all of the elements of the nodes from head to tail in sequential order*/
     public void print(){
         Node<E> pointer = null;
         for (int index = 0; index < size; index++) {
@@ -319,6 +329,7 @@ public class MyLinkedList<E> {
         System.out.println();
     }
 
+    /* Purpose: Same purpose of print() method except the list is displayed in the reverse sequential order */
     public void reverse(){
         Node<E> pointer = null;
         ArrayList<Node<E>> list = new ArrayList<>();
@@ -333,7 +344,9 @@ public class MyLinkedList<E> {
         System.out.println();
     }
 
-    public E getMiddleValue(){ // consider even and odd list sizes. consider small list sizes
+    /* Purpose: Returns the middle value of the 'middle' node in the linked list
+     * @return the element of the middle node of the list */
+    public E getMiddleValue(){ // consider even, odd list sizes and small list sizes
         // Initalize required variables
         Node<E> pointer = null;
         Node<E> temp = null;
@@ -352,6 +365,7 @@ public class MyLinkedList<E> {
             mid1 = mid - 1;
             mid2 = mid;
         }
+        // Linearly search for the targeted node in the list
         for (int index = 0; index < size; index++) {
             if(index==0){pointer=head;}else{pointer=pointer.next;}
             if(odd){
