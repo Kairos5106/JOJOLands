@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class UserInterface {
     /* Create instance variables */
     Clock gameClock = new Clock();
-
+    Menu menu = new Menu(null, null);
     /* Constructors */
     public UserInterface(){}
 
@@ -15,9 +15,8 @@ public class UserInterface {
     /* Purpose: Prompts a question to the user and returns a string of the user input */
     public String prompt(String prompt){
         Scanner in = new Scanner(System.in);
-        System.out.println(prompt);
+        System.out.print(prompt);
         String userInput = in.nextLine();
-        in.close();
         return userInput;
     }
 
@@ -31,14 +30,14 @@ public class UserInterface {
 
     /* Purpose: Used to initialize the game. Brings the terminal to the start menu */
     public void start(){
-
+        
     }
 }
 
 class Menu{
     ArrayList<Option> options = new ArrayList<>();
     private String greeting; // represent text that appears before the options show up
-    private String location;
+    private String location; // optional string variable: for nodes in map only
 
     public Menu(String greeting, String location){
         this.greeting = greeting;
@@ -61,9 +60,9 @@ class Menu{
                for (int j = 0; j < options.get(i).getSuboptionsCount(); j++) {
                    System.out.printf("[%c] %s     ", (char)charValue++, options.get(i).suboptions.get(j));
                }
-               System.out.println();
             }
         }
+        System.out.println();
     }
 
     public void displayMenu(){
@@ -74,9 +73,31 @@ class Menu{
         printOptions();
     }
 
-    public static void main(String[] args) {
-        // Defining start menu
-        
+    /* Purpose: Takes an array of Option objects and adds it to the options list for the object instance
+     * @param options: an array of Option objects
+     */
+    public void addOptions(Option[] options){
+        for (int i = 0; i < options.length; i++) {
+            this.options.add(options[i]);
+        }
+    }
+
+    public void openStartMenu(){
+        Menu startMenu = new Menu("Welcome, to the fantastical realm of JOJOLands.", null);
+        Option[] startMenuOptions = {new Option("Start Game"),
+                                     new Option("Load Game"),
+                                     new Option("Exit")};
+        startMenu.addOptions(startMenuOptions);
+        startMenu.displayMenu();
+    }
+
+    public void openMapSelection(){
+        Menu mapSelection = new Menu("Select a map: ", null);
+        Option[] startMenuOptions = {new Option("Default Map"),
+                                     new Option("Parallel Map"),
+                                     new Option("Alternate Map")};
+        mapSelection.addOptions(startMenuOptions);
+        mapSelection.displayMenu();
     }
 }
 
@@ -101,12 +122,8 @@ class Option{
     }
 
     public boolean hasSuboptions(){
-        if(suboptions.size() != 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        if(suboptions.size() > 0){return true;}
+        else{return false;}
     }
 }
 
@@ -155,11 +172,7 @@ class Clock{
     /* Purpose: Updates all of the relevant variables when a day ends */
     public void endDay(){
         dayCount++;
-        if(dayOfWeek == 7){
-            dayOfWeek = 1;
-        }
-        else{
-            dayOfWeek++;
-        }
+        if(dayOfWeek == 7){dayOfWeek = 1;}
+        else{dayOfWeek++;}
     }
 }
