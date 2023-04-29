@@ -16,7 +16,7 @@ public class UserInterface {
     public String prompt(String prompt){
         Scanner in = new Scanner(System.in);
         System.out.print(prompt);
-        String userInput = in.nextLine();
+        String userInput = in.next();
         return userInput;
     }
 

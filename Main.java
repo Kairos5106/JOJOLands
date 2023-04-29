@@ -1,5 +1,7 @@
 package DSTeam3;
 
+import DSTeam3.maps.*;
+
 /* This class is used to initialize Jojolands */
 public class Main{
     public static void main(String[] args) {
