@@ -1,13 +1,13 @@
-package DSTeam3;
-
-import DSTeam3.ui.GameInterface;
-import DSTeam3.ui.StartInterface;
-import DSTeam3.ui.StartMenu;
-import DSTeam3.maps.base.Location;
-import DSTeam3.maps.locations.*;
+import ui.GameInterface;
+import ui.StartInterface;
+import ui.StartMenu;
+import maps.base.Location;
+import maps.locations.*;
+import Pearl_Jam.RestaurantsMenu;
 
 /* This class is used to initialize Jojolands */
-public class Main{
+public class Main {
+
     public static void main(String[] args) {
         /* Section 1: Code for initializing JOJOLands */
         /* Initializing required variables before initiateing menu */
@@ -19,8 +19,11 @@ public class Main{
 
         /* Section 2: Load selected map and user interface */
         GameInterface gameUI = new GameInterface(startUI.getMapSelected(), new TownHallMenu());
-        
+    
         /* Section 3: Start game */
         gameUI.initiate();
+
+        RestaurantsMenu restaurantsMenu = new RestaurantsMenu();
+        restaurantsMenu.run();
     }
 }

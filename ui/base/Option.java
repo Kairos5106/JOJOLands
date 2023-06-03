@@ -1,12 +1,13 @@
-package DSTeam3.ui.base;
+package ui.base;
 
 import java.util.ArrayList;
 
 /* Purpose: Represent each option in a menu interface */
-public class Option{
+public class Option {
     protected String title;
     private ArrayList<Option> suboptions = new ArrayList<>();
     private ArrayList<Boolean> suboptionsSelected = new ArrayList<>();
+    private boolean isDefaultOption;
 
     /* Constructors */
     public Option(){
@@ -15,12 +16,21 @@ public class Option{
     
     public Option(String title){
         this.title = title;
+        this.isDefaultOption = false;
     }
 
     /* Methods A: Getter and setter methods */
 
     public String getTitle(){
         return this.title;
+    }
+
+    public void setAsDefaultOption() {
+        this.isDefaultOption = true;
+    }
+
+    public boolean isDefaultOption() {
+        return isDefaultOption;
     }
 
     /* Purpose: Returns the title of suboption at index = 'index' */
@@ -78,5 +88,14 @@ public class Option{
     public boolean hasSuboptions(){
         if(suboptions.size() > 0){return true;}
         else{return false;}
+    }
+
+    @Override
+    public String toString() {
+        if (isDefaultOption) {
+            return title + " (Default)";
+        } else {
+            return title;
+        }
     }
 }

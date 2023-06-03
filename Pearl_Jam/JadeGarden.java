@@ -1,6 +1,8 @@
 package Pearl_Jam;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
-public class JadeGarden extends Restaurant{
+public class JadeGarden extends Restaurant {
     public JadeGarden() {
         super("Jade Garden");
         initialiseMenu();
@@ -14,24 +16,75 @@ public class JadeGarden extends Restaurant{
         menu.add("Scrambled Egg White with Milk ($10.00)");
     }
 
+    @Override
+    public void addCustomerToWaitingList(Customer customer) {
+        waitingList.add(customer);
+    }
+
     // Implementation of Restaurant's abstract processOrders method
     // First and last customers to arrive are served first
-    // Followed by second and second last, and so on
+    // Followed by the second and second last, and so on
     public void processOrders() {
+        // Create a PriorityQueue to store customers based on arrival time
+        PriorityQueue<Customer> customerQueue = new PriorityQueue<>(new CustomerComparator());
 
-        for (int i = 0; i < waitingList.size() / 2; i++) {
-            Customer firstCustomer = waitingList.get(i);
-            Customer lastCustomer = waitingList.get(waitingList.size() - 1 - i);
+        // Add all customers from waitingList to PriorityQueue
+        customerQueue.addAll(waitingList);
 
+        // Clear the waitingList and orderProcessingList
+        waitingList.clear();
+        orderProcessingList.clear();
+
+        // Retrieve customers from the PriorityQueue in the Jade Garden's system
+        while (!customerQueue.isEmpty()) {
+            Customer firstCustomer = customerQueue.poll();
+            Customer lastCustomer = null;
+
+            // Get last customer
+            if (!customerQueue.isEmpty()) {
+                lastCustomer = retrieveLastCustomer(customerQueue);
+            }
+
+            // Add the first customer to the orderProcessingList
             orderProcessingList.add(firstCustomer);
-            orderProcessingList.add(lastCustomer);
+
+            // Add last customer to orderProcessingList
+            if (lastCustomer != null) {
+                orderProcessingList.add(lastCustomer);
+            }
+        }
+    }
+
+    // Method to retrieve last customer
+    private Customer retrieveLastCustomer(PriorityQueue<Customer> customerQueue) {
+        // Temporarily store the customers to restore the queue later
+        PriorityQueue<Customer> tempQueue = new PriorityQueue<>(customerQueue);
+
+        Customer lastCustomer = null;
+        Customer currentCustomer;
+
+        // Retrieve the last customer from the PriorityQueue
+        while (!tempQueue.isEmpty()) {
+            currentCustomer = tempQueue.poll();
+
+            // If it's the last customer, update the lastCustomer variable
+            if (tempQueue.isEmpty()) {
+                lastCustomer = currentCustomer;
+            }
         }
 
-        // If the number of customers is odd, add the middle customer to the end of processing list
-        if (waitingList.size() % 2 != 0) {
-            int middleIndex = waitingList.size() / 2;
-            Customer middleCustomer = waitingList.get(middleIndex);
-            orderProcessingList.add(middleCustomer);
+        // Restore the original order of customers in the queue
+        customerQueue.addAll(tempQueue);
+
+        return lastCustomer;
+    }
+
+    // Custom Comparator class
+    private static class CustomerComparator implements Comparator<Customer> {
+        @Override
+        public int compare(Customer c1, Customer c2) {
+            // Compare customers based on arrival time
+            return c1.getArrivalTime().compareTo(c2.getArrivalTime());
         }
     }
 }

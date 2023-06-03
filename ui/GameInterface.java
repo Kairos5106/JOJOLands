@@ -1,25 +1,27 @@
-package DSTeam3.ui;
+package ui;
 
-import DSTeam3.maps.base.*;
-import DSTeam3.ui.base.Menu;
-import DSTeam3.ui.base.UserInterface;
+import maps.base.*;
+import ui.base.Menu;
+import ui.base.UserInterface;
 import java.util.ArrayList;
-import DSTeam3.maps.*;
-import DSTeam3.maps.base.Map;
-import DSTeam3.maps.locations.AngeloRockMenu;
-import DSTeam3.maps.locations.CafeDeuxMenu;
-import DSTeam3.maps.locations.DioMansionMenu;
-import DSTeam3.maps.locations.GreenDolphinMenu;
-import DSTeam3.maps.locations.JadeGardenMenu;
-import DSTeam3.maps.locations.JoestarMansionMenu;
-import DSTeam3.maps.locations.LibeccioMenu;
-import DSTeam3.maps.locations.MoriohGrandMenu;
-import DSTeam3.maps.locations.PolnareffLandMenu;
-import DSTeam3.maps.locations.SanGiorgioMenu;
-import DSTeam3.maps.locations.SavageGardenMenu;
-import DSTeam3.maps.locations.TownHallMenu;
-import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
-import DSTeam3.maps.locations.VineyardMenu;
+
+import Pearl_Jam.RestaurantsMenu;
+import maps.*;
+import maps.base.Map;
+import maps.locations.AngeloRockMenu;
+import maps.locations.CafeDeuxMenu;
+import maps.locations.DioMansionMenu;
+import maps.locations.GreenDolphinMenu;
+import maps.locations.JadeGardenMenu;
+import maps.locations.JoestarMansionMenu;
+import maps.locations.LibeccioMenu;
+import maps.locations.MoriohGrandMenu;
+import maps.locations.PolnareffLandMenu;
+import maps.locations.SanGiorgioMenu;
+import maps.locations.SavageGardenMenu;
+import maps.locations.TownHallMenu;
+import maps.locations.TrattoriaTrussardiMenu;
+import maps.locations.VineyardMenu;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -77,6 +79,7 @@ public class GameInterface extends UserInterface{
         listOfLocationMenus.add(new VineyardMenu());
         listOfLocationMenus.add(new SavageGardenMenu());
         listOfLocationMenus.add(new PolnareffLandMenu());
+        listOfLocationMenus.add(new RestaurantsMenu());
     }
 
     public void setNewDay(boolean newDay){
@@ -115,6 +118,15 @@ public class GameInterface extends UserInterface{
                 currentMenu.setNewDayGreeting(getDayInfo());
                 setNewDay(false);
             }
+
+            // Check if the current menu is a restaurant menu
+            if (currentMenu instanceof RestaurantsMenu) {
+                // Implement the restaurant interface logic
+            } else {
+                currentMenu.runDisplay();
+                // Handle the general menu and interface logic
+            }
+
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1);

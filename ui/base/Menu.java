@@ -1,8 +1,9 @@
-package DSTeam3.ui.base;
+package ui.base;
 
 import java.util.ArrayList;
-import DSTeam3.maps.*;
-import DSTeam3.maps.base.Map;
+import maps.*;
+import maps.base.Map;
+import java.util.Scanner;
 
 /* Purpose: Handles everything that is to do with menu option selection */
 public class Menu{
@@ -109,6 +110,10 @@ public class Menu{
 
     public Map getMap(){return null;} // placeholder for subclasses to override
 
+    public boolean isExitInterface() {
+        return exitInterface;
+    }
+
     public void setExitInterface(boolean exitInterface){
         this.exitInterface = exitInterface;
     }
@@ -171,6 +176,15 @@ public class Menu{
         printLocation();
         printOptions();
     }
+
+    public void displayMenu() {
+        System.out.println("\n==== " + greeting + " ====");
+        System.out.println("Location: " + locationName + "\n");
+
+        for (Option option : options) {
+            System.out.println(option);
+        }
+    }
     
     /* Methods C: Processing methods - Everything aside from A and B */
 
@@ -180,6 +194,13 @@ public class Menu{
 
     public void defineOptions(String[] nearbyLocationNames){}
 
+    public void selectOption() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your choice: ");
+        String input = scanner.nextLine().trim();
+        execute(input);
+    }
+
     public void execute(String inputStr){ // placeholder for subclasses to override
         // Define commands that are associated with their respective inputs
     }
@@ -187,4 +208,11 @@ public class Menu{
     public void execute(String inputStr, String[] nearbyLocationNames){}
 
     public void setNewDayGreeting(String newDayGreeting){}
+
+    public void run() {
+        while (!isExitInterface()) {
+            displayMenu();
+            selectOption();
+        }
+    }
 }
