@@ -5,6 +5,7 @@ public class Customer {
     private int age;
     private String gender;
     private String order;
+    private String nameRestaurant;
 
     // constructor method
     public Customer() {
@@ -12,6 +13,7 @@ public class Customer {
         age = 0;
         gender = null;
         order = null;
+        nameRestaurant = null;
     }
 
     public Customer(String nameCustomer, int age, String gender, String order) {
@@ -19,6 +21,7 @@ public class Customer {
         this.age = age;
         this.gender = gender;
         this.order = order;
+        this.nameRestaurant = nameRestaurant;
     }
 
     // accessor methods
@@ -38,6 +41,10 @@ public class Customer {
         return order;
     }
 
+    public String getNameRestaurant() {
+        return nameRestaurant;
+    }
+
     // mutator methods
     public void setnameCustomer(String nameCustomer) {
         this.nameCustomer = nameCustomer;
@@ -53,5 +60,9 @@ public class Customer {
 
     public void setOrder(String order) {
         this.order = order;
+    }
+
+    public void setNameRestaurant(String nameRestaurant) {
+        this.nameRestaurant = nameRestaurant;
     }
 }

@@ -26,7 +26,6 @@ public class TrattoriaTrussardi extends Restaurant {
     // Fourth round: second oldest man, second youngest woman
     // And so on...
     public void processOrders() {
-        orderProcessingList.clear();
     
         // Sort all customer age in ascending order
         waitingList.sort(Comparator.comparingInt(Customer::getAge));

@@ -23,7 +23,6 @@ public class Libeccio extends Restaurant {
     // If the number is a multiple of the current day, person is REMOVED from the queue and served last
     // The next person removed is served second last
     public void processOrders() {
-        orderProcessingList.clear();
         int dayNumber = getDayNumber();
         Iterator<Customer> iterator = waitingList.iterator();
 

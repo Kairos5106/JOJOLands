@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Restaurant {
-    protected String nameRestaurant;
+    public String nameRestaurant;
     protected List<Customer> waitingList;
     protected List<Customer> orderProcessingList;
     protected List<String> menu;

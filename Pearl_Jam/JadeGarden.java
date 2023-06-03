@@ -18,7 +18,6 @@ public class JadeGarden extends Restaurant{
     // First and last customers to arrive are served first
     // Followed by second and second last, and so on
     public void processOrders() {
-        orderProcessingList.clear();
 
         for (int i = 0; i < waitingList.size() / 2; i++) {
             Customer firstCustomer = waitingList.get(i);

@@ -25,7 +25,6 @@ public class SavageGarden extends Restaurant {
     // The next person start over from 1
     // If reach end of queue, we start over from the last person and move in reverse order
     public void processOrders() {
-        orderProcessingList.clear();
         int dayNumber = getDayNumber();
 
         while (!waitingList.isEmpty()) {

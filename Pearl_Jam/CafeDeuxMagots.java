@@ -19,7 +19,6 @@ public class CafeDeuxMagots extends Restaurant {
     // If same age, doesn't matter which one chosen first
     // Those with unkknown age will be served last, without any particular order
     public void processOrders() {
-        orderProcessingList.clear();
 
         // Sort customers based on ages in ascending order
         waitingList.sort(Comparator.comparingInt(Customer::getAge));
