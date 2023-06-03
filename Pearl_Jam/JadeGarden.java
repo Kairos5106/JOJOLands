@@ -1,6 +1,4 @@
 package Pearl_Jam;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class JadeGarden extends Restaurant{
     public JadeGarden() {
@@ -16,6 +14,7 @@ public class JadeGarden extends Restaurant{
         menu.add("Scrambled Egg White with Milk ($10.00)");
     }
 
+    // Implementation of Restaurant's abstract processOrders method
     // First and last customers to arrive are served first
     // Followed by second and second last, and so on
     public void processOrders() {
@@ -29,7 +28,7 @@ public class JadeGarden extends Restaurant{
             orderProcessingList.add(lastCustomer);
         }
 
-        // If the number of customers is odd, add the middle customer to the processing list
+        // If the number of customers is odd, add the middle customer to the end of processing list
         if (waitingList.size() % 2 != 0) {
             int middleIndex = waitingList.size() / 2;
             Customer middleCustomer = waitingList.get(middleIndex);

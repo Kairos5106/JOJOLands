@@ -135,6 +135,7 @@ public class GameInterface extends UserInterface{
 class Clock{
     private int dayCount;
     private int dayOfWeek; // every week's first day is Sunday
+    
     public Clock(){
         this.dayCount = this.dayOfWeek = 1;
     }

@@ -1,6 +1,5 @@
 package Pearl_Jam;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public abstract class Restaurant {
@@ -16,7 +15,7 @@ public abstract class Restaurant {
         menu = new ArrayList<>();
     }
 
-    public String getName() {
+    public String getNameRestaurant() {
         return nameRestaurant;
     }
 
