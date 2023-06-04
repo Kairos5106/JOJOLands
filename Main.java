@@ -10,12 +10,14 @@ import DSTeam3.maps.locations.*;
 public class Main{
     public static void main(String[] args) {
         /* Section 1: Code for initializing JOJOLands */
-        /* Initializing required variables before initiateing menu */
+        /* Initializing required variables before initiating menu */
         StartInterface startUI = new StartInterface(new StartMenu());
 
         /* Displaying start menu and prompt user for input */
         startUI.initiate();
-        if(startUI.getExitGame()){return;}
+        if(startUI.getExitGame()){
+            return;
+        }
 
         /* Section 2: Load selected map and user interface */
         GameInterface gameUI = new GameInterface(startUI.getMapSelected(), new TownHallMenu());

@@ -44,10 +44,13 @@ public class TownHallMenu extends Menu {
                 setGreeting("Select a location to move to: ");
                 break;
             case "Cafe Deux Magots":
+
                 // move to
             case "Jade Garden":
+
                 break;
             case "Morioh Grand Hotel":
+                
                 break;
             case "Advance to Next Day":
                 setAdvanceNextDay(true);
