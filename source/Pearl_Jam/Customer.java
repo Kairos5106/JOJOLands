@@ -31,6 +31,12 @@ public class Customer {
         this.arrivalTime = arrivalTime;
     }
 
+    public Customer(String nameCustomer, int age, String gender) {
+        this.nameCustomer = nameCustomer;
+        this.age = age;
+        this.gender = gender;
+    }
+
     // Accessor methods
     public String getNameCustomer() {
         return nameCustomer;

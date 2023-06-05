@@ -3,11 +3,12 @@ package source.Pearl_Jam;
 import ui.base.Menu;
 import ui.base.Option;
 
-public class RestaurantsMenu extends Menu {
-    public RestaurantsMenu() {
+public class JadeGardenMenu extends Menu {
+    public JadeGardenMenu() {
         super("Welcome to the Restaurants!", "Restaurant");
         defineOptions();
         setDefaultOption();
+        execute(getLocationName());
     }
 
     public void defineOptions() {

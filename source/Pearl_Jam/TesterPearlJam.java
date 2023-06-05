@@ -1,28 +1,37 @@
 package source.Pearl_Jam;
 
-import DSTeam3.ui.GameInterface;
-import DSTeam3.ui.StartInterface;
-import DSTeam3.ui.StartMenu;
-import DSTeam3.maps.base.Location;
-import DSTeam3.maps.locations.*;
+import source.Pearl_Jam.JadeGarden;
+import source.Pearl_Jam.JadeGardenMenu;
+import source.Pearl_Jam.Customer;
+import source.Pearl_Jam.Restaurant;
+import java.util.Scanner;
 
-/* This class is used to initialize Jojolands */
+// Test jade garden
 public class TesterPearlJam {
     public static void main(String[] args) {
-        /* Section 1: Code for initializing JOJOLands */
-        /* Initializing required variables before initiating menu */
-        StartInterface startUI = new StartInterface(new StartMenu());
+        JadeGarden jadeGarden = new JadeGarden();
+        JadeGardenMenu jadeGardenMenu = new JadeGardenMenu();
 
-        /* Displaying start menu and prompt user for input */
-        startUI.initiate();
-        if(startUI.getExitGame()){
-            return;
+        jadeGarden.addCustomerToWaitingList(new Customer("Jonathan Joestar", 20, "Male"));
+        jadeGarden.addCustomerToWaitingList(new Customer("Joseph Joestar", 18, "Male"));
+        jadeGarden.addCustomerToWaitingList(new Customer("Jotaro Kujo", 17, "Male"));
+        jadeGarden.addCustomerToWaitingList(new Customer("Josuke Higashikata", 16, "Male"));
+        jadeGarden.addCustomerToWaitingList(new Customer("Giorno Giovanna", 15, "Male"));
+        jadeGarden.addCustomerToWaitingList(new Customer("Jolyne Cujoh", 19, "Female"));
+
+        jadeGarden.processOrders();
+
+        Scanner scanner = new Scanner(System.in);
+        boolean exitProgram = false;
+
+        while (!exitProgram) {
+            jadeGardenMenu.runDisplay();
+            String input = scanner.nextLine().trim();
+            jadeGardenMenu.execute(input);
+
+            if (jadeGardenMenu.isExitInterface()) {
+                exitProgram = true;
+            }
         }
-
-        /* Section 2: Load selected map and user interface */
-        GameInterface gameUI = new GameInterface(startUI.getMapSelected(), new TownHallMenu());
-        
-        /* Section 3: Start game */
-        gameUI.initiate();
     }
 }

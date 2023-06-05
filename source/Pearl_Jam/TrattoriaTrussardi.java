@@ -33,7 +33,52 @@ public class TrattoriaTrussardi extends Restaurant {
     // And so on...
     @Override
     public void processOrders() {
+        // Create a PriorityQueue to store customers based on age and gender
+        PriorityQueue<Customer> orderQueue = new PriorityQueue<>(new TrattoriaComparator());
+    
+        // Add all customers from waitingList to orderQueue
+        orderQueue.addAll(waitingList); // addAll from waitingList to orderQueue, then orderQueue will internally sort using TrattoriaComparator
+    
+        // Clear the waitingList and orderProcessingList
+        waitingList.clear();
+        orderProcessingList.clear();
+    
+        // Serve customers in the desired order
+        while (!orderQueue.isEmpty()) {
+            Customer customer = orderQueue.poll();
+            orderProcessingList.add(customer);
+        }
+    }    
+    
+    private static class TrattoriaComparator implements Comparator<Customer> {
+        @Override
+        public int compare(Customer c1, Customer c2) {
+            // Handle customers with unspecified ages
+            if (c1.getAge() == -1 && c2.getAge() == -1) {
+                return 0;
+            } else if (c1.getAge() == -1) { // if c2 has age, but c1 no age
+                return 1; // c1 is considered greater (comes later)
+            } else if (c2.getAge() == -1) { // if c1 has age, but c2 no age
+                return -1; // c1 is considered smaller (comes earlier)
+            }
+    
+            // Compare customers based on gender and age
+            if (c1.getGender().equalsIgnoreCase("Male") && c2.getGender().equalsIgnoreCase("Female")) {
+                return -1; // c1 is considered smaller (comes earlier)
+            } else if (c1.getGender().equalsIgnoreCase("Female") && c2.getGender().equalsIgnoreCase("Male")) {
+                return 1; // c1 is considered greater (comes later)
+            } else if (c1.getGender().equalsIgnoreCase("Male") && c2.getGender().equalsIgnoreCase("Male")) {
+                return Integer.compare(c1.getAge(), c2.getAge()); // compare male age in ascending order
+            } else if (c1.getGender().equalsIgnoreCase("Female") && c2.getGender().equalsIgnoreCase("Female")) {
+                return Integer.compare(c2.getAge(), c1.getAge()); // compare female age in descending order
+            }
 
+            // Explanation
+            // Eg. original list: (male,25) (female,32) (male,12) (male,9) (female,3) (female,25)
+            // 
+    
+            return 0; // Default case (shouldn't occur)
+        }
     }
     
 }
