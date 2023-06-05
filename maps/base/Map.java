@@ -34,7 +34,7 @@ public class Map {
         return this.currentLocation;
     }
 
-    public void defineAll(){}  // just a placeholder for subclasses to override this method
+    public void defineLocations(){}  // just a placeholder for subclasses to override this method
 
     public Menu getCurrentMenu(){
         return this.currentLocation.getMenu();

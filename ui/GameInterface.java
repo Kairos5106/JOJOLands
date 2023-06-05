@@ -58,25 +58,25 @@ public class GameInterface extends UserInterface{
         return getCurrentLocation().getNearbyLocationNames();
     }
 
-    public Menu getMenu(){
+    public Menu getCurrentMenu(){
         return this.map.getCurrentMenu();
     }
 
     public void presetListOfMenus(){
-        listOfLocationMenus.add(new TownHallMenu());
-        listOfLocationMenus.add(new MoriohGrandMenu());
-        listOfLocationMenus.add(new TrattoriaTrussardiMenu());
-        listOfLocationMenus.add(new GreenDolphinMenu());
-        listOfLocationMenus.add(new LibeccioMenu());
-        listOfLocationMenus.add(new SanGiorgioMenu());
-        listOfLocationMenus.add(new JadeGardenMenu());
-        listOfLocationMenus.add(new CafeDeuxMenu());
-        listOfLocationMenus.add(new JoestarMansionMenu());
-        listOfLocationMenus.add(new DioMansionMenu());
-        listOfLocationMenus.add(new AngeloRockMenu());
-        listOfLocationMenus.add(new VineyardMenu());
-        listOfLocationMenus.add(new SavageGardenMenu());
-        listOfLocationMenus.add(new PolnareffLandMenu());
+        listOfLocationMenus.add(new TownHallMenu()); // 0
+        listOfLocationMenus.add(new MoriohGrandMenu()); // 1
+        listOfLocationMenus.add(new TrattoriaTrussardiMenu());// 2
+        listOfLocationMenus.add(new GreenDolphinMenu()); // 3
+        listOfLocationMenus.add(new LibeccioMenu());// 4
+        listOfLocationMenus.add(new SanGiorgioMenu()); // 5
+        listOfLocationMenus.add(new JadeGardenMenu()); // 6
+        listOfLocationMenus.add(new CafeDeuxMenu()); // 7
+        listOfLocationMenus.add(new JoestarMansionMenu()); // 8
+        listOfLocationMenus.add(new DioMansionMenu());// 9
+        listOfLocationMenus.add(new AngeloRockMenu());// 10
+        listOfLocationMenus.add(new VineyardMenu());// 11
+        listOfLocationMenus.add(new SavageGardenMenu());// 12
+        listOfLocationMenus.add(new PolnareffLandMenu());// 13
     }
 
     public void setNewDay(boolean newDay){
@@ -106,10 +106,9 @@ public class GameInterface extends UserInterface{
 
     @Override
     public void initiate(){
+        map.defineLocations();
         presetListOfMenus();
-
-        
-
+        setCurrentMenu(getCurrentMenu());
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
         String input = "";
@@ -121,6 +120,13 @@ public class GameInterface extends UserInterface{
                 setNewDay(false);
             }
             currentMenu.runDisplay();
+
+            /* Debugging statement for nearby nodes of currentLocation */
+            // String[] nearbyLocationList = getNearbyLocationNames();
+            // for (int i = 0; i < nearbyLocationList.length; i++) {
+            //     System.out.println(nearbyLocationList[i]);
+            // }
+
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1);
             divider(70);
@@ -129,13 +135,13 @@ public class GameInterface extends UserInterface{
             
             // Conditional actions go here and below
             if(isAdvancingNext()){ // at town hall
-                time.endDay();
+                endDay();
+                currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
             }
         }
     }
-
 }
 
 /* Purpose: Keeps track of game time */

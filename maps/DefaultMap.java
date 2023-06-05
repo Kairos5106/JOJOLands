@@ -31,7 +31,7 @@ public class DefaultMap extends Map{
 
     /* Purpose: Defines all of the location and their respective nearbys in the map */
     @Override
-    public void defineAll(){
+    public void defineLocations(){
         // Define all of the locations present in map
         TownHall townHall = new TownHall(); /* Location 1 */
         MoriohGrand moriohGrand = new MoriohGrand(); /* Location 2 */

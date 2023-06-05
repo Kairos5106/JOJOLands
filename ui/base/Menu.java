@@ -11,8 +11,8 @@ public class Menu{
     private Option currentOption = null;
     protected ArrayList<Boolean> optionsPrintIndent = new ArrayList<>(); // if true, print suboptions indented on the same page
 
-    private String greeting; // represent text that appears before the options show up
-    private String locationName; // optional string variable: for nodes in map only
+    String greeting; // represent text that appears before the options show up
+    String locationName; // optional string variable: for nodes in map only
 
     boolean exitGame = false;
     boolean exitInterface = false;
@@ -36,8 +36,14 @@ public class Menu{
 
     /* ****************** Methods A: Getter and setter methods ****************** */
 
+    /* Special case: If a value of -1 is input, the current option will be set to null */
     public void setCurrentOption(int indexOfSuboption){
-        this.currentOption = this.currentOption.get(indexOfSuboption);
+        if(indexOfSuboption == -1){
+            this.currentOption = null;
+        }
+        else{
+            this.currentOption = this.currentOption.get(indexOfSuboption);
+        }
     }
 
     public Option getCurrentOption(){
@@ -172,8 +178,9 @@ public class Menu{
      * Note: If any of the these are null, it won't be printed
      */
     public void runDisplay(){
-        printGreeting();
         printLocation();
+        System.out.println();
+        printGreeting();
         printOptions();
     }
     

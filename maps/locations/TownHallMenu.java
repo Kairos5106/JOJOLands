@@ -8,10 +8,8 @@ public class TownHallMenu extends Menu {
     /* Instance variables */
 
     /* Constructors */
-    public TownHallMenu(){}
-
-    public TownHallMenu(String greeting, String locationName){
-        super(greeting, locationName); // set to null if not used
+    public TownHallMenu(){
+        this.setLocationName("Town Hall");
     }
 
     /* Getter and setter methods */
@@ -25,9 +23,8 @@ public class TownHallMenu extends Menu {
     /* Purpose: Defines the options for the menu */
     @Override
     public void defineOptions(){
-        // Set location name
-        setLocationName("Town Hall");
-
+        setAdvanceNextDay(false);
+        
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         moveTo.addSuboptions("Cafe Deux Magots");
@@ -41,7 +38,7 @@ public class TownHallMenu extends Menu {
         Option exit = new Option("Exit");
 
         Option[] options = {moveTo, advanceNextDay, saveGame, exit};
-        addOptions(options);
+        setOptions(options);
     }
 
     @Override
