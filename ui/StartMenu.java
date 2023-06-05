@@ -44,7 +44,7 @@ public class StartMenu extends Menu{
     }
 
     @Override
-    public void execute(String inputStr){
+    public String execute(String inputStr){
         switch(getSelectedTitle()){
             case "Start Game":
                 setGreeting("Select a map: ");
@@ -74,5 +74,6 @@ public class StartMenu extends Menu{
                 System.out.println("Exiting JOJOlands...");
                 break;
         }
+        return "";
     }
 }

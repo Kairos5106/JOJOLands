@@ -10,6 +10,10 @@ public class TownHallMenu extends Menu {
     /* Constructors */
     public TownHallMenu(){}
 
+    public TownHallMenu(String greeting, String locationName){
+        super(greeting, locationName); // set to null if not used
+    }
+
     /* Getter and setter methods */
 
    /* Purpose: Sets the greeting to notify user regarding day info: dayInfo() */
@@ -21,6 +25,9 @@ public class TownHallMenu extends Menu {
     /* Purpose: Defines the options for the menu */
     @Override
     public void defineOptions(){
+        // Set location name
+        setLocationName("Town Hall");
+
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         moveTo.addSuboptions("Cafe Deux Magots");
@@ -38,20 +45,17 @@ public class TownHallMenu extends Menu {
     }
 
     @Override
-    public void execute(String inputStr){
+    public String execute(String inputStr){
         switch(getSelectedTitle()){
             case "Move to nearby location":
                 setGreeting("Select a location to move to: ");
                 break;
             case "Cafe Deux Magots":
-
-                // move to
+                return "Cafe Deux Magots";
             case "Jade Garden":
-
-                break;
+                return "Jade Garden";
             case "Morioh Grand Hotel":
-                
-                break;
+                return "Morioh Grand Hotel";
             case "Advance to Next Day":
                 setAdvanceNextDay(true);
                 break;
@@ -64,5 +68,6 @@ public class TownHallMenu extends Menu {
                 System.out.println("Exiting game...");
                 break;
         }
+        return "";
     }
 }

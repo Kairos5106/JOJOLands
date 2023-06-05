@@ -17,11 +17,16 @@ public class Menu{
     boolean exitGame = false;
     boolean exitInterface = false;
     boolean advanceNextDay = false;
+    boolean wantMoveLocations = false;
 
     /* Constructors */
     public Menu(){
         this.greeting = null;
         this.locationName = null;
+    }
+
+    public Menu(String locationName){
+        this.locationName = locationName;
     }
 
     public Menu(String greeting, String locationName){
@@ -151,7 +156,7 @@ public class Menu{
 
     public void printLocation(){
         if(this.locationName == null){return;} // cancels method if locationName is null
-        System.out.println(this.locationName);
+        System.out.println("Current Location:  " + this.locationName);
     }
 
     /* Purpose: Prints the selection number followed by the option title by a row-by-row basis. */
@@ -180,8 +185,9 @@ public class Menu{
 
     public void defineOptions(String[] nearbyLocationNames){}
 
-    public void execute(String inputStr){ // placeholder for subclasses to override
+    public String execute(String inputStr){ // placeholder for subclasses to override
         // Define commands that are associated with their respective inputs
+        return "";
     }
 
     public void execute(String inputStr, String[] nearbyLocationNames){}

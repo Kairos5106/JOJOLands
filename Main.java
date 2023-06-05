@@ -3,6 +3,7 @@ package DSTeam3;
 import DSTeam3.ui.GameInterface;
 import DSTeam3.ui.StartInterface;
 import DSTeam3.ui.StartMenu;
+import DSTeam3.maps.DefaultMap;
 import DSTeam3.maps.base.Location;
 import DSTeam3.maps.locations.*;
 

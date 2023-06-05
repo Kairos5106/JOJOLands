@@ -100,17 +100,22 @@ public class GameInterface extends UserInterface{
         setNewDay(true);
     }
 
-    public void execute(){
-
+    public String execute(){
+        return "";
     }
 
     @Override
     public void initiate(){
+        presetListOfMenus();
+
+        
+
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
         String input = "";
         divider(70);
         while(!getExitInterface()){
+            String executeOutput = "";
             if(isNewDay()){
                 currentMenu.setNewDayGreeting(getDayInfo());
                 setNewDay(false);
@@ -119,8 +124,10 @@ public class GameInterface extends UserInterface{
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1);
             divider(70);
-            currentMenu.execute(input);
+            executeOutput = currentMenu.execute(input);
             currentMenu.setCurrentOption(Integer.parseInt(input)-1);
+            
+            // Conditional actions go here and below
             if(isAdvancingNext()){ // at town hall
                 time.endDay();
                 currentMenu.defineOptions();
@@ -135,6 +142,7 @@ public class GameInterface extends UserInterface{
 class Clock{
     private int dayCount;
     private int dayOfWeek; // every week's first day is Sunday
+
     public Clock(){
         this.dayCount = this.dayOfWeek = 1;
     }
