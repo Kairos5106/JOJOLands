@@ -1,4 +1,4 @@
-package Pearl_Jam;
+package source.Pearl_Jam;
 
 import ui.base.Menu;
 import ui.base.Option;

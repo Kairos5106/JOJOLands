@@ -5,7 +5,6 @@ import ui.base.Menu;
 import ui.base.UserInterface;
 import java.util.ArrayList;
 
-import Pearl_Jam.RestaurantsMenu;
 import maps.*;
 import maps.base.Map;
 import maps.locations.AngeloRockMenu;
@@ -22,6 +21,7 @@ import maps.locations.SavageGardenMenu;
 import maps.locations.TownHallMenu;
 import maps.locations.TrattoriaTrussardiMenu;
 import maps.locations.VineyardMenu;
+import source.Pearl_Jam.RestaurantsMenu;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -79,7 +79,6 @@ public class GameInterface extends UserInterface{
         listOfLocationMenus.add(new VineyardMenu());
         listOfLocationMenus.add(new SavageGardenMenu());
         listOfLocationMenus.add(new PolnareffLandMenu());
-        listOfLocationMenus.add(new RestaurantsMenu());
     }
 
     public void setNewDay(boolean newDay){
@@ -153,7 +152,10 @@ class Clock{
     }
 
     /* Method A: Getter and setter methods */
-    
+    public int getDayCount() {
+        return this.dayCount;
+    }
+
     /* Returns a string describing the current day */
     public String dayInfo(){
         return "It's Day " + this.dayCount + " (" + computeDay(this.dayOfWeek) + ") of our journey in JOJOLands!";

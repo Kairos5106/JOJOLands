@@ -1,4 +1,4 @@
-package Pearl_Jam;
+package source.Pearl_Jam;
 
 import DSTeam3.ui.GameInterface;
 import DSTeam3.ui.StartInterface;

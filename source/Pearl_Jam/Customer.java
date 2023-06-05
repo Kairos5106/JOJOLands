@@ -1,4 +1,4 @@
-package Pearl_Jam;
+package source.Pearl_Jam;
 import java.util.Date;
 
 public class Customer {
@@ -6,6 +6,7 @@ public class Customer {
     private int age;
     private String gender;
     private String order;
+    private int orderNumber;
     private String nameRestaurant;
     private Date arrivalTime;
 
@@ -15,6 +16,7 @@ public class Customer {
         age = 0;
         gender = null;
         order = null;
+        orderNumber = 0;
         nameRestaurant = null;
         arrivalTime = null;
     }
@@ -24,6 +26,7 @@ public class Customer {
         this.age = age;
         this.gender = gender;
         this.order = order;
+        this.orderNumber = orderNumber;
         this.nameRestaurant = nameRestaurant;
         this.arrivalTime = arrivalTime;
     }
@@ -43,6 +46,10 @@ public class Customer {
 
     public String getOrder() {
         return order;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
     public String getNameRestaurant() {
@@ -68,6 +75,10 @@ public class Customer {
 
     public void setOrder(String order) {
         this.order = order;
+    }
+
+    public void setOrderNumber() {
+        this.orderNumber++;
     }
 
     public void setNameRestaurant(String nameRestaurant) {
