@@ -16,7 +16,7 @@ public class JadeGarden extends Restaurant {
         menu.add("Scrambled Egg White with Milk ($10.00)");
     }
 
-    @Override
+    // Add customer to waiting list
     public void addCustomerToWaitingList(Customer customer) {
         waitingList.add(customer);
     }
@@ -24,25 +24,26 @@ public class JadeGarden extends Restaurant {
     // Implementation of Restaurant's abstract processOrders method
     // First and last customers to arrive are served first
     // Followed by the second and second last, and so on
+    @Override
     public void processOrders() {
         // Create a PriorityQueue to store customers based on arrival time
-        PriorityQueue<Customer> customerQueue = new PriorityQueue<>(new CustomerComparator());
+        PriorityQueue<Customer> processingQueue = new PriorityQueue<>(new CustomerComparator());
 
-        // Add all customers from waitingList to PriorityQueue
-        customerQueue.addAll(waitingList);
+        // Add all customers from waitingList to processingQueue
+        processingQueue.addAll(waitingList);
 
-        // Clear the waitingList and orderProcessingList
+        // Clear the waitingList and orderProcessingList to start with fresh data
         waitingList.clear();
         orderProcessingList.clear();
 
         // Retrieve customers from the PriorityQueue in the Jade Garden's system
-        while (!customerQueue.isEmpty()) {
-            Customer firstCustomer = customerQueue.poll();
+        while (!processingQueue.isEmpty()) {
+            Customer firstCustomer = processingQueue.poll();
             Customer lastCustomer = null;
 
             // Get last customer
-            if (!customerQueue.isEmpty()) {
-                lastCustomer = retrieveLastCustomer(customerQueue);
+            if (!processingQueue.isEmpty()) {
+                lastCustomer = retrieveLastCustomer(processingQueue);
             }
 
             // Add the first customer to the orderProcessingList
@@ -56,9 +57,9 @@ public class JadeGarden extends Restaurant {
     }
 
     // Method to retrieve last customer
-    private Customer retrieveLastCustomer(PriorityQueue<Customer> customerQueue) {
+    private Customer retrieveLastCustomer(PriorityQueue<Customer> processingQueue) {
         // Temporarily store the customers to restore the queue later
-        PriorityQueue<Customer> tempQueue = new PriorityQueue<>(customerQueue);
+        PriorityQueue<Customer> tempQueue = new PriorityQueue<>(processingQueue);
 
         Customer lastCustomer = null;
         Customer currentCustomer;
@@ -74,7 +75,7 @@ public class JadeGarden extends Restaurant {
         }
 
         // Restore the original order of customers in the queue
-        customerQueue.addAll(tempQueue);
+        processingQueue.addAll(tempQueue);
 
         return lastCustomer;
     }

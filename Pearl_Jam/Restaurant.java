@@ -33,7 +33,7 @@ public abstract class Restaurant {
     }
 
     public void addCustomerToWaitingList(Customer customer) {
-        waitingList.offer(customer);
+        waitingList.add(customer);
     }
 
     public abstract void processOrders();
