@@ -1,4 +1,4 @@
-package DSTeam3;
+package Pearl_Jam;
 
 import DSTeam3.ui.GameInterface;
 import DSTeam3.ui.StartInterface;
@@ -7,7 +7,7 @@ import DSTeam3.maps.base.Location;
 import DSTeam3.maps.locations.*;
 
 /* This class is used to initialize Jojolands */
-public class Main{
+public class TesterPearlJam {
     public static void main(String[] args) {
         /* Section 1: Code for initializing JOJOLands */
         /* Initializing required variables before initiating menu */
