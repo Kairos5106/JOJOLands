@@ -1,9 +1,7 @@
 package ui.base;
 
 import java.util.ArrayList;
-import maps.*;
 import maps.base.Map;
-import java.util.Scanner;
 
 /* Purpose: Handles everything that is to do with menu option selection */
 public class Menu{
@@ -126,10 +124,6 @@ public class Menu{
 
     public Map getMap(){return null;} // placeholder for subclasses to override
 
-    public boolean isExitInterface() {
-        return exitInterface;
-    }
-
     public void setExitInterface(boolean exitInterface){
         this.exitInterface = exitInterface;
     }
@@ -242,15 +236,6 @@ public class Menu{
         printGreeting();
         printOptions();
     }
-
-    public void displayMenu() {
-        System.out.println("\n==== " + greeting + " ====");
-        System.out.println("Location: " + locationName + "\n");
-
-        for (Option option : options) {
-            System.out.println(option);
-        }
-    }
     
     /* Methods C: Processing methods - Everything aside from A and B */
 
@@ -260,18 +245,7 @@ public class Menu{
 
     public void defineOptions(String[] nearbyLocationNames){}
 
-<<<<<<< HEAD
-    public void selectOption() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your choice: ");
-        String input = scanner.nextLine().trim();
-        execute(input);
-    }
-
-    public void execute(String inputStr){ // placeholder for subclasses to override
-=======
     public String execute(String inputStr){ // placeholder for subclasses to override
->>>>>>> e9d24af2426eff04fc6b6f72d528ec52f8b58c90
         // Define commands that are associated with their respective inputs
         return "";
     }
@@ -279,11 +253,4 @@ public class Menu{
     public void execute(String inputStr, String[] nearbyLocationNames){}
 
     public void setNewDayGreeting(String newDayGreeting){}
-
-    public void run() {
-        while (!isExitInterface()) {
-            displayMenu();
-            selectOption();
-        }
-    }
 }

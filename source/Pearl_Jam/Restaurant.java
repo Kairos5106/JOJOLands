@@ -70,6 +70,15 @@ public abstract class Restaurant {
 
         System.out.println("-+-------------------------------------+");
     }
+
+    public void displayMenu() {
+        System.out.println("Menu");
+        System.out.println("+-------------------------------------+");
+        for (String item : menu) {
+            System.out.println("| " + item + " |");
+        }
+        System.out.println("+-------------------------------------+");
+    }
 }
 
 

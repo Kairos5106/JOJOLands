@@ -1,10 +1,10 @@
-package DSTeam3.maps.locations;
+package source.Pearl_Jam;
 
-import DSTeam3.ui.base.*;
+import ui.base.*;
 
-public class JadeGardenMenu extends Menu {
-    public JadeGardenMenu(){
-        this.setLocationName("Jade Garden");
+public class CafeDeuxMagotsMenu extends Menu {
+    public CafeDeuxMagotsMenu(){
+        this.setLocationName("Cafe Deux Magots");
     }
 
     /* Purpose: Defines the options for the menu */
@@ -12,12 +12,16 @@ public class JadeGardenMenu extends Menu {
     public void defineOptions(){        
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
-        
-        Option viewWaitingList = new Option("View waiting list and order processing list");
+        moveTo.addSuboptions("Jade Garden");
+        moveTo.addSuboptions("Savage Garden");
+        moveTo.addSuboptions("Polnareff Land");
+        moveTo.addSuboptions("Town Hall");
 
-        Option viewMenu = new Option("View menu");
+        Option viewWaitingList = new Option("View Waiting List and Order Processing List");
 
-        Option viewSales = new Option("View sales information");
+        Option viewMenu = new Option("View Menu");
+
+        Option viewSales = new Option("View Sales Information");
         
         Option milagroMan = new Option("Milagro Man");
 
@@ -27,10 +31,11 @@ public class JadeGardenMenu extends Menu {
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewWaitingList, viewMenu, viewSales, milagroMan, backPrevious, backTownHall};
+        Option[] options = {moveTo, backPrevious, backTownHall};
         setOptions(options);
     }
 
+    /* Purpose: Processes user input and takes the appropriate action depending on which option was selected */
     @Override
     public String execute(String inputStr){
         switch(getSelectedTitle()){
@@ -53,18 +58,15 @@ public class JadeGardenMenu extends Menu {
             case "Town Hall":
                 setMovingLocations(true);
                 return "Town Hall";
-            case "Morioh Grand Hotel":
+            case "Jade Garden":
                 setMovingLocations(true);
-                return "Morioh Grand Hotel";
-            case "San Giorgio Maggiore":
+                return "Jade Garden";
+            case "Savage Garden":
                 setMovingLocations(true);
-                return "San Giorgio Maggiore";
-            case "Cafe Deux Magots":
+                return "Savage Garden";
+            case "Polnareff Land":
                 setMovingLocations(true);
-                return "Cafe Deux Magots";
-            case "Joestar Mansion":
-                setMovingLocations(true);
-                return "Joestar Mansion";
+                return "Polnareff Land";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
