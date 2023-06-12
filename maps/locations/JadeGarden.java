@@ -7,5 +7,6 @@ public class JadeGarden extends Location{
     public JadeGarden(){
         super();
         this.nameOfLocation = "Jade Garden";
+        this.menu = new JadeGardenMenu();
     }
 }

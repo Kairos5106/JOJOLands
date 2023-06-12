@@ -7,5 +7,6 @@ public class AngeloRock extends Location{
     public AngeloRock(){
         super();
         this.nameOfLocation = "Angelo Rock";
+        this.menu = new AngeloRockMenu();
     }
 }

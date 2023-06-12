@@ -7,5 +7,6 @@ public class Vineyard extends Location{
     public Vineyard(){
         super();
         this.nameOfLocation = "Vineyard";
+        this.menu = new VineyardMenu();
     }
 }

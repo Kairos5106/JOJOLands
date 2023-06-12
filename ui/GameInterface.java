@@ -1,5 +1,6 @@
 package ui;
 
+<<<<<<< HEAD
 import maps.base.*;
 import ui.base.Menu;
 import ui.base.UserInterface;
@@ -22,6 +23,27 @@ import maps.locations.TownHallMenu;
 import maps.locations.TrattoriaTrussardiMenu;
 import maps.locations.VineyardMenu;
 import source.Pearl_Jam.RestaurantsMenu;
+=======
+import DSTeam3.maps.base.*;
+import DSTeam3.ui.base.Menu;
+import DSTeam3.ui.base.Option;
+import DSTeam3.ui.base.UserInterface;
+import java.util.ArrayList;
+import DSTeam3.maps.locations.AngeloRockMenu;
+import DSTeam3.maps.locations.CafeDeuxMenu;
+import DSTeam3.maps.locations.DioMansionMenu;
+import DSTeam3.maps.locations.GreenDolphinMenu;
+import DSTeam3.maps.locations.JadeGardenMenu;
+import DSTeam3.maps.locations.JoestarMansionMenu;
+import DSTeam3.maps.locations.LibeccioMenu;
+import DSTeam3.maps.locations.MoriohGrandMenu;
+import DSTeam3.maps.locations.PolnareffLandMenu;
+import DSTeam3.maps.locations.SanGiorgioMenu;
+import DSTeam3.maps.locations.SavageGardenMenu;
+import DSTeam3.maps.locations.TownHallMenu;
+import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
+import DSTeam3.maps.locations.VineyardMenu;
+>>>>>>> e9d24af2426eff04fc6b6f72d528ec52f8b58c90
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -60,25 +82,25 @@ public class GameInterface extends UserInterface{
         return getCurrentLocation().getNearbyLocationNames();
     }
 
-    public Menu getMenu(){
+    public Menu getCurrentMenu(){
         return this.map.getCurrentMenu();
     }
 
     public void presetListOfMenus(){
-        listOfLocationMenus.add(new TownHallMenu());
-        listOfLocationMenus.add(new MoriohGrandMenu());
-        listOfLocationMenus.add(new TrattoriaTrussardiMenu());
-        listOfLocationMenus.add(new GreenDolphinMenu());
-        listOfLocationMenus.add(new LibeccioMenu());
-        listOfLocationMenus.add(new SanGiorgioMenu());
-        listOfLocationMenus.add(new JadeGardenMenu());
-        listOfLocationMenus.add(new CafeDeuxMenu());
-        listOfLocationMenus.add(new JoestarMansionMenu());
-        listOfLocationMenus.add(new DioMansionMenu());
-        listOfLocationMenus.add(new AngeloRockMenu());
-        listOfLocationMenus.add(new VineyardMenu());
-        listOfLocationMenus.add(new SavageGardenMenu());
-        listOfLocationMenus.add(new PolnareffLandMenu());
+        listOfLocationMenus.add(new TownHallMenu()); // 0
+        listOfLocationMenus.add(new MoriohGrandMenu()); // 1
+        listOfLocationMenus.add(new TrattoriaTrussardiMenu());// 2
+        listOfLocationMenus.add(new GreenDolphinMenu()); // 3
+        listOfLocationMenus.add(new LibeccioMenu());// 4
+        listOfLocationMenus.add(new SanGiorgioMenu()); // 5
+        listOfLocationMenus.add(new JadeGardenMenu()); // 6
+        listOfLocationMenus.add(new CafeDeuxMenu()); // 7
+        listOfLocationMenus.add(new JoestarMansionMenu()); // 8
+        listOfLocationMenus.add(new DioMansionMenu());// 9
+        listOfLocationMenus.add(new AngeloRockMenu());// 10
+        listOfLocationMenus.add(new VineyardMenu());// 11
+        listOfLocationMenus.add(new SavageGardenMenu());// 12
+        listOfLocationMenus.add(new PolnareffLandMenu());// 13
     }
 
     public void setNewDay(boolean newDay){
@@ -92,7 +114,35 @@ public class GameInterface extends UserInterface{
     public boolean isAdvancingNext(){
         return this.currentMenu.getAdvanceNextDay();
     }
+
+    public boolean openMoveLocationsMenu(){
+        return currentMenu.getOpenMoveLocationsMenu();
+    }
     
+    public boolean movingLocations(){
+        return currentMenu.movingLocations();
+    }
+
+    public boolean returnPreviousLocation(){
+        return currentMenu.returnPreviousLocation();
+    }
+
+    public boolean returnToFrontPage(){
+        return currentMenu.returnToFrontPage();
+    }
+
+    public boolean moveTownHall(){
+        return currentMenu.moveTownHall();
+    }
+
+    public boolean hasForwardLocation(){
+        return this.map.hasForwardLocation();
+    }
+    
+    public boolean wantMoveForward(){
+        return currentMenu.wantMoveForward();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -102,21 +152,26 @@ public class GameInterface extends UserInterface{
         setNewDay(true);
     }
 
-    public void execute(){
-
+    public String execute(){
+        return "";
     }
 
     @Override
     public void initiate(){
+        map.defineLocations();
+        presetListOfMenus();
+        setCurrentMenu(getCurrentMenu());
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
         String input = "";
         divider(70);
         while(!getExitInterface()){
+            String executeOutput = "";
             if(isNewDay()){
                 currentMenu.setNewDayGreeting(getDayInfo());
                 setNewDay(false);
             }
+<<<<<<< HEAD
 
             // Check if the current menu is a restaurant menu
             if (currentMenu instanceof RestaurantsMenu) {
@@ -126,27 +181,84 @@ public class GameInterface extends UserInterface{
                 // Handle the general menu and interface logic
             }
 
+=======
+            if(openMoveLocationsMenu()){
+                String[] nearbyLocationList = getNearbyLocationNames();
+                currentMenu.getCurrentOption().addSuboptions(nearbyLocationList);
+                currentMenu.setOpenMoveLocationsMenu(false);
+            }
+            if(returnToFrontPage()){
+                setCurrentMenu(getCurrentLocation().getMenu());
+                currentMenu.setCurrentOption(-1);
+                currentMenu.defineOptions();
+                currentMenu.setDefaultOption();
+                currentMenu.setReturnPreviousLocation(false);
+                currentMenu.setGreeting(null);
+                System.out.println("Set greeting to null");
+            }
+            if(returnPreviousLocation() && !movingLocations()){
+                currentMenu.setGreeting("Are you sure you want to return to " + map.getPreviousLocationName() + "?");
+            }
+            if(hasForwardLocation()){
+                currentMenu.getCurrentOption().addSuboptions(new Option("Go forward to visited location"));
+            }
+            
+>>>>>>> e9d24af2426eff04fc6b6f72d528ec52f8b58c90
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1);
             divider(70);
-            currentMenu.execute(input);
-            currentMenu.setCurrentOption(Integer.parseInt(input)-1);
-            if(isAdvancingNext()){ // at town hall
-                time.endDay();
+            executeOutput = currentMenu.execute(input);
+            if(!movingLocations()){
+                currentMenu.setCurrentOption(Integer.parseInt(input)-1);
+            }
+
+
+            // Conditional actions go here and below
+            if(isAdvancingNext()){
+                endDay();
+                currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
+                currentMenu.defineOptions();
+                currentMenu.setDefaultOption();
+            }
+            if(movingLocations()){
+                if(returnPreviousLocation()){
+                    currentMenu.setReturnPreviousLocation(false);
+                    map.moveBack();
+                }
+                else if(moveTownHall()){
+                    currentMenu.setMoveTownHall(false);
+                    map.moveTownHall();
+                }
+                else if(wantMoveForward()){
+                    currentMenu.setWantMoveForward(false);
+                    map.moveForward();
+                }
+                else{
+                    currentMenu.setMovingLocations(false);
+                    map.clearForwardLocations();
+                    map.moveTo(executeOutput);
+                }
+                currentMenu.setMovingLocations(false);
+                currentMenu.setGreeting(null);
+                setCurrentMenu(getCurrentLocation().getMenu());
+                currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
             }
         }
     }
-
 }
 
 /* Purpose: Keeps track of game time */
 class Clock{
     private int dayCount;
     private int dayOfWeek; // every week's first day is Sunday
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e9d24af2426eff04fc6b6f72d528ec52f8b58c90
     public Clock(){
         this.dayCount = this.dayOfWeek = 1;
     }

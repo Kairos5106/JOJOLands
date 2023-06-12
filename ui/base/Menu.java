@@ -12,17 +12,27 @@ public class Menu{
     private Option currentOption = null;
     protected ArrayList<Boolean> optionsPrintIndent = new ArrayList<>(); // if true, print suboptions indented on the same page
 
-    private String greeting; // represent text that appears before the options show up
-    private String locationName; // optional string variable: for nodes in map only
+    String greeting; // represent text that appears before the options show up
+    String locationName; // optional string variable: for nodes in map only
 
     boolean exitGame = false;
     boolean exitInterface = false;
     boolean advanceNextDay = false;
+    boolean openMoveLocationsMenu = false;
+    boolean movingLocations = false;
+    boolean returnPreviousLocation = false;
+    boolean returnToFrontPage = false;
+    boolean moveTownHall = false;
+    boolean wantMoveForward = false;
 
     /* Constructors */
     public Menu(){
         this.greeting = null;
         this.locationName = null;
+    }
+
+    public Menu(String locationName){
+        this.locationName = locationName;
     }
 
     public Menu(String greeting, String locationName){
@@ -32,8 +42,14 @@ public class Menu{
 
     /* ****************** Methods A: Getter and setter methods ****************** */
 
+    /* Special case: If a value of -1 is input, the current option will be set to null */
     public void setCurrentOption(int indexOfSuboption){
-        this.currentOption = this.currentOption.get(indexOfSuboption);
+        if(indexOfSuboption == -1){
+            this.currentOption = null;
+        }
+        else{
+            this.currentOption = this.currentOption.get(indexOfSuboption);
+        }
     }
 
     public Option getCurrentOption(){
@@ -148,15 +164,64 @@ public class Menu{
         }
     }
     
+    public void setOpenMoveLocationsMenu(boolean setting){
+        this.openMoveLocationsMenu = setting;
+    }
+
+    public boolean getOpenMoveLocationsMenu(){
+        return this.openMoveLocationsMenu;
+    }
+
+    public void setMovingLocations(boolean setting){
+        this.movingLocations = setting;
+    }
+
+    public boolean movingLocations(){
+        return this.movingLocations;
+    }
+
+    public void setReturnPreviousLocation(boolean setting){
+        this.returnPreviousLocation = setting;
+    }
+
+    public boolean returnPreviousLocation(){
+        return this.returnPreviousLocation;
+    }
+
+    public void setReturnToFrontPage(boolean setting){
+        this.returnToFrontPage = setting;
+    }
+
+    public boolean returnToFrontPage(){
+        return this.returnToFrontPage;
+    }
+
+    public void setMoveTownHall(boolean setting){
+        this.moveTownHall = setting;
+    }
+
+    public boolean moveTownHall(){
+        return this.moveTownHall;
+    }
+
+    public void setWantMoveForward(boolean setting){
+        this.wantMoveForward = setting;
+    }
+
+    public boolean wantMoveForward(){
+        return this.wantMoveForward;
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
+        if(this.greeting == null){return;}
         System.out.println(this.greeting);
     }
 
     public void printLocation(){
         if(this.locationName == null){return;} // cancels method if locationName is null
-        System.out.println(this.locationName);
+        System.out.println("Current Location: " + this.locationName);
     }
 
     /* Purpose: Prints the selection number followed by the option title by a row-by-row basis. */
@@ -172,8 +237,9 @@ public class Menu{
      * Note: If any of the these are null, it won't be printed
      */
     public void runDisplay(){
-        printGreeting();
         printLocation();
+        System.out.println();
+        printGreeting();
         printOptions();
     }
 
@@ -194,6 +260,7 @@ public class Menu{
 
     public void defineOptions(String[] nearbyLocationNames){}
 
+<<<<<<< HEAD
     public void selectOption() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your choice: ");
@@ -202,7 +269,11 @@ public class Menu{
     }
 
     public void execute(String inputStr){ // placeholder for subclasses to override
+=======
+    public String execute(String inputStr){ // placeholder for subclasses to override
+>>>>>>> e9d24af2426eff04fc6b6f72d528ec52f8b58c90
         // Define commands that are associated with their respective inputs
+        return "";
     }
 
     public void execute(String inputStr, String[] nearbyLocationNames){}

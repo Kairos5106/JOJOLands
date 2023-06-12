@@ -7,5 +7,6 @@ public class Libeccio extends Location{
     public Libeccio(){
         super();
         this.nameOfLocation = "Libeccio";
+        this.menu = new LibeccioMenu();
     }
 }

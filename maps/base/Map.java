@@ -3,8 +3,6 @@ package DSTeam3.maps.base;
 import java.util.ArrayList;
 import DSTeam3.datastructures.*;
 import DSTeam3.ui.base.*;
-import DSTeam3.maps.locations.*;
-import DSTeam3.maps.base.*;
 
 /* Code specific to the maps are stored in their own respective classes, e.g. code for the default map is in DefaultMap.java */
 
@@ -14,6 +12,7 @@ public class Map {
     protected String mapName;
     protected Location currentLocation; // keeps track of current location
     protected Stack<Location> previous = new Stack<>(); // keeps track of previous locations: helps with the moveBack() function
+    protected Stack<Location> forward = new Stack<>(); // keeps track of visited locations when player moves to previous location
     protected ArrayList<Location> locations = new ArrayList<>(); // each location object represents a node in the map
 
     /* Constructors */
@@ -34,7 +33,7 @@ public class Map {
         return this.currentLocation;
     }
 
-    public void defineAll(){}  // just a placeholder for subclasses to override this method
+    public void defineLocations(){}  // just a placeholder for subclasses to override this method
 
     public Menu getCurrentMenu(){
         return this.currentLocation.getMenu();
@@ -42,6 +41,23 @@ public class Map {
 
     public void setCurrentLocation(Location location){
         this.currentLocation = location;
+    }
+
+    public String getPreviousLocationName(){
+        return previous.peek().getName();
+    }
+
+    /* Returns true if the "forward" stack has elements and false if there are no elements */
+    public boolean hasForwardLocation(){
+        return !forward.isEmpty();
+    }
+
+    public String getForwardLocationName(){
+        return forward.peek().getName();
+    }
+    
+    public void clearForwardLocations(){
+        forward.clear();
     }
 
     /* Methods B: Display methods */
@@ -58,11 +74,29 @@ public class Map {
     }
 
     public void moveBack(){
+        Location temp = currentLocation;
         currentLocation = previous.pop();
+        forward.push(temp);
+    }   
+
+    public void moveForward(){
+        Location temp = currentLocation;
+        currentLocation = forward.pop();
+        previous.push(temp);
     }
 
-    /* Purpose: Moves player to the Town Hall */
     public void moveTownHall(){
-        moveTo("Town Hall");
+        Location temp = currentLocation;
+        setCurrentLocation(findLocation("Town Hall"));
+        previous.push(temp);
+    }
+
+    public Location findLocation(String nameOfLocation){
+        for (int i = 0; i < locations.size(); i++) {
+            if(locations.get(i).getName().equals(nameOfLocation)){
+                return locations.get(i);
+            }
+        }
+        return null;
     }
 }

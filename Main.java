@@ -3,8 +3,6 @@ package DSTeam3;
 import DSTeam3.ui.GameInterface;
 import DSTeam3.ui.StartInterface;
 import DSTeam3.ui.StartMenu;
-import DSTeam3.maps.base.Location;
-import DSTeam3.maps.locations.*;
 
 /* This class is used to initialize Jojolands */
 public class Main{
@@ -20,7 +18,7 @@ public class Main{
         }
 
         /* Section 2: Load selected map and user interface */
-        GameInterface gameUI = new GameInterface(startUI.getMapSelected(), new TownHallMenu());
+        GameInterface gameUI = new GameInterface(startUI.getMapSelected());
         
         /* Section 3: Start game */
         gameUI.initiate();

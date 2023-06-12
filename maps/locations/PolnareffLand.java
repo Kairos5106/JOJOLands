@@ -7,5 +7,6 @@ public class PolnareffLand extends Location{
     public PolnareffLand(){
         super();
         this.nameOfLocation = "Polnareff Land";
+        this.menu = new PolnareffLandMenu();
     }
 }

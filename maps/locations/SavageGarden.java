@@ -7,5 +7,6 @@ public class SavageGarden extends Location{
     public SavageGarden(){
         super();
         this.nameOfLocation = "Savage Garden";
+        this.menu = new SavageGardenMenu();
     }
 }

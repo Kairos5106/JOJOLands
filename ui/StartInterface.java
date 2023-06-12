@@ -1,7 +1,6 @@
 package DSTeam3.ui;
 
 import DSTeam3.ui.base.*;
-import DSTeam3.maps.*;
 import DSTeam3.maps.base.Map;
 
 public class StartInterface extends UserInterface{
