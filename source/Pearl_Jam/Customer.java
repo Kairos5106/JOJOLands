@@ -21,18 +21,11 @@ public class Customer {
         arrivalTime = null;
     }
 
-    public Customer(String nameCustomer, int age, String gender) {
-        this.nameCustomer = nameCustomer;
-        this.age = age;
-        this.gender = gender;
-    }
-
-    public Customer(String nameCustomer, int age, String gender, String order, String nameRestaurant, Date arrivalTime) {
+    public Customer(String nameCustomer, int age, String gender, String order, Date arrivalTime) {
         this.nameCustomer = nameCustomer;
         this.age = age;
         this.gender = gender;
         this.order = order;
-        this.nameRestaurant = nameRestaurant;
         this.arrivalTime = arrivalTime;
     }
 

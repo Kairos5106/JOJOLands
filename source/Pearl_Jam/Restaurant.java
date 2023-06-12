@@ -1,17 +1,16 @@
 package source.Pearl_Jam;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public abstract class Restaurant {
     protected String nameRestaurant;
-    protected PriorityQueue<Customer> waitingList;
+    protected List<Customer> waitingList;
     protected List<Customer> orderProcessingList;
     protected List<String> menu;
 
     public Restaurant(String nameRestaurant) { // takes the name of a particular restaurant and initialises the instance var
         this.nameRestaurant = nameRestaurant;
-        waitingList = new PriorityQueue<>();
+        waitingList = new ArrayList<>();
         orderProcessingList = new ArrayList<>();
         menu = new ArrayList<>();
     }
@@ -20,7 +19,7 @@ public abstract class Restaurant {
         return nameRestaurant;
     }
 
-    public PriorityQueue<Customer> getWaitingList() {
+    public List<Customer> getWaitingList() {
         return waitingList;
     }
 

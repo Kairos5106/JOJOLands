@@ -32,6 +32,8 @@ public class JadeGarden extends Restaurant {
         PriorityQueue<Customer> processingQueue = new PriorityQueue<>(new CustomerComparator());
 
         // Add all customers from waitingList to processingQueue
+        // Then prcoessingQueue will internally sort the elements according to priority stated in CustomerComparator
+        // First customer to arrive at the front of queue
         processingQueue.addAll(waitingList);
 
         // Clear the waitingList and orderProcessingList to start with fresh data
