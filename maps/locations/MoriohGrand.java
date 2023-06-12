@@ -6,6 +6,7 @@ import DSTeam3.maps.base.*;
 public class MoriohGrand extends Location{
     public MoriohGrand(){
         super();
-        this.nameOfLocation = "Morioh Grand";
+        this.nameOfLocation = "Morioh Grand Hotel";
+        this.menu = new MoriohGrandMenu();
     }
 }

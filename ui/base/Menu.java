@@ -17,7 +17,12 @@ public class Menu{
     boolean exitGame = false;
     boolean exitInterface = false;
     boolean advanceNextDay = false;
-    boolean wantMoveLocations = false;
+    boolean openMoveLocationsMenu = false;
+    boolean movingLocations = false;
+    boolean returnPreviousLocation = false;
+    boolean returnToFrontPage = false;
+    boolean moveTownHall = false;
+    boolean wantMoveForward = false;
 
     /* Constructors */
     public Menu(){
@@ -154,15 +159,64 @@ public class Menu{
         }
     }
     
+    public void setOpenMoveLocationsMenu(boolean setting){
+        this.openMoveLocationsMenu = setting;
+    }
+
+    public boolean getOpenMoveLocationsMenu(){
+        return this.openMoveLocationsMenu;
+    }
+
+    public void setMovingLocations(boolean setting){
+        this.movingLocations = setting;
+    }
+
+    public boolean movingLocations(){
+        return this.movingLocations;
+    }
+
+    public void setReturnPreviousLocation(boolean setting){
+        this.returnPreviousLocation = setting;
+    }
+
+    public boolean returnPreviousLocation(){
+        return this.returnPreviousLocation;
+    }
+
+    public void setReturnToFrontPage(boolean setting){
+        this.returnToFrontPage = setting;
+    }
+
+    public boolean returnToFrontPage(){
+        return this.returnToFrontPage;
+    }
+
+    public void setMoveTownHall(boolean setting){
+        this.moveTownHall = setting;
+    }
+
+    public boolean moveTownHall(){
+        return this.moveTownHall;
+    }
+
+    public void setWantMoveForward(boolean setting){
+        this.wantMoveForward = setting;
+    }
+
+    public boolean wantMoveForward(){
+        return this.wantMoveForward;
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
+        if(this.greeting == null){return;}
         System.out.println(this.greeting);
     }
 
     public void printLocation(){
         if(this.locationName == null){return;} // cancels method if locationName is null
-        System.out.println("Current Location:  " + this.locationName);
+        System.out.println("Current Location: " + this.locationName);
     }
 
     /* Purpose: Prints the selection number followed by the option title by a row-by-row basis. */

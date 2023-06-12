@@ -7,5 +7,6 @@ public class TrattoriaTrussardi extends Location{
     public TrattoriaTrussardi(){
         super();
         this.nameOfLocation = "Trattoria Trussardi";
+        this.menu = new TrattoriaTrussardiMenu();
     }
 }

@@ -7,5 +7,6 @@ public class GreenDolphin extends Location{
     public GreenDolphin(){
         super();
         this.nameOfLocation = "Green Dolphin Street Prison";
+        this.menu = new GreenDolphinMenu();
     }
 }

@@ -2,10 +2,10 @@ package DSTeam3.ui;
 
 import DSTeam3.maps.base.*;
 import DSTeam3.ui.base.Menu;
+import DSTeam3.ui.base.Option;
 import DSTeam3.ui.base.UserInterface;
 import java.util.ArrayList;
 import DSTeam3.maps.*;
-import DSTeam3.maps.base.Map;
 import DSTeam3.maps.locations.AngeloRockMenu;
 import DSTeam3.maps.locations.CafeDeuxMenu;
 import DSTeam3.maps.locations.DioMansionMenu;
@@ -90,7 +90,35 @@ public class GameInterface extends UserInterface{
     public boolean isAdvancingNext(){
         return this.currentMenu.getAdvanceNextDay();
     }
+
+    public boolean openMoveLocationsMenu(){
+        return currentMenu.getOpenMoveLocationsMenu();
+    }
     
+    public boolean movingLocations(){
+        return currentMenu.movingLocations();
+    }
+
+    public boolean returnPreviousLocation(){
+        return currentMenu.returnPreviousLocation();
+    }
+
+    public boolean returnToFrontPage(){
+        return currentMenu.returnToFrontPage();
+    }
+
+    public boolean moveTownHall(){
+        return currentMenu.moveTownHall();
+    }
+
+    public boolean hasForwardLocation(){
+        return this.map.hasForwardLocation();
+    }
+    
+    public boolean wantMoveForward(){
+        return currentMenu.wantMoveForward();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -119,24 +147,66 @@ public class GameInterface extends UserInterface{
                 currentMenu.setNewDayGreeting(getDayInfo());
                 setNewDay(false);
             }
+            if(openMoveLocationsMenu()){
+                String[] nearbyLocationList = getNearbyLocationNames();
+                currentMenu.getCurrentOption().addSuboptions(nearbyLocationList);
+                currentMenu.setOpenMoveLocationsMenu(false);
+            }
+            if(returnToFrontPage()){
+                setCurrentMenu(getCurrentLocation().getMenu());
+                currentMenu.setCurrentOption(-1);
+                currentMenu.defineOptions();
+                currentMenu.setDefaultOption();
+                currentMenu.setReturnPreviousLocation(false);
+                currentMenu.setGreeting(null);
+                System.out.println("Set greeting to null");
+            }
+            if(returnPreviousLocation() && !movingLocations()){
+                currentMenu.setGreeting("Are you sure you want to return to " + map.getPreviousLocationName() + "?");
+            }
+            if(hasForwardLocation()){
+                currentMenu.getCurrentOption().addSuboptions(new Option("Go forward to visited location"));
+            }
+            
             currentMenu.runDisplay();
-
-            /* Debugging statement for nearby nodes of currentLocation */
-            // String[] nearbyLocationList = getNearbyLocationNames();
-            // for (int i = 0; i < nearbyLocationList.length; i++) {
-            //     System.out.println(nearbyLocationList[i]);
-            // }
-
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1);
             divider(70);
             executeOutput = currentMenu.execute(input);
-            currentMenu.setCurrentOption(Integer.parseInt(input)-1);
-            
+            if(!movingLocations()){
+                currentMenu.setCurrentOption(Integer.parseInt(input)-1);
+            }
+
+
             // Conditional actions go here and below
-            if(isAdvancingNext()){ // at town hall
+            if(isAdvancingNext()){
                 endDay();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
+                currentMenu.defineOptions();
+                currentMenu.setDefaultOption();
+            }
+            if(movingLocations()){
+                if(returnPreviousLocation()){
+                    currentMenu.setReturnPreviousLocation(false);
+                    map.moveBack();
+                }
+                else if(moveTownHall()){
+                    currentMenu.setMoveTownHall(false);
+                    map.moveTownHall();
+                }
+                else if(wantMoveForward()){
+                    currentMenu.setWantMoveForward(false);
+                    map.moveForward();
+                }
+                else{
+                    currentMenu.setMovingLocations(false);
+                    map.clearForwardLocations();
+                    map.moveTo(executeOutput);
+                }
+                currentMenu.setMovingLocations(false);
+                currentMenu.setGreeting(null);
+                setCurrentMenu(getCurrentLocation().getMenu());
+                currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
             }

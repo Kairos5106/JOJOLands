@@ -1,6 +1,5 @@
 package DSTeam3.maps.locations;
 
-import DSTeam3.ui.base.Menu;
 import DSTeam3.ui.base.*;
 import DSTeam3.maps.base.*;
 
@@ -27,13 +26,10 @@ public class TownHallMenu extends Menu {
         
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
-        moveTo.addSuboptions("Cafe Deux Magots");
-        moveTo.addSuboptions("Jade Garden");
-        moveTo.addSuboptions("Morioh Grand Hotel");
         
-        Option advanceNextDay = new Option("Advance to Next Day");
+        Option advanceNextDay = new Option("Advance to next day");
         
-        Option saveGame = new Option("Save Game");
+        Option saveGame = new Option("Save game"); // havent developed
 
         Option exit = new Option("Exit");
 
@@ -46,17 +42,21 @@ public class TownHallMenu extends Menu {
         switch(getSelectedTitle()){
             case "Move to nearby location":
                 setGreeting("Select a location to move to: ");
+                setOpenMoveLocationsMenu(true);
                 break;
-            case "Cafe Deux Magots":
+            case "Cafe Deux Magots": // move location
+                setMovingLocations(true);
                 return "Cafe Deux Magots";
-            case "Jade Garden":
+            case "Jade Garden": // // move location
+                setMovingLocations(true);
                 return "Jade Garden";
-            case "Morioh Grand Hotel":
+            case "Morioh Grand Hotel": // move location
+                setMovingLocations(true);
                 return "Morioh Grand Hotel";
-            case "Advance to Next Day":
+            case "Advance to next day":
                 setAdvanceNextDay(true);
                 break;
-            case "Save Game":
+            case "Save game":
                 System.out.println("Not developed yet");
                 break;
             case "Exit":
@@ -64,7 +64,17 @@ public class TownHallMenu extends Menu {
                 setExitInterface(true);
                 System.out.println("Exiting game...");
                 break;
+            case "Go forward to visited location":
+                setMovingLocations(true);
+                setWantMoveForward(true);
+                break;
+            case "Yes":
+                setMovingLocations(true);
+                break;
+            case "No":
+                setReturnToFrontPage(true);
+                break;
         }
-        return "";
+        return null;
     }
 }

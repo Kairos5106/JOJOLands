@@ -7,5 +7,6 @@ public class DioMansion extends Location{
     public DioMansion(){
         super();
         this.nameOfLocation = "Dio's Mansion";
+        this.menu = new DioMansionMenu();
     }
 }

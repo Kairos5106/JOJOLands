@@ -7,5 +7,6 @@ public class SanGiorgio extends Location{
     public SanGiorgio(){
         super();
         this.nameOfLocation = "San Giorgio Maggiore";
+        this.menu = new SanGiorgioMenu();
     }
 }

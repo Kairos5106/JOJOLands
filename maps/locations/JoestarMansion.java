@@ -7,5 +7,6 @@ public class JoestarMansion extends Location{
     public JoestarMansion(){
         super();
         this.nameOfLocation = "Joestar Mansion";
+        this.menu = new JoestarMansionMenu();
     }
 }

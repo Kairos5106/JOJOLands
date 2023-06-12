@@ -47,4 +47,8 @@ public class Stack<E>{
     public void printStackElements(){
         System.out.println(stack);
     }
+
+    public void clear(){
+        stack.clear();
+    }
 }

@@ -7,5 +7,6 @@ public class CafeDeux extends Location{
     public CafeDeux(){
         super();
         this.nameOfLocation = "Cafe Deux Magots";
+        this.menu = new CafeDeuxMenu();
     }
 }
