@@ -1,7 +1,6 @@
 package DSTeam3.ui.base;
 
 import java.util.ArrayList;
-import DSTeam3.maps.*;
 import DSTeam3.maps.base.Map;
 
 /* Purpose: Handles everything that is to do with menu option selection */

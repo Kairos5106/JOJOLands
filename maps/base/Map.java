@@ -3,8 +3,6 @@ package DSTeam3.maps.base;
 import java.util.ArrayList;
 import DSTeam3.datastructures.*;
 import DSTeam3.ui.base.*;
-import DSTeam3.maps.locations.*;
-import DSTeam3.maps.base.*;
 
 /* Code specific to the maps are stored in their own respective classes, e.g. code for the default map is in DefaultMap.java */
 

@@ -5,7 +5,6 @@ import DSTeam3.ui.base.Menu;
 import DSTeam3.ui.base.Option;
 import DSTeam3.ui.base.UserInterface;
 import java.util.ArrayList;
-import DSTeam3.maps.*;
 import DSTeam3.maps.locations.AngeloRockMenu;
 import DSTeam3.maps.locations.CafeDeuxMenu;
 import DSTeam3.maps.locations.DioMansionMenu;

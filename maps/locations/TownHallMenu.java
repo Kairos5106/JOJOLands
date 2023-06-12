@@ -1,7 +1,6 @@
 package DSTeam3.maps.locations;
 
 import DSTeam3.ui.base.*;
-import DSTeam3.maps.base.*;
 
 public class TownHallMenu extends Menu {
     /* Instance variables */
