@@ -19,6 +19,12 @@ public class Libeccio extends Restaurant {
         menu.add("Zucchero and Sale ($0.60)");
     }
 
+    // Add customer to waiting list
+    public void addCustomerToWaitingList(Customer customer) {
+        customer.setNameRestaurant("Libeccio");
+        waitingList.add(customer);
+    }
+
     // Ask each person in the queue to say a number from 1, starting from the first person in the queue
     // If the number is a multiple of the current day, person is REMOVED from the queue and served last
     // The next person removed is served second last

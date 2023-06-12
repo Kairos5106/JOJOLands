@@ -17,7 +17,9 @@ public class JadeGarden extends Restaurant {
     }
 
     // Add customer to waiting list
+    // Directly adds the customer to the waiting list of the Jade Garden
     public void addCustomerToWaitingList(Customer customer) {
+        customer.setNameRestaurant("Jade Garden");
         waitingList.add(customer);
     }
 

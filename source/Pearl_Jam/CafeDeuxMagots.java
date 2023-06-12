@@ -18,6 +18,7 @@ public class CafeDeuxMagots extends Restaurant {
 
     // Add customer to waiting list
     public void addCustomerToWaitingList(Customer customer) {
+        customer.setNameRestaurant("Cafe Deux Magots");
         waitingList.add(customer);
     }
 

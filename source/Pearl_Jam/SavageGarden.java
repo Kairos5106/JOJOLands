@@ -21,6 +21,11 @@ public class SavageGarden extends Restaurant {
         menu.add("Kakyoin’s Porridge ($4.44)");
     }
 
+    public void addCustomerToWaitingList(Customer customer) {
+        customer.setNameRestaurant("Savage Garden");
+        waitingList.add(customer);
+    }
+
     // Each person in queue is asked to say a number from 1, starting from the first person
     // If number matches the day number, the person is served first
     // The next person start over from 1

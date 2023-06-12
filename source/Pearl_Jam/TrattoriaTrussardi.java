@@ -17,6 +17,7 @@ public class TrattoriaTrussardi extends Restaurant {
 
     // Add customer to waiting list
     public void addCustomerToWaitingList(Customer customer) {
+        customer.setNameRestaurant("Trattoria Trussardi");
         waitingList.add(customer);
     }
 
@@ -72,10 +73,6 @@ public class TrattoriaTrussardi extends Restaurant {
             } else if (c1.getGender().equalsIgnoreCase("Female") && c2.getGender().equalsIgnoreCase("Female")) {
                 return Integer.compare(c2.getAge(), c1.getAge()); // compare female age in descending order
             }
-
-            // Explanation
-            // Eg. original list: (male,25) (female,32) (male,12) (male,9) (female,3) (female,25)
-            // 
     
             return 0; // Default case (shouldn't occur)
         }

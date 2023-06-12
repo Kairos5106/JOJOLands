@@ -9,7 +9,7 @@ public abstract class Restaurant {
     protected List<Customer> orderProcessingList;
     protected List<String> menu;
 
-    public Restaurant(String nameRestaurant) {
+    public Restaurant(String nameRestaurant) { // takes the name of a particular restaurant and initialises the instance var
         this.nameRestaurant = nameRestaurant;
         waitingList = new PriorityQueue<>();
         orderProcessingList = new ArrayList<>();
@@ -32,6 +32,8 @@ public abstract class Restaurant {
         return menu;
     }
 
+    // Method addCustomerToWaitingList 
+    // Is an abstract method, means it's not implemented in the 'Restaurant' class itself, but will be implemented in its subclasess
     public void addCustomerToWaitingList(Customer customer) {
         waitingList.add(customer);
     }

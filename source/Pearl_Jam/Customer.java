@@ -7,7 +7,7 @@ public class Customer {
     private String gender;
     private String order;
     private int orderNumber;
-    private String nameRestaurant;
+    private String nameRestaurant; // restaurant specific identifier
     private Date arrivalTime;
 
     // Constructor methods
@@ -21,20 +21,19 @@ public class Customer {
         arrivalTime = null;
     }
 
+    public Customer(String nameCustomer, int age, String gender) {
+        this.nameCustomer = nameCustomer;
+        this.age = age;
+        this.gender = gender;
+    }
+
     public Customer(String nameCustomer, int age, String gender, String order, String nameRestaurant, Date arrivalTime) {
         this.nameCustomer = nameCustomer;
         this.age = age;
         this.gender = gender;
         this.order = order;
-        this.orderNumber = orderNumber;
         this.nameRestaurant = nameRestaurant;
         this.arrivalTime = arrivalTime;
-    }
-
-    public Customer(String nameCustomer, int age, String gender) {
-        this.nameCustomer = nameCustomer;
-        this.age = age;
-        this.gender = gender;
     }
 
     // Accessor methods
