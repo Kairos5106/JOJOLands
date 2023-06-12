@@ -1,14 +1,19 @@
 package source.Pearl_Jam;
+
 import java.util.Comparator;
-import java.util.PriorityQueue;
-import DSTeam3.ui.GameInterface;
+import java.util.LinkedList;
+import java.util.Queue;
+import ui.GameInterface;
 
 public class SavageGarden extends Restaurant {
-    protected static boolean reverseOrder;
+    
+    private GameInterface gameInterface;
+    private boolean reverseOrder;
 
     public SavageGarden() {
         super("Savage Garden");
         initialiseMenu();
+        this.gameInterface = gameInterface;
         reverseOrder = false;
     }
 
@@ -32,42 +37,47 @@ public class SavageGarden extends Restaurant {
     // If reach end of queue, we start over from the last person and move in reverse order
     @Override
     public void processOrders() {
-        int dayNumber = getDayCount();
-
-        // Create a PriorityQueue with a custom comparator
-        PriorityQueue<Customer> orderQueue = new PriorityQueue<>(new SavageGardenComparator());
-
-        // Add all customers from waitingList to orderQueue
-        orderQueue.addAll(waitingList);
-
-        // Clear the waitingList and orderProcessingList
-        waitingList.clear();
-        orderProcessingList.clear();
+        int dayNumber = gameInterface.getDayCount();
+        Queue<Customer> orderQueue = new LinkedList<>(waitingList);
+        Queue<Customer> servingOrder = new LinkedList<>(); // To store the serving order
 
         while (!orderQueue.isEmpty()) {
-            Customer customer = orderQueue.poll();
-            orderProcessingList.add(customer);
-        }
-    }
+            int count = 0;
+            int queueSize = orderQueue.size();
 
-    // Custom comparator for PriorityQueue based on Savage Garden's system
-    private static class SavageGardenComparator implements Comparator<Customer> {
-        @Override
-        public int compare(Customer c1, Customer c2) {
-            int dayNumber = getDayCount();
+            while (count < queueSize) {
+                Customer customer = orderQueue.poll(); // Remove and retrieve the first person in the queue
 
-            int c1Number = c1.getOrderNumber();
-            int c2Number = c2.getOrderNumber();
+                if ((count + 1) % dayNumber == 0) {
+                    servingOrder.offer(customer); // Serve the customer first
+                } else {
+                    orderQueue.offer(customer); // Add the customer back to the queue
+                }
 
-            if (reverseOrder) {
-                c1Number = -c1Number;
-                c2Number = -c2Number;
+                count++;
             }
 
-            int c1Remainder = (c1Number % dayNumber == 0) ? dayNumber : c1Number % dayNumber;
-            int c2Remainder = (c2Number % dayNumber == 0) ? dayNumber : c2Number % dayNumber;
+            if (!servingOrder.isEmpty()) {
+                orderQueue.addAll(servingOrder); // Add the customers served first back to the queue
+                servingOrder.clear(); // Clear the serving order for the next round
+            } else {
+                reverseOrder = true;
+                reverseOrderQueue(orderQueue); // Reverse the order of the remaining customers in the queue
+            }
+        }
 
-            return Integer.compare(c1Remainder, c2Remainder);
+        orderProcessingList.addAll(orderQueue); // Add the remaining customers to the processing list
+    }
+
+    // Method to reverse remaining orderQueue
+    private void reverseOrderQueue(Queue<Customer> queue) {
+        LinkedList<Customer> tempList = new LinkedList<>();
+        while (!queue.isEmpty()) {
+            tempList.push(queue.poll());
+        }
+        while (!tempList.isEmpty()) {
+            queue.offer(tempList.pop());
         }
     }
+
 }
