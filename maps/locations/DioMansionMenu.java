@@ -52,6 +52,12 @@ public class DioMansionMenu extends Menu {
             case "Vineyard":
                 setMovingLocations(true);
                 return "Vineyard";
+            case "Green Dolphin Street Prison":
+                setMovingLocations(true);
+                return "Green Dolphin Street Prison";
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

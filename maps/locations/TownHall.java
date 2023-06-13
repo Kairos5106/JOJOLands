@@ -10,5 +10,12 @@ public class TownHall extends Location{
         this.menu = new TownHallMenu();
     }
 
+    public TownHall(String currentMapName){
+        super();
+        this.nameOfLocation = "Town Hall";
+        this.menu = new TownHallMenu();
+        this.currentMapName = currentMapName;
+    }
+
     /* Methods for location: Town Hall */
 }

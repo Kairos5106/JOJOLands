@@ -49,6 +49,9 @@ public class AngeloRockMenu extends Menu {
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

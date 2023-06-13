@@ -57,9 +57,18 @@ public class TrattoriaTrussardiMenu extends Menu {
             case "San Giorgio Maggiore":
                 setMovingLocations(true);
                 return "San Giorgio Maggiore";
-            case "Green Dolphin Street Prison":
+            case "Joestar Mansion":
                 setMovingLocations(true);
-                return "Green Dolphin Street Prison";
+                return "Joestar Mansion";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
+            case "Dio's Mansion":
+                setMovingLocations(true);
+                return "Dio's Mansion";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

@@ -52,6 +52,9 @@ public class GreenDolphinMenu extends Menu {
             case "Angelo Rock":
                 setMovingLocations(true);
                 return "Angelo Rock";
+            case "Dio's Mansion":
+                setMovingLocations(true);
+                return "Dio's Mansion";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

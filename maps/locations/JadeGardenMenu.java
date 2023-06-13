@@ -65,6 +65,9 @@ public class JadeGardenMenu extends Menu {
             case "Joestar Mansion":
                 setMovingLocations(true);
                 return "Joestar Mansion";
+            case "Savage Garden":
+                setMovingLocations(true);
+                return "Savage Garden";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

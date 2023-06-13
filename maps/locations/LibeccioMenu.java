@@ -58,6 +58,9 @@ public class LibeccioMenu extends Menu {
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
