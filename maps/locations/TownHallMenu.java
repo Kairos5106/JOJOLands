@@ -66,6 +66,12 @@ public class TownHallMenu extends Menu {
             case "Libeccio":
                 setMovingLocations(true);
                 return "Libeccio";
+            case "Green Dolphin Street Prison":
+                setMovingLocations(true);
+                return "Green Dolphin Street Prison";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Advance to next day":
                 setAdvanceNextDay(true);
                 break;

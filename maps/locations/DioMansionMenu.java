@@ -58,6 +58,15 @@ public class DioMansionMenu extends Menu {
             case "Trattoria Trussardi":
                 setMovingLocations(true);
                 return "Trattoria Trussardi";
+            case "Cafe Deux Magots":
+                setMovingLocations(true);
+                return "Cafe Deux Magots";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
+            case "Polnareff Land":
+                setMovingLocations(true);
+                return "Polnareff Land";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

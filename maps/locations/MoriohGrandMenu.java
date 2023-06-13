@@ -61,6 +61,12 @@ public class MoriohGrandMenu extends Menu {
             case "Joestar Mansion":
                 setMovingLocations(true);
                 return "Joestar Mansion";
+            case "San Giorgio Maggiore":
+                setMovingLocations(true);
+                return "San Giorgio Maggiore";
+            case "Green Dolphin Street Prison":
+                setMovingLocations(true);
+                return "Green Dolphin Street Prison";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

@@ -1,10 +1,11 @@
 package DSTeam3.maps.locations;
 
+import DSTeam3.ui.base.Menu;
 import DSTeam3.ui.base.*;
 
-public class SanGiorgioMenu extends Menu {
-    public SanGiorgioMenu(){
-        this.setLocationName("San Giorgio Maggiore");
+public class PassioneRestaurantMenu extends Menu {
+    public PassioneRestaurantMenu(){
+        this.setLocationName("Passione Restaurant");
     }
 
     /* Purpose: Defines the options for the menu */
@@ -32,7 +33,6 @@ public class SanGiorgioMenu extends Menu {
                 break;
             case "Back to Town Hall":
                 setMovingLocations(true);
-                setMoveTownHall(true);
                 return "Town Hall";
             case "Back to previous location":
                 setReturnPreviousLocation(true);
@@ -43,29 +43,26 @@ public class SanGiorgioMenu extends Menu {
             case "No":
                 setReturnToFrontPage(true);
                 break;
-            case "Jade Garden":
-                setMovingLocations(true);
-                return "Jade Garden";
             case "Trattoria Trussardi":
                 setMovingLocations(true);
                 return "Trattoria Trussardi";
-            case "Libeccio":
+            case "Town Hall":
                 setMovingLocations(true);
-                return "Libeccio";
-            case "Savage Garden":
+                return "Town Hall";
+            case "Cafe Deux Magots":
                 setMovingLocations(true);
-                return "Savage Garden";
-            case "Joestar Mansion":
+                return "Cafe Deux Magots";
+            case "Dio's Mansion":
                 setMovingLocations(true);
-                return "Joestar Mansion";
-            case "Morioh Grand Hotel":
+                return "Dio's Mansion";
+            case "Angelo Rock":
                 setMovingLocations(true);
-                return "Morioh Grand Hotel";
+                return "Angelo Rock";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
                 break;
         }
-        return null;
+        return "";
     }
 }

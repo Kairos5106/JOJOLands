@@ -52,6 +52,15 @@ public class AngeloRockMenu extends Menu {
             case "Trattoria Trussardi":
                 setMovingLocations(true);
                 return "Trattoria Trussardi";
+            case "Jade Garden":
+                setMovingLocations(true);
+                return "Jade Garden";
+            case "Polnareff Land":
+                setMovingLocations(true);
+                return "Polnareff Land";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

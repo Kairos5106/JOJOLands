@@ -49,6 +49,15 @@ public class PolnareffLandMenu extends Menu {
             case "Savage Garden":
                 setMovingLocations(true);
                 return "Savage Garden";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
+            case "Jade Garden":
+                setMovingLocations(true);
+                return "Jade Garden";
+            case "Dio's Mansion":
+                setMovingLocations(true);
+                return "Dio's Mansion";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

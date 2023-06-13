@@ -69,6 +69,12 @@ public class TrattoriaTrussardiMenu extends Menu {
             case "Angelo Rock":
                 setMovingLocations(true);
                 return "Angelo Rock";
+            case "Green Dolphin Street Prison":
+                setMovingLocations(true);
+                return "Green Dolphin Street Prison";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

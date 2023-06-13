@@ -58,6 +58,9 @@ public class VineyardMenu extends Menu {
             case "Town Hall":
                 setMovingLocations(true);
                 return "Town Hall";
+            case "Cafe Deux Magots":
+                setMovingLocations(true);
+                return "Cafe Deux Magots";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
