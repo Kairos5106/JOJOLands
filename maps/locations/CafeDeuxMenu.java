@@ -60,9 +60,9 @@ public class CafeDeuxMenu extends Menu {
             case "Morioh Grand Hotel":
                 setMovingLocations(true);
                 return "Morioh Grand Hotel";
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Passione Restaurant":
                 setMovingLocations(true);
                 return "Passione Restaurant";

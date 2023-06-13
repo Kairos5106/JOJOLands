@@ -52,9 +52,9 @@ public class PassioneRestaurantMenu extends Menu {
             case "Cafe Deux Magots":
                 setMovingLocations(true);
                 return "Cafe Deux Magots";
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Angelo Rock":
                 setMovingLocations(true);
                 return "Angelo Rock";

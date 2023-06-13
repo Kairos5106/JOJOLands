@@ -7,7 +7,6 @@ import DSTeam3.maps.locations.DioMansion;
 import DSTeam3.maps.locations.GreenDolphin;
 import DSTeam3.maps.locations.JadeGarden;
 import DSTeam3.maps.locations.JoestarMansion;
-import DSTeam3.maps.locations.Libeccio;
 import DSTeam3.maps.locations.MoriohGrand;
 import DSTeam3.maps.locations.PassioneRestaurant;
 import DSTeam3.maps.locations.PolnareffLand;

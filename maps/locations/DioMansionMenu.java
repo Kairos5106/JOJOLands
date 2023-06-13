@@ -4,7 +4,7 @@ import DSTeam3.ui.base.*;
 
 public class DioMansionMenu extends Menu {
     public DioMansionMenu(){
-        this.setLocationName("Dio's Mansion");
+        this.setLocationName("DIO's Mansion");
     }
 
     /* Purpose: Defines the options for the menu */

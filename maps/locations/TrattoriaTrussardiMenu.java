@@ -63,9 +63,9 @@ public class TrattoriaTrussardiMenu extends Menu {
             case "Town Hall":
                 setMovingLocations(true);
                 return "Town Hall";
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Angelo Rock":
                 setMovingLocations(true);
                 return "Angelo Rock";

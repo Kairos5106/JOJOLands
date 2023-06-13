@@ -43,9 +43,9 @@ public class AngeloRockMenu extends Menu {
             case "No":
                 setReturnToFrontPage(true);
                 break;
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
