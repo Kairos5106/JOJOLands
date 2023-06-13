@@ -178,30 +178,21 @@ public class JadeGardenMenu extends Menu {
         return "";
     }
 
-    
-    /*============================= PEARL JAM =============================*/
-    
-    /* [2] View Waiting List and Order Processing List */
-    public static void displayWaitingListAndOrderProcessingList() {
-        pearlJamJadeGarden.displayWaitingListAndOrderProcessingList();
-    }
 
-    /* [3] View Menu */
-    public static void displayMenu() {
-        pearlJamJadeGarden.displayMenu();
-    }
+    /*============================================= PEARL JAM =============================================*/
 
-    // Add customer to waiting list
+    // ADD CUSTOMER TO WAITING LIST
     // Directly adds the customer to the waiting list of the Jade Garden
     public void addCustomerToWaitingList(Customer customer) {
         customer.setNameRestaurant("Jade Garden");
         pearlJamJadeGarden.getWaitingList().add(customer);
     }
 
+    // COMPUTE ORDER PROCESSIGN LIST
     // Implementation of processOrders method
     // First and last customers to arrive are served first
     // Followed by the second and second last, and so on
-    public void processOrders() {
+    public static void processOrders() {
         // Create a PriorityQueue to store customers based on arrival time
         PriorityQueue<Customer> processingQueue = new PriorityQueue<>(new CustomerComparator());
 
@@ -233,9 +224,8 @@ public class JadeGardenMenu extends Menu {
             }
         }
     }
-
     // Method to retrieve last customer
-    private Customer retrieveLastCustomer(PriorityQueue<Customer> processingQueue) {
+    private static Customer retrieveLastCustomer(PriorityQueue<Customer> processingQueue) {
         // Temporarily store the customers to restore the queue later
         PriorityQueue<Customer> tempQueue = new PriorityQueue<>(processingQueue);
 
@@ -257,7 +247,6 @@ public class JadeGardenMenu extends Menu {
 
         return lastCustomer;
     }
-
     // Custom Comparator class
     private static class CustomerComparator implements Comparator<Customer> {
         @Override
@@ -267,7 +256,17 @@ public class JadeGardenMenu extends Menu {
         }
     }
 
-    /*============================= PEARL JAM =============================*/
+    /* [2] View Waiting List and Order Processing List */
+    public static void displayWaitingListAndOrderProcessingList() {
+        pearlJamJadeGarden.displayWaitingListAndOrderProcessingList();
+    }
+
+    /* [3] View Menu */
+    public static void displayMenu() {
+        pearlJamJadeGarden.displayMenu();
+    }
+
+    /*============================================= PEARL JAM =============================================*/
 
 
 }

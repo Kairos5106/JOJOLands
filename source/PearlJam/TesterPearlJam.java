@@ -29,12 +29,19 @@ public class TesterPearlJam {
         // Run pearl jam jade garden
         JadeGardenMenu jadeGardenMenu = new JadeGardenMenu();
         Scanner scanner = new Scanner(System.in);
+        jadeGardenMenu.addCustomerToWaitingList(new Customer("Jonathan Joestar", 20, "Male"));
+        jadeGardenMenu.addCustomerToWaitingList(new Customer("Joseph Joestar", 18, "Male"));
+        jadeGardenMenu.addCustomerToWaitingList(new Customer("Jotaro Kujo", 17, "Male"));
+        jadeGardenMenu.addCustomerToWaitingList(new Customer("Josuke Higashikata", 16, "Male"));
+        jadeGardenMenu.addCustomerToWaitingList(new Customer("Giorno Giovanna", 15, "Male"));
+        jadeGardenMenu.addCustomerToWaitingList(new Customer("Jolyne Cujoh", 19, "Female"));
+
 
         String userInput;
         do {
             JadeGardenMenu.displayJadeGardenMenu();
             userInput = scanner.nextLine();
             JadeGardenMenu.processUserInput();
-        } while (!userInput.equals("7"));
+        } while (!userInput.equalsIgnoreCase("EXIT"));
     }
 }
