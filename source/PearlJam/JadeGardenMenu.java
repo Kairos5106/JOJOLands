@@ -1,30 +1,30 @@
 package DSTeam3.source.PearlJam;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-import ui.base.*;
+import DSTeam3.ui.base.*;
 
 public class JadeGardenMenu extends Menu {
-
-    private static JadeGarden jadeGarden;
+    
+    private static PearlJamRestaurant pearlJamJadeGarden;
     private static Scanner scanner;
-
+    
     public JadeGardenMenu(){
         this.setLocationName("Jade Garden");
+        pearlJamJadeGarden = new PearlJamRestaurant("Jade Garden");
+        initialiseMenu();
     }
 
-    public static void main(String[] args) {
-        jadeGarden = new JadeGarden();
-        scanner = new Scanner(System.in);
-
-        displayMenu();
-        processUserInput();
+    public void initialiseMenu() {
+        pearlJamJadeGarden.getMenu().add("Braised Chicken in Black Bean Sauce ($15.00)");
+        pearlJamJadeGarden.getMenu().add("Braised Goose Web with Vermicelli ($21.00)");
+        pearlJamJadeGarden.getMenu().add("Deep-fried Hiroshima Oysters ($17.00)");
+        pearlJamJadeGarden.getMenu().add("Poached Tofu with Dried Shrimps ($12.00)");
+        pearlJamJadeGarden.getMenu().add("Scrambled Egg White with Milk ($10.00)");
     }
 
-    public static void displayMenu() {
-        System.out.println("Current Location: " + jadeGarden.getNameRestaurant());
+    public static void displayJadeGardenMenu() {
+        System.out.println("Current Location: " + pearlJamJadeGarden.getNameRestaurant());
         System.out.println("[1] Move to:");
         System.out.println("[A] Cafe Deux Magots   [B] Joestar Mansion");
         System.out.println("[C] Morioh Grand Hotel [D] San Giorgio Maggiore");
@@ -67,7 +67,7 @@ public class JadeGardenMenu extends Menu {
                 displayWaitingListAndOrderProcessingList();
                 break;
             case "3":
-                displayMenu(jadeGarden.getMenu());
+                displayMenu();
                 break;
             case "4":
                 // View sales information
@@ -88,19 +88,6 @@ public class JadeGardenMenu extends Menu {
 
         // Continue the running process
         processUserInput();
-    }
-
-    public static void displayWaitingListAndOrderProcessingList() {
-        jadeGarden.displayWaitingListAndOrderProcessingList();
-    }
-
-    public static void displayMenu(List<String> menu) {
-        System.out.println("Menu");
-        System.out.println("+-------------------------------------+");
-        for (String item : menu) {
-            System.out.println("| " + item + " |");
-        }
-        System.out.println("+-------------------------------------+");
     }
 
     /* Purpose: Defines the options for the menu */
@@ -171,21 +158,118 @@ public class JadeGardenMenu extends Menu {
                 setMovingLocations(true);
                 setWantMoveForward(true);
                 break;
+            // [2] View Waiting List and Order Processing List
             case "View Waiting List and Order Processing List":
                 displayWaitingListAndOrderProcessingList();
                 break;
+            // [3] View Menu
             case "View Menu":
                 displayMenu();
                 break;
+            // [4] View Sales Information
             case "View Sales Information":
-                displaySalesInformation();
+                // fir
                 break;
+            // [5] Milagro Man
             case "Milagro Man":
-                performMilagroManAction();
+                // somen
                 break;
         }
         return "";
     }
 
     
+    /*============================= PEARL JAM =============================*/
+    
+    /* [2] View Waiting List and Order Processing List */
+    public static void displayWaitingListAndOrderProcessingList() {
+        pearlJamJadeGarden.displayWaitingListAndOrderProcessingList();
+    }
+
+    /* [3] View Menu */
+    public static void displayMenu() {
+        pearlJamJadeGarden.displayMenu();
+    }
+
+    // Add customer to waiting list
+    // Directly adds the customer to the waiting list of the Jade Garden
+    public void addCustomerToWaitingList(Customer customer) {
+        customer.setNameRestaurant("Jade Garden");
+        pearlJamJadeGarden.getWaitingList().add(customer);
+    }
+
+    // Implementation of processOrders method
+    // First and last customers to arrive are served first
+    // Followed by the second and second last, and so on
+    public void processOrders() {
+        // Create a PriorityQueue to store customers based on arrival time
+        PriorityQueue<Customer> processingQueue = new PriorityQueue<>(new CustomerComparator());
+
+        // Add all customers from waitingList to processingQueue
+        // Then processingQueue will internally sort the elements according to the priority stated in CustomerComparator
+        // First customer to arrive at the front of the queue
+        processingQueue.addAll(pearlJamJadeGarden.getWaitingList());
+
+        // Clear the waitingList and orderProcessingList to start with fresh data
+        pearlJamJadeGarden.getWaitingList().clear();
+        pearlJamJadeGarden.getOrderProcessingList().clear();
+
+        // Retrieve customers from the PriorityQueue in the Jade Garden's system
+        while (!processingQueue.isEmpty()) {
+            Customer firstCustomer = processingQueue.poll();
+            Customer lastCustomer = null;
+
+            // Get last customer
+            if (!processingQueue.isEmpty()) {
+                lastCustomer = retrieveLastCustomer(processingQueue);
+            }
+
+            // Add the first customer to the orderProcessingList
+            pearlJamJadeGarden.getOrderProcessingList().add(firstCustomer);
+
+            // Add last customer to orderProcessingList
+            if (lastCustomer != null) {
+                pearlJamJadeGarden.getOrderProcessingList().add(lastCustomer);
+            }
+        }
+    }
+
+    // Method to retrieve last customer
+    private Customer retrieveLastCustomer(PriorityQueue<Customer> processingQueue) {
+        // Temporarily store the customers to restore the queue later
+        PriorityQueue<Customer> tempQueue = new PriorityQueue<>(processingQueue);
+
+        Customer lastCustomer = null;
+        Customer currentCustomer;
+
+        // Retrieve the last customer from the PriorityQueue
+        while (!tempQueue.isEmpty()) {
+            currentCustomer = tempQueue.poll();
+
+            // If it's the last customer, update the lastCustomer variable
+            if (tempQueue.isEmpty()) {
+                lastCustomer = currentCustomer;
+            }
+        }
+
+        // Restore the original order of customers in the queue
+        processingQueue.addAll(tempQueue);
+
+        return lastCustomer;
+    }
+
+    // Custom Comparator class
+    private static class CustomerComparator implements Comparator<Customer> {
+        @Override
+        public int compare(Customer c1, Customer c2) {
+            // Compare customers based on arrival time
+            return c1.getArrivalTime().compareTo(c2.getArrivalTime());
+        }
+    }
+
+    /*============================= PEARL JAM =============================*/
+
+
 }
+
+

@@ -3,7 +3,7 @@ package DSTeam3.source.PearlJam;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class TrattoriaTrussardi extends Restaurant {
+public class TrattoriaTrussardi extends PearlJamRestaurant {
     public TrattoriaTrussardi() {
         super("Trattoria Trussardi");
         initialiseMenu();

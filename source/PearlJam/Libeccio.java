@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import ui.GameInterface;
 
-public class Libeccio extends Restaurant {
+public class Libeccio extends PearlJamRestaurant {
 
     private GameInterface gameInterface;
     

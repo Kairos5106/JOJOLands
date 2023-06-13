@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import ui.GameInterface;
 
-public class SavageGarden extends Restaurant {
+public class SavageGarden extends PearlJamRestaurant {
     
     private GameInterface gameInterface;
     private boolean reverseOrder;

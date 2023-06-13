@@ -3,7 +3,7 @@ package DSTeam3.source.PearlJam;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class CafeDeuxMagots extends Restaurant {
+public class CafeDeuxMagots extends PearlJamRestaurant {
     public CafeDeuxMagots() {
         super("Cafe Deux Magots");
         initialiseMenu();

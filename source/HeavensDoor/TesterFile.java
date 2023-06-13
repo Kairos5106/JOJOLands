@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class TesterHeavensDoor {
+public class TesterFile {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;

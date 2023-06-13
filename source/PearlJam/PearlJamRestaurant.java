@@ -3,13 +3,13 @@ package DSTeam3.source.PearlJam;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Restaurant {
+public class PearlJamRestaurant {
     protected String nameRestaurant;
     protected List<Customer> waitingList;
     protected List<Customer> orderProcessingList;
     protected List<String> menu;
 
-    public Restaurant(String nameRestaurant) { // takes the name of a particular restaurant and initialises the instance var
+    public PearlJamRestaurant(String nameRestaurant) { // takes the name of a particular restaurant and initialises the instance var
         this.nameRestaurant = nameRestaurant;
         waitingList = new ArrayList<>();
         orderProcessingList = new ArrayList<>();
@@ -38,7 +38,9 @@ public abstract class Restaurant {
         waitingList.add(customer);
     }
 
-    public abstract void processOrders();
+    public void processOrders(){
+
+    }
 
     public void displayWaitingListAndOrderProcessingList() {
         System.out.println("======================================================================");
@@ -80,5 +82,7 @@ public abstract class Restaurant {
         System.out.println("+-------------------------------------+");
     }
 }
+
+
 
 

@@ -1,39 +1,40 @@
 package DSTeam3.source.PearlJam;
 
-import java.util.Date;
 import java.util.Scanner;
 
-import source.PearlJam.Customer;
-import source.PearlJam.JadeGarden;
-import source.PearlJam.JadeGardenMenu;
-import source.PearlJam.Restaurant;
+import DSTeam3.ui.GameInterface;
+import DSTeam3.ui.StartInterface;
+import DSTeam3.ui.StartMenu;
 
-// Test Jade Garden
+/* This class is used to initialize Jojolands */
 public class TesterPearlJam {
     public static void main(String[] args) {
-        JadeGarden jadeGarden = new JadeGarden();
-        JadeGardenMenu jadeGardenMenu = new JadeGardenMenu();
+        /* Section 1: Code for initializing JOJOLands */
+        /* Initializing required variables before initiating menu */
+        StartInterface startUI = new StartInterface(new StartMenu());
 
-        jadeGarden.addCustomerToWaitingList(new Customer("Jonathan Joestar", 20, "Male", "Braised Chicken in Black Bean Sauce", new Date()));
-        jadeGarden.addCustomerToWaitingList(new Customer("Joseph Joestar", 18, "Male", "Scrambled Egg White with Milk", new Date()));
-        jadeGarden.addCustomerToWaitingList(new Customer("Jotaro Kujo", 17, "Male", "Braised Goose Web with Vermicelli", new Date()));
-        jadeGarden.addCustomerToWaitingList(new Customer("Josuke Higashikata", 16, "Male", "Poached Tofu with Dried Shrimps", new Date()));
-        jadeGarden.addCustomerToWaitingList(new Customer("Giorno Giovanna", 15, "Male", "Deep-fried Hiroshima Oysters", new Date()));
-        jadeGarden.addCustomerToWaitingList(new Customer("Jolyne Cujoh", 19, "Female", "Braised Goose Web with Vermicelli", new Date()));
-
-        jadeGarden.processOrders();
-
-        Scanner scanner = new Scanner(System.in);
-        boolean exitProgram = false;
-
-        while (!exitProgram) {
-            jadeGardenMenu.runDisplay();
-            String input = scanner.nextLine().trim();
-            jadeGardenMenu.execute(input);
-
-            if (jadeGardenMenu.isExitInterface()) {
-                exitProgram = true;
-            }
+        /* Displaying start menu and prompt user for input */
+        startUI.initiate();
+        if(startUI.getExitGame()){
+            return;
         }
+
+        /* Section 2: Load selected map and user interface */
+        GameInterface gameUI = new GameInterface(startUI.getMapSelected());
+        
+        /* Section 3: Start game */
+        gameUI.initiate();
+
+
+        // Run pearl jam jade garden
+        JadeGardenMenu jadeGardenMenu = new JadeGardenMenu();
+        Scanner scanner = new Scanner(System.in);
+
+        String userInput;
+        do {
+            JadeGardenMenu.displayJadeGardenMenu();
+            userInput = scanner.nextLine();
+            JadeGardenMenu.processUserInput();
+        } while (!userInput.equals("7"));
     }
 }
