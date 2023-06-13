@@ -1,4 +1,4 @@
-package source.Pearl_Jam;
+package source.PearlJam;
 
 import java.util.Date;
 

@@ -1,11 +1,12 @@
-package source.Pearl_Jam;
+package source.PearlJam;
 
 import java.util.Date;
-import source.Pearl_Jam.JadeGarden;
-import source.Pearl_Jam.JadeGardenMenu;
-import source.Pearl_Jam.Customer;
-import source.Pearl_Jam.Restaurant;
 import java.util.Scanner;
+
+import source.PearlJam.Customer;
+import source.PearlJam.JadeGarden;
+import source.PearlJam.JadeGardenMenu;
+import source.PearlJam.Restaurant;
 
 // Test Jade Garden
 public class TesterPearlJam {
