@@ -19,6 +19,7 @@ import DSTeam3.maps.locations.SavageGardenMenu;
 import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
+import DSTeam3.source.HeavensDoor;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -26,6 +27,8 @@ public class GameInterface extends UserInterface{
     private boolean newDay = true; // to help with notifying the player with current day count and day name
     Map map;
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
+
+    HeavensDoor heavensDoor = new HeavensDoor();
 
     /* Constructors */
     public GameInterface(){}
@@ -122,6 +125,14 @@ public class GameInterface extends UserInterface{
         return currentMenu.hasForwardAdded(); 
     }
 
+    public boolean viewResidentInfo(){
+        return currentMenu.viewResidentInfo();
+    }
+
+    public boolean sortResidentInfo(){
+        return currentMenu.sortResidentInfo();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -156,13 +167,18 @@ public class GameInterface extends UserInterface{
                 currentMenu.setOpenMoveLocationsMenu(false);
             }
             if(returnToFrontPage()){
+                if(viewResidentInfo()){
+                    currentMenu.setViewResidentInfo(false);
+                    currentMenu.setSortResidentInfo(false);
+                    System.out.println("sortResidentInfo set to false");
+                }
                 setCurrentMenu(getCurrentLocation().getMenu());
                 currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
                 currentMenu.setReturnPreviousLocation(false);
+                currentMenu.setReturnToFrontPage(false);
                 currentMenu.setGreeting(null);
-                System.out.println("Set greeting to null");
             }
             if(returnPreviousLocation() && !movingLocations()){
                 currentMenu.setGreeting("Are you sure you want to return to " + map.getPreviousLocationName() + "?");
@@ -171,7 +187,15 @@ public class GameInterface extends UserInterface{
                 currentMenu.getCurrentOption().addSuboptions(new Option("Go forward to visited location"));
                 currentMenu.setHasForwardAdded(true);
             }
-            
+            if(sortResidentInfo()){
+                heavensDoor.promptToSort();
+                divider(70);
+            }
+            if(viewResidentInfo()){
+                heavensDoor.setLocation(currentMenu.getLocationName());
+                heavensDoor.display();
+            }
+
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1);
@@ -183,6 +207,9 @@ public class GameInterface extends UserInterface{
 
 
             // Conditional actions go here and below
+            if(sortResidentInfo()){
+                currentMenu.setViewResidentDisplay();
+            }
             if(isAdvancingNext()){
                 endDay();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly

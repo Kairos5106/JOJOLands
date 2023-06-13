@@ -1,62 +1,77 @@
+package DSTeam3.source;
+
 import java.io.*;
 import java.util.*;
 
 public class HeavensDoor {
-    public static void run() throws FileNotFoundException {
-        String[] residentsFileContent = getFileContent("residents.csv");
-        String[] standsFileContent = getFileContent("stands.csv");
+    static String[] residentsFileContent = getFileContent("DSTeam3\\source\\residents.csv");
+    static String[] standsFileContent = getFileContent("DSTeam3\\source\\stands.csv"); 
+    static Map<String, String> standUsersByName = getStandUsersByName(standsFileContent);
+    static Map<String, String[]> userInformation = getUserInformation(residentsFileContent);
+    static List<List<String>> originalData;
+    static List<List<String>> sortedData;
 
-        Map<String, String> standUsersByName = getStandUsersByName(standsFileContent);
-        Map<String, String[]> userInformation = getUserInformation(residentsFileContent);
+    static String location;
 
-        Scanner scanner = new Scanner(System.in);
-        boolean exit = false;
+    static boolean sorted = false;
 
-        while (!exit) {
-            
-            System.out.println("======================================================================");
-            System.out.print("Enter location (type 'exit' to quit): ");
-            String location = scanner.nextLine();
+    public HeavensDoor(){
+        this.location = null;
+    }
 
-            if (location.equalsIgnoreCase("exit")) {
-                exit = true;
-                continue;
-            }
+    public void setLocation(String location){
+        this.location = location;
+        originalData = getFilteredStandsFileContent(standsFileContent, getStandAbilitiesByName(standsFileContent), userInformation, standUsersByName, location);
+    }
 
-            System.out.println("Resident Information in " + location);
-            List<List<String>> originalData = getFilteredStandsFileContent(standsFileContent, getStandAbilitiesByName(standsFileContent),
-                    userInformation, standUsersByName, location);
+    public String getLocation(){
+        return this.location;
+    }
 
-            printStandsFileContent(originalData);
+    public static boolean isSorted(){
+        return sorted;
+    }
 
-            System.out.println("======================================================================");
-            System.out.print("Enter the sorting order : ");
-            String sortingOrder = scanner.nextLine();
-
-            System.out.print("Enter sorting type (Ascending, Descending): ");
-            String sortingDirection = scanner.nextLine();
-
-            System.out.println();
-            List<List<String>> sortedData = new ArrayList<>(originalData);
-            sortData(sortedData, sortingOrder, sortingDirection);
-            printSortedStandsFileContent(sortedData);
-
-            System.out.println();
+    public static void display(){
+        System.out.println("Resident Information in " + location);
+        if(isSorted()){
+            printSortedStandsFileContent(sortedData); // output 2: print sorted information
+        }
+        else{
+            printStandsFileContent(originalData); // Output 1: resident information
         }
     }
 
-    public static String[] getFileContent(String filename) throws FileNotFoundException {
-        File file = new File(filename);
-        Scanner scanner = new Scanner(file);
+    public static void promptToSort(){
+        Scanner scanner = new Scanner(System.in);
 
-        String header = scanner.nextLine();
-        StringBuilder contentBuilder = new StringBuilder();
-        while (scanner.hasNextLine()) {
-            contentBuilder.append(scanner.nextLine()).append("\n");
+        System.out.print("Enter the sorting order : ");
+        String sortingOrder = scanner.nextLine(); // input 2: sorting order
+
+        System.out.print("Enter sorting type (Ascending, Descending): ");
+        String sortingDirection = scanner.nextLine(); // input 3: sorting direction
+
+        sortedData = new ArrayList<>(originalData);
+        sortData(sortedData, sortingOrder, sortingDirection);
+
+        sorted = true;
+    }
+
+    public static String[] getFileContent(String filePath){
+        String content = "";
+        try{
+            Scanner in = new Scanner(new FileInputStream(filePath));
+            in.nextLine();
+            StringBuilder contentBuilder = new StringBuilder();
+            while (in.hasNextLine()) {
+                contentBuilder.append(in.nextLine()).append("\n");
+            }
+            in.close();
+
+            content = contentBuilder.toString().trim();
+        }catch(FileNotFoundException e){
+            System.out.println("File not found");
         }
-        scanner.close();
-
-        String content = contentBuilder.toString().trim();
         return content.split("\n");
     }
 
