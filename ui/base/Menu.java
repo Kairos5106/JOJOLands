@@ -23,6 +23,7 @@ public class Menu{
     boolean returnToFrontPage = false;
     boolean moveTownHall = false;
     boolean wantMoveForward = false;
+    boolean hasForwardAdded = false;
 
     /* Constructors */
     public Menu(){
@@ -221,6 +222,14 @@ public class Menu{
         return this.currentMapName;
     }
 
+    public void setHasForwardAdded(boolean setting){
+        this.hasForwardAdded = setting;
+    }
+
+    public boolean hasForwardAdded(){
+        return this.hasForwardAdded;
+    }
+    
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
