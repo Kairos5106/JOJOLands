@@ -12,6 +12,7 @@ public class Menu{
 
     String greeting; // represent text that appears before the options show up
     String locationName; // optional string variable: for nodes in map only
+    String currentMapName;
 
     boolean exitGame = false;
     boolean exitInterface = false;
@@ -22,6 +23,7 @@ public class Menu{
     boolean returnToFrontPage = false;
     boolean moveTownHall = false;
     boolean wantMoveForward = false;
+    boolean hasForwardAdded = false;
 
     /* Constructors */
     public Menu(){
@@ -38,6 +40,12 @@ public class Menu{
         this.locationName = locationName; // set to null if not used
     }
 
+    public Menu(String greeting, String locationName, String currentMapName){
+        this.greeting = greeting;
+        this.locationName = locationName;
+        this.currentMapName = currentMapName;
+    }
+    
     /* ****************** Methods A: Getter and setter methods ****************** */
 
     /* Special case: If a value of -1 is input, the current option will be set to null */
@@ -206,6 +214,22 @@ public class Menu{
         return this.wantMoveForward;
     }
 
+    public void setCurrentMapName(String currentMapName){
+        this.currentMapName = currentMapName;
+    }
+
+    public String getCurrentMapName(){
+        return this.currentMapName;
+    }
+
+    public void setHasForwardAdded(boolean setting){
+        this.hasForwardAdded = setting;
+    }
+
+    public boolean hasForwardAdded(){
+        return this.hasForwardAdded;
+    }
+    
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){

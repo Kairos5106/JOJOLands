@@ -8,7 +8,8 @@ class Location{
     /* Instance variables */
     protected String nameOfLocation;
     protected Menu menu;
-    
+    protected String currentMapName;
+
     /* nearbyLocations and distanceOfNearby are linked in a way as in a nearby object in nearbyLocations arraylist will have the 
      * same index as its distance counterpart in distanceOfNearby arraylist.
      */
@@ -18,6 +19,10 @@ class Location{
     /* Constructor */
     public Location(){}
 
+    public Location(String currentMapName){
+        this.currentMapName = currentMapName;
+    }
+    
     /* Method A: Getter and setter methods */
     /* Purpose: Adds a reference of the nearby location to the current location
      */
@@ -67,6 +72,14 @@ class Location{
     /* Purpose: Returns the Menu object of the location */
     public Menu getMenu(){
         return this.menu;
+    }
+
+    public void setCurrentMapName(String mapName){
+        this.currentMapName = mapName;
+    }
+
+    public String getCurrentMapName(){
+        return this.currentMapName;
     }
 
     /* Method B: Display methods */

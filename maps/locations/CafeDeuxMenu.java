@@ -57,6 +57,18 @@ public class CafeDeuxMenu extends Menu {
             case "Joestar Mansion":
                 setMovingLocations(true);
                 return "Joestar Mansion";
+            case "Morioh Grand Hotel":
+                setMovingLocations(true);
+                return "Morioh Grand Hotel";
+            case "DIO's Mansion":
+                setMovingLocations(true);
+                return "DIO's Mansion";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
+            case "Vineyard":
+                setMovingLocations(true);
+                return "Vineyard";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

@@ -118,6 +118,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.wantMoveForward();
     }
 
+    public boolean hasForwardAdded(){
+        return currentMenu.hasForwardAdded(); 
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -163,8 +167,9 @@ public class GameInterface extends UserInterface{
             if(returnPreviousLocation() && !movingLocations()){
                 currentMenu.setGreeting("Are you sure you want to return to " + map.getPreviousLocationName() + "?");
             }
-            if(hasForwardLocation()){
+            if(hasForwardLocation() && !hasForwardAdded()){
                 currentMenu.getCurrentOption().addSuboptions(new Option("Go forward to visited location"));
+                currentMenu.setHasForwardAdded(true);
             }
             
             currentMenu.runDisplay();
@@ -195,6 +200,7 @@ public class GameInterface extends UserInterface{
                 }
                 else if(wantMoveForward()){
                     currentMenu.setWantMoveForward(false);
+                    currentMenu.setHasForwardAdded(false);
                     map.moveForward();
                 }
                 else{

@@ -55,6 +55,15 @@ public class JoestarMansionMenu extends Menu {
             case "Vineyard":
                 setMovingLocations(true);
                 return "Vineyard";
+            case "San Giorgio Maggiore":
+                setMovingLocations(true);
+                return "San Giorgio Maggiore";
+            case "Morioh Grand Hotel":
+                setMovingLocations(true);
+                return "Morioh Grand Hotel";
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

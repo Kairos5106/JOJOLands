@@ -43,12 +43,24 @@ public class AngeloRockMenu extends Menu {
             case "No":
                 setReturnToFrontPage(true);
                 break;
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
+            case "Jade Garden":
+                setMovingLocations(true);
+                return "Jade Garden";
+            case "Polnareff Land":
+                setMovingLocations(true);
+                return "Polnareff Land";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
