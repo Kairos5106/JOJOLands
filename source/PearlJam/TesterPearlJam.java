@@ -36,12 +36,15 @@ public class TesterPearlJam {
         jadeGardenMenu.addCustomerToWaitingList(new Customer("Giorno Giovanna", 15, "Male"));
         jadeGardenMenu.addCustomerToWaitingList(new Customer("Jolyne Cujoh", 19, "Female"));
 
-
-        String userInput;
-        do {
+        for (int i=0 ; i<10 ; i++) {
             JadeGardenMenu.displayJadeGardenMenu();
-            userInput = scanner.nextLine();
-            JadeGardenMenu.processUserInput();
-        } while (!userInput.equalsIgnoreCase("EXIT"));
+            String userInput = scanner.nextLine();
+            String result = jadeGardenMenu.execute(userInput);
+            scanner.nextLine();
+            if (!result.isEmpty()) {
+                System.out.println("Moving to: " + result);
+            }
+        }
+
     }
 }

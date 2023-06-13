@@ -6,7 +6,7 @@ import DSTeam3.ui.base.*;
 
 public class JadeGardenMenu extends Menu {
     
-    private static PearlJamRestaurant pearlJamJadeGarden;
+    public static PearlJamRestaurant pearlJamJadeGarden;
     private static Scanner scanner;
     
     public JadeGardenMenu(){
@@ -38,8 +38,7 @@ public class JadeGardenMenu extends Menu {
         System.out.print("Select: ");
     }
 
-    public static void processUserInput() {
-        String userInput = scanner.nextLine();
+    public static void processUserInput(String userInput) {
 
         switch (userInput) {
             case "1":
@@ -64,6 +63,7 @@ public class JadeGardenMenu extends Menu {
                 System.out.println("Moving to Town Hall");
                 break;
             case "2":
+                System.out.println("Printing waiting list and order processing list:");
                 displayWaitingListAndOrderProcessingList();
                 break;
             case "3":
@@ -85,9 +85,6 @@ public class JadeGardenMenu extends Menu {
                 System.out.println("Invalid input");
                 break;
         }
-
-        // Continue the running process
-        processUserInput();
     }
 
     /* Purpose: Defines the options for the menu */
