@@ -40,6 +40,7 @@ public class JadeGardenMenu extends Menu {
                 break;
             case "Back to Town Hall":
                 setMovingLocations(true);
+                setMoveTownHall(true);
                 return "Town Hall";
             case "Back to previous location":
                 setReturnPreviousLocation(true);
@@ -65,6 +66,15 @@ public class JadeGardenMenu extends Menu {
             case "Joestar Mansion":
                 setMovingLocations(true);
                 return "Joestar Mansion";
+            case "Savage Garden":
+                setMovingLocations(true);
+                return "Savage Garden";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
+            case "Polnareff Land":
+                setMovingLocations(true);
+                return "Polnareff Land";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

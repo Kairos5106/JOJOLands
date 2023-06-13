@@ -55,6 +55,12 @@ public class SavageGardenMenu extends Menu {
             case "Vineyard":
                 setMovingLocations(true);
                 return "Vineyard";
+            case "Jade Garden":
+                setMovingLocations(true);
+                return "Jade Garden";
+            case "San Giorgio Maggiore":
+                setMovingLocations(true);
+                return "San Giorgio Maggiore";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);

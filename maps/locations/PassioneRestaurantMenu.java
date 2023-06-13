@@ -2,9 +2,9 @@ package DSTeam3.maps.locations;
 
 import DSTeam3.ui.base.*;
 
-public class PolnareffLandMenu extends Menu {
-    public PolnareffLandMenu(){
-        this.setLocationName("Polnareff Land");
+public class PassioneRestaurantMenu extends Menu {
+    public PassioneRestaurantMenu(){
+        this.setLocationName("Passione Restaurant");
     }
 
     /* Purpose: Defines the options for the menu */
@@ -43,26 +43,26 @@ public class PolnareffLandMenu extends Menu {
             case "No":
                 setReturnToFrontPage(true);
                 break;
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
             case "Cafe Deux Magots":
                 setMovingLocations(true);
                 return "Cafe Deux Magots";
-            case "Savage Garden":
-                setMovingLocations(true);
-                return "Savage Garden";
-            case "Angelo Rock":
-                setMovingLocations(true);
-                return "Angelo Rock";
-            case "Jade Garden":
-                setMovingLocations(true);
-                return "Jade Garden";
             case "DIO's Mansion":
                 setMovingLocations(true);
                 return "DIO's Mansion";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
                 break;
         }
-        return null;
+        return "";
     }
 }
