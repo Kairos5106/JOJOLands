@@ -1,6 +1,5 @@
 package DSTeam3.maps.locations;
 
-import DSTeam3.ui.base.Menu;
 import DSTeam3.ui.base.*;
 
 public class PassioneRestaurantMenu extends Menu {
@@ -33,6 +32,7 @@ public class PassioneRestaurantMenu extends Menu {
                 break;
             case "Back to Town Hall":
                 setMovingLocations(true);
+                setMoveTownHall(true);
                 return "Town Hall";
             case "Back to previous location":
                 setReturnPreviousLocation(true);

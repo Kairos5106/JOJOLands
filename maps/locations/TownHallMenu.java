@@ -10,11 +10,6 @@ public class TownHallMenu extends Menu {
         this.setLocationName("Town Hall");
     }
 
-    public TownHallMenu(String currentMapName){
-        this.setLocationName("Town Hall");
-        setCurrentMapName(currentMapName);
-    }
-
     /* Getter and setter methods */
 
    /* Purpose: Sets the greeting to notify user regarding day info: dayInfo() */

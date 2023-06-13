@@ -36,6 +36,7 @@ public class MoriohGrandMenu extends Menu {
                 break;
             case "Back to Town Hall":
                 setMovingLocations(true);
+                setMoveTownHall(true);
                 return "Town Hall";
             case "Back to previous location":
                 setReturnPreviousLocation(true);
