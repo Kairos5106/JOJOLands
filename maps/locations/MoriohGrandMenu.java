@@ -13,7 +13,10 @@ public class MoriohGrandMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
-        Option viewResidentInfo = new Option("View resident information"); // havent developed
+        Option viewResident = new Option("View resident information");
+        viewResident.addSuboptions("View resident profile");
+        viewResident.addSuboptions("Sort");
+        viewResident.addSuboptions("Exit");
 
         Option theHand = new Option("The Hand"); // havent developed
 
@@ -23,7 +26,7 @@ public class MoriohGrandMenu extends Menu {
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewResidentInfo, theHand, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, theHand, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -71,6 +74,15 @@ public class MoriohGrandMenu extends Menu {
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View resident information":
+                setViewResidentInfo(true);
+                break;
+            case "Exit":
+                setReturnToFrontPage(true);
+                break;
+            case "Sort":
+                setSortResidentInfo(true);
                 break;
         }
         return "";

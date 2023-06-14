@@ -61,6 +61,16 @@ public class Map {
     }
 
     /* Methods B: Display methods */
+    public void printForwardLocations(){
+        System.out.print("Forward locations: ");
+        for (int i = 0; i < forward.size(); i++) {
+            System.out.print(forward.get(i).getName());
+            if(i != forward.size() - 1){
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
+    }
 
     /* Methods C: Processing methods */
 

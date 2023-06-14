@@ -170,7 +170,9 @@ public class GameInterface extends UserInterface{
                 if(viewResidentInfo()){
                     currentMenu.setViewResidentInfo(false);
                     currentMenu.setSortResidentInfo(false);
-                    System.out.println("sortResidentInfo set to false");
+                }
+                if(hasForwardLocation()){
+                    currentMenu.setHasForwardAdded(false);
                 }
                 setCurrentMenu(getCurrentLocation().getMenu());
                 currentMenu.setCurrentOption(-1);
@@ -194,21 +196,26 @@ public class GameInterface extends UserInterface{
             if(viewResidentInfo()){
                 heavensDoor.setLocation(currentMenu.getLocationName());
                 heavensDoor.display();
+                if(sortResidentInfo()){
+                    currentMenu.setSortResidentInfo(false);
+                }
             }
 
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
-            currentMenu.setSelected(Integer.parseInt(input)-1);
+            currentMenu.setSelected(Integer.parseInt(input)-1, true);
             divider(70);
             executeOutput = currentMenu.execute(input);
             if(!movingLocations()){
                 currentMenu.setCurrentOption(Integer.parseInt(input)-1);
             }
 
-
             // Conditional actions go here and below
             if(sortResidentInfo()){
-                currentMenu.setViewResidentDisplay();
+                currentMenu.setViewResidentMenu();
+                for (int i = 0; i < currentMenu.getCurrentOption().getSuboptionsCount(); i++) {
+                    currentMenu.getCurrentOption().setSelected(i, false);
+                }
             }
             if(isAdvancingNext()){
                 endDay();
@@ -227,8 +234,8 @@ public class GameInterface extends UserInterface{
                 }
                 else if(wantMoveForward()){
                     currentMenu.setWantMoveForward(false);
-                    currentMenu.setHasForwardAdded(false);
                     map.moveForward();
+                    currentMenu.setHasForwardAdded(false);
                 }
                 else{
                     currentMenu.setMovingLocations(false);
@@ -241,6 +248,10 @@ public class GameInterface extends UserInterface{
                 currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
+                
+                if(hasForwardLocation()){
+                    currentMenu.setHasForwardAdded(false);
+                }
             }
         }
     }

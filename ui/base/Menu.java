@@ -62,7 +62,7 @@ public class Menu{
 
     /* Overlaod method */
     public void setCurrentOption(int indexOfSuboption, boolean setting){
-        if(setting){
+        if(setting){ // true
             this.currentOption = options.get(indexOfSuboption);
         }
         else{
@@ -84,8 +84,8 @@ public class Menu{
     }
 
     /* Purpose: Marks which suboption that has been selected */
-    public void setSelected(int index){
-        currentOption.setSelected(index);
+    public void setSelected(int index, boolean setting){
+        currentOption.setSelected(index, setting);
     }
     
     /* Purpose: Returns the index of the suboption that was selected */
@@ -311,7 +311,7 @@ public class Menu{
 
     public void setNewDayGreeting(String newDayGreeting){}
 
-    public void setViewResidentDisplay(){
+    public void setViewResidentMenu(){
         setCurrentOption(1, true); // Make sure the option to view resident info is at index = 1 at every relevant location
     }
 }
