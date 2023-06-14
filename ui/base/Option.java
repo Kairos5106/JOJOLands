@@ -28,8 +28,8 @@ public class Option{
         return this.suboptions.get(index).getTitle();
     }
 
-    public void setSelected(int suboptionIndex){
-        suboptionsSelected.set(suboptionIndex, true);
+    public void setSelected(int suboptionIndex, boolean setting){
+        suboptionsSelected.set(suboptionIndex, setting);
     }
 
     /*  */
@@ -65,6 +65,14 @@ public class Option{
 
     public ArrayList<Option> getSuboptionsList(){
         return this.suboptions;
+    }
+
+    public ArrayList<String> getSuboptionsTitleList(){
+        ArrayList<String> temp = new ArrayList<>();
+        for (int i = 0; i < suboptions.size(); i++) {
+            temp.add(suboptions.get(i).getTitle());
+        }
+        return temp;
     }
 
     public Option get(int index){
