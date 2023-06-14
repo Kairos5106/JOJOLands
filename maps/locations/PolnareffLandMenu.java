@@ -13,13 +13,18 @@ public class PolnareffLandMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
+        Option viewResident = new Option("View resident information");
+        viewResident.addSuboptions("View resident profile");
+        viewResident.addSuboptions("Sort");
+        viewResident.addSuboptions("Exit");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -49,9 +54,27 @@ public class PolnareffLandMenu extends Menu {
             case "Savage Garden":
                 setMovingLocations(true);
                 return "Savage Garden";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
+            case "Jade Garden":
+                setMovingLocations(true);
+                return "Jade Garden";
+            case "DIO's Mansion":
+                setMovingLocations(true);
+                return "DIO's Mansion";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View resident information":
+                setViewResidentInfo(true);
+                break;
+            case "Exit":
+                setReturnToFrontPage(true);
+                break;
+            case "Sort":
+                setSortResidentInfo(true);
                 break;
         }
         return null;

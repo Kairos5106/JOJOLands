@@ -2,9 +2,9 @@ package DSTeam3.maps.locations;
 
 import DSTeam3.ui.base.*;
 
-public class JoestarMansionMenu extends Menu {
-    public JoestarMansionMenu(){
-        this.setLocationName("Joestar Mansion");
+public class PassioneRestaurantMenu extends Menu {
+    public PassioneRestaurantMenu(){
+        this.setLocationName("Passione Restaurant");
     }
 
     /* Purpose: Defines the options for the menu */
@@ -13,18 +13,13 @@ public class JoestarMansionMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
-        Option viewResident = new Option("View resident information");
-        viewResident.addSuboptions("View resident profile");
-        viewResident.addSuboptions("Sort");
-        viewResident.addSuboptions("Exit");
-
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewResident, backPrevious, backTownHall};
+        Option[] options = {moveTo, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -48,41 +43,26 @@ public class JoestarMansionMenu extends Menu {
             case "No":
                 setReturnToFrontPage(true);
                 break;
-            case "Jade Garden":
-                setMovingLocations(true);
-                return "Jade Garden";
-            case "Savage Garden":
-                setMovingLocations(true);
-                return "Savage Garden";
-            case "Libeccio":
-                setMovingLocations(true);
-                return "Libeccio";
-            case "Vineyard":
-                setMovingLocations(true);
-                return "Vineyard";
-            case "San Giorgio Maggiore":
-                setMovingLocations(true);
-                return "San Giorgio Maggiore";
-            case "Morioh Grand Hotel":
-                setMovingLocations(true);
-                return "Morioh Grand Hotel";
             case "Trattoria Trussardi":
                 setMovingLocations(true);
                 return "Trattoria Trussardi";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
+            case "Cafe Deux Magots":
+                setMovingLocations(true);
+                return "Cafe Deux Magots";
+            case "DIO's Mansion":
+                setMovingLocations(true);
+                return "DIO's Mansion";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
                 break;
-            case "View resident information":
-                setViewResidentInfo(true);
-                break;
-            case "Exit":
-                setReturnToFrontPage(true);
-                break;
-            case "Sort":
-                setSortResidentInfo(true);
-                break;
         }
-        return null;
+        return "";
     }
 }

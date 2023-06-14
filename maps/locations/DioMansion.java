@@ -6,7 +6,7 @@ import DSTeam3.maps.base.*;
 public class DioMansion extends Location{
     public DioMansion(){
         super();
-        this.nameOfLocation = "Dio's Mansion";
+        this.nameOfLocation = "DIO's Mansion";
         this.menu = new DioMansionMenu();
     }
 }

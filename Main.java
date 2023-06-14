@@ -19,7 +19,7 @@ public class Main{
 
         /* Section 2: Load selected map and user interface */
         GameInterface gameUI = new GameInterface(startUI.getMapSelected());
-        
+
         /* Section 3: Start game */
         gameUI.initiate();
     }

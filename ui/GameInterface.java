@@ -19,6 +19,7 @@ import DSTeam3.maps.locations.SavageGardenMenu;
 import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
+import DSTeam3.source.HeavensDoor;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -26,6 +27,8 @@ public class GameInterface extends UserInterface{
     private boolean newDay = true; // to help with notifying the player with current day count and day name
     Map map;
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
+
+    HeavensDoor heavensDoor = new HeavensDoor();
 
     /* Constructors */
     public GameInterface(){}
@@ -118,6 +121,18 @@ public class GameInterface extends UserInterface{
         return currentMenu.wantMoveForward();
     }
 
+    public boolean hasForwardAdded(){
+        return currentMenu.hasForwardAdded(); 
+    }
+
+    public boolean viewResidentInfo(){
+        return currentMenu.viewResidentInfo();
+    }
+
+    public boolean sortResidentInfo(){
+        return currentMenu.sortResidentInfo();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -152,32 +167,56 @@ public class GameInterface extends UserInterface{
                 currentMenu.setOpenMoveLocationsMenu(false);
             }
             if(returnToFrontPage()){
+                if(viewResidentInfo()){
+                    currentMenu.setViewResidentInfo(false);
+                    currentMenu.setSortResidentInfo(false);
+                }
+                if(hasForwardLocation()){
+                    currentMenu.setHasForwardAdded(false);
+                }
                 setCurrentMenu(getCurrentLocation().getMenu());
                 currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
                 currentMenu.setReturnPreviousLocation(false);
+                currentMenu.setReturnToFrontPage(false);
                 currentMenu.setGreeting(null);
-                System.out.println("Set greeting to null");
             }
             if(returnPreviousLocation() && !movingLocations()){
                 currentMenu.setGreeting("Are you sure you want to return to " + map.getPreviousLocationName() + "?");
             }
-            if(hasForwardLocation()){
+            if(hasForwardLocation() && !hasForwardAdded()){
                 currentMenu.getCurrentOption().addSuboptions(new Option("Go forward to visited location"));
+                currentMenu.setHasForwardAdded(true);
             }
-            
+            if(sortResidentInfo()){
+                heavensDoor.promptToSort();
+                divider(70);
+            }
+            if(viewResidentInfo()){
+                heavensDoor.setLocation(currentMenu.getLocationName());
+                heavensDoor.display();
+                if(sortResidentInfo()){
+                    currentMenu.setSortResidentInfo(false);
+                }
+            }
+
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
-            currentMenu.setSelected(Integer.parseInt(input)-1);
+            currentMenu.setSelected(Integer.parseInt(input)-1, true);
             divider(70);
             executeOutput = currentMenu.execute(input);
             if(!movingLocations()){
                 currentMenu.setCurrentOption(Integer.parseInt(input)-1);
             }
 
-
             // Conditional actions go here and below
+            if(sortResidentInfo()){
+                currentMenu.setViewResidentMenu();
+                for (int i = 0; i < currentMenu.getCurrentOption().getSuboptionsCount(); i++) {
+                    currentMenu.getCurrentOption().setSelected(i, false);
+                }
+            }
             if(isAdvancingNext()){
                 endDay();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
@@ -196,6 +235,7 @@ public class GameInterface extends UserInterface{
                 else if(wantMoveForward()){
                     currentMenu.setWantMoveForward(false);
                     map.moveForward();
+                    currentMenu.setHasForwardAdded(false);
                 }
                 else{
                     currentMenu.setMovingLocations(false);
@@ -208,6 +248,10 @@ public class GameInterface extends UserInterface{
                 currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
+                
+                if(hasForwardLocation()){
+                    currentMenu.setHasForwardAdded(false);
+                }
             }
         }
     }

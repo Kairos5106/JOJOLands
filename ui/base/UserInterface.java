@@ -57,7 +57,7 @@ public class UserInterface {
         while(!getExitInterface()){
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
-            currentMenu.setSelected(Integer.parseInt(input)-1);
+            currentMenu.setSelected(Integer.parseInt(input)-1, true);
             divider(70);
             currentMenu.execute(input);
             currentMenu.setCurrentOption(Integer.parseInt(input)-1);
