@@ -2,6 +2,7 @@ package DSTeam3.maps.base;
 
 import java.util.ArrayList;
 import DSTeam3.ui.base.*;
+import DSTeam3.source.PearlJam.base.*;
 
 public /* Purpose: Represents a node in the map */
 class Location{
@@ -9,6 +10,7 @@ class Location{
     protected String nameOfLocation;
     protected Menu menu;
     protected String currentMapName;
+    protected PearlJam restaurant = null;
 
     /* nearbyLocations and distanceOfNearby are linked in a way as in a nearby object in nearbyLocations arraylist will have the 
      * same index as its distance counterpart in distanceOfNearby arraylist.

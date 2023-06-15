@@ -67,7 +67,6 @@ public class HeavensDoor {
                 contentBuilder.append(in.nextLine()).append("\n");
             }
             in.close();
-
             content = contentBuilder.toString().trim();
         }catch(FileNotFoundException e){
             System.out.println("File not found");
