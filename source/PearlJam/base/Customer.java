@@ -1,7 +1,5 @@
 package DSTeam3.source.PearlJam.base;
 
-import java.util.Date;
-
 public class Customer {
     private String nameCustomer;
     private int age;
@@ -9,7 +7,7 @@ public class Customer {
     private String order;
     private int orderNumber;
     private String nameRestaurant; // restaurant specific identifier
-    private Date arrivalTime;
+    private String arrivalTime;
 
     // Constructor methods
     public Customer() {
@@ -28,7 +26,7 @@ public class Customer {
         this.gender = gender;
     }
 
-    public Customer(String nameCustomer, int age, String gender, String order, Date arrivalTime) {
+    public Customer(String nameCustomer, int age, String gender, String order, String arrivalTime) {
         this.nameCustomer = nameCustomer;
         this.age = age;
         this.gender = gender;
@@ -61,7 +59,7 @@ public class Customer {
         return nameRestaurant;
     }
 
-    public Date getArrivalTime() {
+    public String getArrivalTime() {
         return arrivalTime;
     }
 
@@ -90,7 +88,7 @@ public class Customer {
         this.nameRestaurant = nameRestaurant;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 }

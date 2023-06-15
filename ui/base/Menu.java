@@ -26,6 +26,7 @@ public class Menu{
     boolean hasForwardAdded = false;
     boolean viewResidentInfo = false;
     boolean sortResidentInfo = false;
+    boolean viewResidentProfile = false;
 
     /* Constructors */
     public Menu(){
@@ -261,6 +262,14 @@ public class Menu{
 
     public boolean sortResidentInfo(){
         return this.sortResidentInfo;
+    }
+
+    public void setViewResidentProfile(boolean setting){
+        this.viewResidentProfile = setting;
+    }
+
+    public boolean viewResidentProfile(){
+        return this.viewResidentProfile;
     }
 
     /* ****************** Methods B: Display methods ****************** */

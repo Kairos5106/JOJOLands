@@ -133,6 +133,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.sortResidentInfo();
     }
 
+    public boolean viewResidentProfile(){
+        return currentMenu.viewResidentProfile();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -195,7 +199,14 @@ public class GameInterface extends UserInterface{
             }
             if(viewResidentInfo()){
                 heavensDoor.setLocation(currentMenu.getLocationName());
-                heavensDoor.display();
+                if(viewResidentProfile()){
+                    heavensDoor.promptResidentProfile();
+                    divider(70);
+                    heavensDoor.displayResidentProfile();
+                    currentMenu.setViewResidentProfile(false);
+                    divider(70);
+                }
+                heavensDoor.displayResidents();
                 if(sortResidentInfo()){
                     currentMenu.setSortResidentInfo(false);
                 }
@@ -211,7 +222,7 @@ public class GameInterface extends UserInterface{
             }
 
             // Conditional actions go here and below
-            if(sortResidentInfo()){
+            if(sortResidentInfo() || viewResidentProfile()){
                 currentMenu.setViewResidentMenu();
                 for (int i = 0; i < currentMenu.getCurrentOption().getSuboptionsCount(); i++) {
                     currentMenu.getCurrentOption().setSelected(i, false);

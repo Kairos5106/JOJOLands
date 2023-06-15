@@ -10,7 +10,7 @@ public class FoodWriter {
     }
 
     public static void writeFile(){
-        String filePath = "DSTeam3\\source\\foodmenu.txt";
+        String filePath = "DSTeam3\\source\\FoodMenu.txt";
             try {
                 PrintWriter writer = new PrintWriter(new FileOutputStream(filePath));
                 // Write the data rows
