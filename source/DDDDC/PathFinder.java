@@ -11,11 +11,11 @@ import java.util.*;
 public class PathFinder {
     private static List<List<Location>> shortestPaths;
 
-    public static void findShortestPaths(Location destination) {
+    public static void findShortestPaths(Location source, Location destination) {
         shortestPaths = new ArrayList<>();
         List<Location> currentPath = new ArrayList<>();
-        currentPath.add(destination);
-        findPathsHelper(destination, destination, currentPath);
+        currentPath.add(source); 
+        findPathsHelper(source, destination, currentPath);
         displayShortestPaths();
     }
 
@@ -133,10 +133,13 @@ public class PathFinder {
 
         // Prompt the user for the destination location
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Source: ");
+        String sourceName = scanner.nextLine();
         System.out.print("Destination: ");
         String destinationName = scanner.nextLine();
 
         // Find the top three shortest paths to the destination
+        Location source = null;
         Location destination = null;
         for (Location location : Arrays.asList(
                 townHall, moriohGrand, trattoriaTrussardi, greenDolphin, libeccio, sanGiorgio,
@@ -149,7 +152,7 @@ public class PathFinder {
         }
 
         if (destination != null) {
-            findShortestPaths(destination);
+            findShortestPaths(source, destination);
         } else {
             System.out.println("Invalid destination location.");
         }
