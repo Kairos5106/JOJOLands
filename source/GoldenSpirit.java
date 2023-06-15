@@ -41,14 +41,20 @@ public class GoldenSpirit  {
             System.out.println("Returning back....");
     }
     
-    public static void getJoestarName(){
+    public static void getJoestarName() {
         int i = 0;
-        for(Object name : familyTree.getAllTreeNodeObjects()){
-            System.out.printf("[%s] %s\n", i, name);
+        System.out.println("+-----+---------------------+");
+        System.out.println("| No. | Character Name      |");
+        System.out.println("+-----+---------------------+");
+        for (Object name : familyTree.getAllTreeNodeObjects()) {
+            String formattedName = String.format("%-20s", name);
+            System.out.printf("| %-4d| %s|\n", i + 1, formattedName);
             i++;
         }
-        System.out.println("");  
+        System.out.println("+-----+---------------------+");
+        System.out.println("");
     }
+
     
     public static void createTreeMap(){
         familyTree.addTreeEdge("Jolyne Cujoh", "Jotaro Kujo");
