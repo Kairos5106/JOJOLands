@@ -19,6 +19,7 @@ import DSTeam3.maps.locations.SavageGardenMenu;
 import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
+import DSTeam3.source.DDDDC.PathFinder;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -26,6 +27,8 @@ public class GameInterface extends UserInterface{
     private boolean newDay = true; // to help with notifying the player with current day count and day name
     Map map;
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
+
+    PathFinder pathFinder = new PathFinder();
 
     /* Constructors */
     public GameInterface(){}
@@ -118,6 +121,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.wantMoveForward();
     }
 
+    public boolean initialiseDDDDC(){
+        return currentMenu.initialiseDDDDC();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -150,6 +157,11 @@ public class GameInterface extends UserInterface{
                 String[] nearbyLocationList = getNearbyLocationNames();
                 currentMenu.getCurrentOption().addSuboptions(nearbyLocationList);
                 currentMenu.setOpenMoveLocationsMenu(false);
+            }
+            if(initialiseDDDDC()){
+                PathFinder.PathFinderMethod();
+                currentMenu.setInitialiseDDDDC(false);
+                currentMenu.setReturnToFrontPage(true);
             }
             if(returnToFrontPage()){
                 setCurrentMenu(getCurrentLocation().getMenu());

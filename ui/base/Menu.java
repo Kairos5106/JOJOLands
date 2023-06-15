@@ -22,6 +22,7 @@ public class Menu{
     boolean returnToFrontPage = false;
     boolean moveTownHall = false;
     boolean wantMoveForward = false;
+    boolean initialiseDDDDC = false;
 
     /* Constructors */
     public Menu(){
@@ -204,6 +205,14 @@ public class Menu{
 
     public boolean wantMoveForward(){
         return this.wantMoveForward;
+    }
+
+    public void setInitialiseDDDDC(boolean setting){
+        this.initialiseDDDDC = setting;
+    }
+
+    public boolean initialiseDDDDC(){
+        return this.initialiseDDDDC;
     }
 
     /* ****************** Methods B: Display methods ****************** */

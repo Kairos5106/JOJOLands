@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ds_assignment2;
+package DSTeam3.source.DDDDC;
 import java.util.*;
 /**
  *
@@ -78,7 +78,7 @@ public class PathFinder {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
+    public static void PathFinderMethod() {
         // Define all the locations and their connections here
         Location townHall = new Location("Town Hall");
         Location moriohGrand = new Location("Morioh Grand");
@@ -156,4 +156,3 @@ public class PathFinder {
     }
          
 }
-
