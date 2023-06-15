@@ -1,7 +1,6 @@
 package DSTeam3.source.Joestars;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class TheJoestars {
@@ -128,6 +127,10 @@ public class TheJoestars {
         setDay(7);
         assignFoodToResidents();
         displayOrderHistory("Weather Report");
+    }
+
+    public static String[][] getFoodMenu(){
+        return menuItems;
     }
 
     public static void setDay(int dayNo){

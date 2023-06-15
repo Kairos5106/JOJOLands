@@ -145,6 +145,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.initialiseGoldenSpirit();
     }
 
+    public boolean viewFoodMenu(){
+        return currentMenu.viewFoodMenu();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -182,6 +186,12 @@ public class GameInterface extends UserInterface{
                 goldenSpirit.GoldenSpirit();
                 currentMenu.setInitialiseGoldenSpirit(false);
                 currentMenu.setReturnToFrontPage(true);
+            }
+            if(viewFoodMenu()){
+                getCurrentLocation().displayFoodMenu();
+                currentMenu.setReturnToFrontPage(true);
+                currentMenu.setViewFoodMenu(false);
+                divider(70);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){

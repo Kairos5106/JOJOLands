@@ -79,6 +79,9 @@ public class JadeGardenMenu extends Menu {
                 setMovingLocations(true);
                 setWantMoveForward(true);
                 break;
+            case "View menu":
+                setViewFoodMenu(true);
+                break;
         }
         return "";
     }
