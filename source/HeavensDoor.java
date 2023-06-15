@@ -39,6 +39,10 @@ public class HeavensDoor {
         return sorted;
     }
 
+    public static String getProfileName(){
+        return profileName;
+    }
+
     public static void displayResidents(){
         System.out.println("Resident Information in " + location);
         if(isSorted()){

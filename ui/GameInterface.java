@@ -20,6 +20,7 @@ import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
 import DSTeam3.source.HeavensDoor;
+import DSTeam3.source.Joestars.*;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -29,6 +30,7 @@ public class GameInterface extends UserInterface{
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
 
     HeavensDoor heavensDoor = new HeavensDoor();
+    TheJoestars joestars = new TheJoestars();
 
     /* Constructors */
     public GameInterface(){}
@@ -137,10 +139,6 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewResidentProfile();
     }
 
-    public boolean initialiseGoldenSpirit(){
-        return currentMenu.initialiseGoldenSpirit();
-    }
-
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -207,6 +205,7 @@ public class GameInterface extends UserInterface{
                     heavensDoor.promptResidentProfile();
                     divider(70);
                     heavensDoor.displayResidentProfile();
+                    joestars.displayOrderHistory(heavensDoor.getProfileName());
                     currentMenu.setViewResidentProfile(false);
                     divider(70);
                 }
@@ -234,6 +233,8 @@ public class GameInterface extends UserInterface{
             }
             if(isAdvancingNext()){
                 endDay();
+                joestars.setDay(time.getDayCount());
+                joestars.assignFoodToResidents();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
@@ -326,5 +327,9 @@ class Clock{
         dayCount++;
         if(dayOfWeek == 7){dayOfWeek = 1;}
         else{dayOfWeek++;}
+    }
+
+    public int getDayCount(){
+        return this.dayCount;
     }
 }
