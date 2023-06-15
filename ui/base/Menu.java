@@ -27,6 +27,7 @@ public class Menu{
     boolean viewResidentInfo = false;
     boolean sortResidentInfo = false;
     boolean viewResidentProfile = false;
+    boolean initialiseGoldenSpirit = false;
 
     /* Constructors */
     public Menu(){
@@ -270,6 +271,15 @@ public class Menu{
 
     public boolean viewResidentProfile(){
         return this.viewResidentProfile;
+    }
+
+    // 
+    public void setInitialiseGoldenSpirit(boolean setting){
+        this.initialiseGoldenSpirit = setting;
+    }
+
+    public boolean initialiseGoldenSpirit(){
+        return this.initialiseGoldenSpirit;
     }
 
     /* ****************** Methods B: Display methods ****************** */

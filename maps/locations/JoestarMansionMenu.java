@@ -18,13 +18,16 @@ public class JoestarMansionMenu extends Menu {
         viewResident.addSuboptions("Sort");
         viewResident.addSuboptions("Exit");
 
+        Option goldenSpirit = new Option("The Golden Spirit");
+
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewResident, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, goldenSpirit, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -84,6 +87,9 @@ public class JoestarMansionMenu extends Menu {
                 break;
             case "View resident profile":
                 setViewResidentProfile(true);
+                break;
+            case "The Golden Spirit":
+                setInitialiseGoldenSpirit(true);
                 break;
         }
         return null;
