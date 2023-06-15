@@ -137,6 +137,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewResidentProfile();
     }
 
+    public boolean initialiseGoldenSpirit(){
+        return currentMenu.initialiseGoldenSpirit();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */

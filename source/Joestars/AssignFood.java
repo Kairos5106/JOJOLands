@@ -1,4 +1,4 @@
-package Q2;
+package DSTeam3.source.Joestars;
 
 import java.io.*;
 import java.io.IOException;
@@ -13,22 +13,21 @@ import java.util.Random;
 public class AssignFood {
     public static void main(String[] args) {
        String[][] menuItems = {
-                {"Jade Garden", "Braised Chicken in Black Bean Sauce", "15"},
-                {"Jade Garden", "Braised Goose Web with Vermicelli", "21"},
-                {"Jade Garden", "Deep-fried Hiroshima Oysters", "17"},
-                {"Jade Garden", "Poached Tofu with Dried Shrimps", "2"},
-                {"Jade Garden", "Scrambled Egg White with Milk", "10"},
-                {"Cafe Deux Magots", "Sampling Matured Cheese Platter", "23"},
-                {"Cafe Deux Magots", "Sampling Matured Cheese Platter", "23"},
-                {"Cafe Deux Magots", "Spring Lobster Salad", "35"},
-                {"Cafe Deux Magots", "Spring Organic Omelette", "23"},
-                {"Cafe Deux Magots", "Truffle-flavoured Poultry Supreme", "34"},
-                {"Cafe Deux Magots", "White Asparagus", "26"},
-                {"Trattoria Trussardi", "Caprese Salad", "10"},
-                {"Trattoria Trussardi", "Creme caramel", "6.5"},
-                {"Trattoria Trussardi", "Lamb Chops with Apple Sauce", "25"},
-                {"Trattoria Trussardi", "Spaghetti alla Puttanesca", "15"},
-                {"Libeccio", "Formaggio", "12.5"},
+                {"Jade Garden", "Braised Chicken in Black Bean Sauce", "15.00"},
+                {"Jade Garden", "Braised Goose Web with Vermicelli", "21.00"},
+                {"Jade Garden", "Deep-fried Hiroshima Oysters", "17.00"},
+                {"Jade Garden", "Poached Tofu with Dried Shrimps", "12.00"},
+                {"Jade Garden", "Scrambled Egg White with Milk", "10.00"},
+                {"Cafe Deux Magots", "Sampling Matured Cheese Platter", "23.00"},
+                {"Cafe Deux Magots", "Spring Lobster Salad", "35.00"},
+                {"Cafe Deux Magots", "Spring Organic Omelette", "23.00"},
+                {"Cafe Deux Magots", "Truffle-flavoured Poultry Supreme", "34.00"},
+                {"Cafe Deux Magots", "White Asparagus", "26.00"},
+                {"Trattoria Trussardi", "Caprese Salad", "10.00"},
+                {"Trattoria Trussardi", "Creme caramel", "6.50"},
+                {"Trattoria Trussardi", "Lamb Chops with Apple Sauce", "25.00"}, // stopped here
+                {"Trattoria Trussardi", "Spaghetti alla Puttanesca", "15.00"},
+                {"Libeccio", "Formaggio", "12.50"},
                 {"Libeccio", "Ghiaccio", "1.01"},
                 {"Libeccio", "Melone", "5.20"},
                 {"Libeccio", "Prosciutto and Pesci", "20.23"},
@@ -41,13 +40,6 @@ public class AssignFood {
                 {"Savage Garden", "Kakyoin’s Cherry", "3.50"},
                 {"Savage Garden", "Kakyoin’s Porridge", "4.44"}
 };
-
-        // for (int row = 0; row < menuItems.length; row++) {
-        //     for (int column = 0; column < menuItems[row].length; column++) {
-        //         System.out.print(menuItems[row][column]);
-        //     }
-        //     System.out.println();
-        // }
 
         String[] residents = {
                 "Erina Pendleton,70,Female",
@@ -123,7 +115,7 @@ public class AssignFood {
                 "Weather Report,39,Male"
 };
 
-        String filePath = "Feature 4 - Joestars\\AssignFood.csv";
+        String filePath = "DSTeam3\\source\\AssignFood.csv";
 
          try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), StandardCharsets.UTF_8));
@@ -133,9 +125,6 @@ public class AssignFood {
             List<String> assignedResidents = new ArrayList<>(Arrays.asList(residents));
             List<String[]> shuffledMenuItems = new ArrayList<>(Arrays.asList(menuItems));
             Collections.shuffle(shuffledMenuItems);
-
-            // System.out.println("Assigned residents list: " + assignedResidents);
-            // System.out.println("Shuffled menu items: " + shuffledMenuItems);
 
             for (int i = 0; i < assignedResidents.size(); i++) {
                 String resident = assignedResidents.get(i);

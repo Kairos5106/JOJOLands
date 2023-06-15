@@ -23,49 +23,7 @@ public class HeavensDoor {
     }
 
     public static void main(String[] args) {
-        // System.out.println("NPC Name and Stand Table");
-        // for (Map.Entry<String, String> entry : standUsersByName.entrySet()) {
-        //     String elem1 = entry.getKey();
-        //     String elem2 = entry.getValue();
-        //     System.out.printf("Elem1: %s, Elem2: %s\n", elem1, elem2);
-        // }
-        // System.out.println("\nUser Information");
-        // for (Map.Entry<String, String[]> entry : userInformation.entrySet()) {
-        //     String elem1 = entry.getKey();
-        //     String[] elem2 = entry.getValue();
-        //     System.out.printf("Elem1: %s, Elem2: ", elem1, elem2);
-        //     for (int i = 0; i < elem2.length; i++) {
-        //         System.out.printf("%s", elem2[i]);
-        //         if(i != elem2.length){
-        //             System.out.print(", ");
-        //         }
-        //     }
-        //     System.out.println();
-        // } 
-        // System.out.println("\n NPC Profile\n");
-        // for (Map.Entry<String, String[]> entry : npcPersonalInfo.entrySet()) {
-        //     String npcName = entry.getKey();
-        //     String[] personalInfo = entry.getValue();
-        //     System.out.println(npcName + "'s Profile");
-        //     System.out.println("Name\t: " + npcName);
-        //     System.out.println("Age\t: " + personalInfo[0]);
-        //     System.out.println("Gender\t: " + personalInfo[1]);
-        //     System.out.println("Parents\t: " + personalInfo[2]);
-        //     System.out.println();
-        // }
-        // System.out.println("\n Stand Info\n");
-        // for (Map.Entry<String, String[]> entry : standInfo.entrySet()) {
-        //     String standName = entry.getKey();
-        //     String[] standStats = entry.getValue();
-        //     System.out.println("Stand\t\t\t: " + standName);
-        //     System.out.println("Destructive Power\t: " + standStats[0]);
-        //     System.out.println("Speed\t\t\t: " + standStats[1]);
-        //     System.out.println("Range\t\t\t: " + standStats[2]);
-        //     System.out.println("Stamina\t\t\t: " + standStats[3]);
-        //     System.out.println("Precision\t\t: " + standStats[4]);
-        //     System.out.println("Development Potential\t: " + standStats[5]);
-        //     System.out.println();
-        // }
+
     }
 
     public void setLocation(String location){
