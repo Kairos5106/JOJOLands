@@ -19,6 +19,7 @@ import DSTeam3.maps.locations.SavageGardenMenu;
 import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
+import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
 
 public class GameInterface extends UserInterface{
@@ -29,6 +30,7 @@ public class GameInterface extends UserInterface{
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
 
     HeavensDoor heavensDoor = new HeavensDoor();
+    GoldenSpirit goldenSpirit = new GoldenSpirit();
 
     /* Constructors */
     public GameInterface(){}
@@ -133,6 +135,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.sortResidentInfo();
     }
 
+    public boolean initialiseGoldenSpirit(){
+        return currentMenu.initialiseGoldenSpirit();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -165,6 +171,11 @@ public class GameInterface extends UserInterface{
                 String[] nearbyLocationList = getNearbyLocationNames();
                 currentMenu.getCurrentOption().addSuboptions(nearbyLocationList);
                 currentMenu.setOpenMoveLocationsMenu(false);
+            }
+            if(initialiseGoldenSpirit()){
+                goldenSpirit.GoldenSpirit();
+                currentMenu.setInitialiseGoldenSpirit(false);
+                currentMenu.setReturnToFrontPage(true);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){

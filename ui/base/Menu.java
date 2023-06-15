@@ -26,6 +26,7 @@ public class Menu{
     boolean hasForwardAdded = false;
     boolean viewResidentInfo = false;
     boolean sortResidentInfo = false;
+    boolean initialiseGoldenSpirit = false;
 
     /* Constructors */
     public Menu(){
@@ -261,6 +262,15 @@ public class Menu{
 
     public boolean sortResidentInfo(){
         return this.sortResidentInfo;
+    }
+
+    // 
+    public void setInitialiseGoldenSpirit(boolean setting){
+        this.initialiseGoldenSpirit = setting;
+    }
+
+    public boolean initialiseGoldenSpirit(){
+        return this.initialiseGoldenSpirit;
     }
 
     /* ****************** Methods B: Display methods ****************** */
