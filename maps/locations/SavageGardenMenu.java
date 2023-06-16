@@ -76,6 +76,9 @@ public class SavageGardenMenu extends Menu {
             case "View menu":
                 setViewFoodMenu(true);
                 break;
+            case "View waiting list and order processing list":
+                setViewPearlJamList(true);
+                break;
         }
         return null;
     }

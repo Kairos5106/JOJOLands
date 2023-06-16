@@ -41,7 +41,6 @@ public class CafeDeuxMenu extends Menu {
             case "Back to Town Hall":
                 setMovingLocations(true);
                 setMoveTownHall(true);
-                setReturnPreviousLocation(true);
                 return "Town Hall";
             case "Back to previous location":
                 setReturnPreviousLocation(true);
