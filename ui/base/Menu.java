@@ -26,7 +26,10 @@ public class Menu{
     boolean hasForwardAdded = false;
     boolean viewResidentInfo = false;
     boolean sortResidentInfo = false;
+    boolean viewResidentProfile = false;
     boolean initialiseGoldenSpirit = false;
+    boolean viewFoodMenu = false;
+    boolean viewPearlJamList = false;
 
     /* Constructors */
     public Menu(){
@@ -264,6 +267,14 @@ public class Menu{
         return this.sortResidentInfo;
     }
 
+    public void setViewResidentProfile(boolean setting){
+        this.viewResidentProfile = setting;
+    }
+
+    public boolean viewResidentProfile(){
+        return this.viewResidentProfile;
+    }
+
     // 
     public void setInitialiseGoldenSpirit(boolean setting){
         this.initialiseGoldenSpirit = setting;
@@ -271,6 +282,22 @@ public class Menu{
 
     public boolean initialiseGoldenSpirit(){
         return this.initialiseGoldenSpirit;
+    }
+
+    public void setViewFoodMenu(boolean setting){
+        this.viewFoodMenu = setting;    
+    }
+
+    public boolean viewFoodMenu(){
+        return this.viewFoodMenu;
+    }
+
+    public void setViewPearlJamList(boolean setting){
+        this.viewPearlJamList = setting;
+    }
+
+    public boolean viewPearlJamList(){
+        return this.viewPearlJamList;
     }
 
     /* ****************** Methods B: Display methods ****************** */

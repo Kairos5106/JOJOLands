@@ -75,17 +75,35 @@ public class UserInterface {
     }
 
     /* Prompts the user to enter a proper range of selectable numerical options */
+    // public String prompt(String prompt, int maxOfRange){
+    //     Scanner in = new Scanner(System.in);
+    //     String userInput;
+    //     while(true){
+    //         System.out.print(prompt);
+    //         userInput = in.next();
+    //         if((Integer.parseInt(userInput) > maxOfRange) || (Integer.parseInt(userInput) < 1)){
+    //             System.out.println("Please select a valid option");
+    //         }
+    //         else{break;}
+    //     }
+    //     return userInput;
+    // }
     public String prompt(String prompt, int maxOfRange){
         Scanner in = new Scanner(System.in);
-        String userInput;
-        while(true){
+        int userInput;
+        while (true) {
             System.out.print(prompt);
-            userInput = in.next();
-            if((Integer.parseInt(userInput) > maxOfRange) || (Integer.parseInt(userInput) < 1)){
-                System.out.println("Please select a valid option");
+            try {
+                userInput = Integer.parseInt(in.nextLine());
+                if (userInput < 1 || userInput > maxOfRange) {
+                    System.out.println("Please select a valid option");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid integer");
             }
-            else{break;}
         }
-        return userInput;
+        return Integer.toString(userInput);
     }
 }

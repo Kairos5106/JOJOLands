@@ -84,6 +84,9 @@ public class MoriohGrandMenu extends Menu {
             case "Sort":
                 setSortResidentInfo(true);
                 break;
+            case "View resident profile":
+                setViewResidentProfile(true);
+                break;
         }
         return "";
     }

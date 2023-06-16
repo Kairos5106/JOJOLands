@@ -85,6 +85,9 @@ public class JoestarMansionMenu extends Menu {
             case "Sort":
                 setSortResidentInfo(true);
                 break;
+            case "View resident profile":
+                setViewResidentProfile(true);
+                break;
             case "The Golden Spirit":
                 setInitialiseGoldenSpirit(true);
                 break;
