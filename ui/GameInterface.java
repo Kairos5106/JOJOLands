@@ -158,6 +158,34 @@ public class GameInterface extends UserInterface{
         return getCurrentLocation().getRestaurant();
     }
 
+    public boolean viewSalesInfo(){
+        return currentMenu.viewSalesInfo();
+    }
+
+    public boolean viewSales(){
+        return currentMenu.viewSales();
+    }
+
+    public boolean viewAggregated(){
+        return currentMenu.viewAggregated();
+    }
+
+    public boolean viewMinSales(){
+        return currentMenu.viewMinSales();
+    }
+
+    public boolean viewMaxSales(){
+        return currentMenu.viewMaxSales();
+    }
+
+    public boolean viewTopK(){
+        return currentMenu.viewTopK();
+    }
+
+    public boolean viewTotalAvgSales(){
+        return currentMenu.viewTotalAvgSales();
+    }
+    
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
