@@ -178,6 +178,7 @@ public class GameInterface extends UserInterface{
         setCurrentMenu(getCurrentMenu());
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
+        joestars.assignFoodToResidents();
         String input = "";
         divider(70);
         while(!getExitInterface()){
@@ -204,7 +205,9 @@ public class GameInterface extends UserInterface{
             }
             if(viewPearlJamList()){
                 getCurrentRestaurant().generateWaitingList(time.getDayCount());
-                getCurrentRestaurant().displayWaitingListAndOrderProcessingList();
+                getCurrentRestaurant().displayWaitingList();
+                getCurrentRestaurant().generateOrderProcessingList();
+                getCurrentRestaurant().displayOrderProcessingList();
                 currentMenu.setViewPearlJamList(false);
                 currentMenu.setReturnToFrontPage(true);
             }
@@ -270,6 +273,7 @@ public class GameInterface extends UserInterface{
             if(isAdvancingNext()){
                 endDay();
                 joestars.setDay(time.getDayCount());
+                System.out.println("Advancing to next day. Assigning food for day " + time.getDayCount()); // debug
                 joestars.assignFoodToResidents();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
                 currentMenu.defineOptions();

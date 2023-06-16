@@ -112,7 +112,6 @@ public class TheJoestars {
 
     public TheJoestars(){
         currentMenuItems = Arrays.asList(originalMenuItems);
-        assignFoodToResidents();
     }
 
     public static void main(String[] args) {

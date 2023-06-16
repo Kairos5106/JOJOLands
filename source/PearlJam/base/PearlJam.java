@@ -42,6 +42,10 @@ public class PearlJam {
         this.waitingList.clear();
     }
 
+    public void setOrderProcessingList(List<Customer> orderProcessingList){
+        this.orderProcessingList = orderProcessingList;
+    }
+
     public void generateWaitingList(int day) {
         String filePath = (new TheJoestars()).getFilePath();
         clearWaitingList();
@@ -120,14 +124,19 @@ public class PearlJam {
         // }
     }
 
-    public void processOrders(){} // placeholder: to be overridden
- 
-    public void displayWaitingListAndOrderProcessingList() {
+    public void generateOrderProcessingList(){} // placeholder: to be overridden
+
+    public void displayWaitingList(){
         System.out.println("Restaurant: " + nameRestaurant);
         System.out.println("Waiting List");
         displayCustomers(waitingList);
-        // System.out.println("Order Processing List");
-        // displayCustomers(orderProcessingList);
+        System.out.println();
+    }
+
+    public void displayOrderProcessingList(){
+        System.out.println("Order Processing List");
+        displayCustomers(orderProcessingList);
+        System.out.println();
     }
 
     public void displayCustomers(Iterable<Customer> customers) {
