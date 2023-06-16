@@ -1,5 +1,7 @@
 package DSTeam3.source.PearlJam.base;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.*;
 import DSTeam3.source.Joestars.*;
 
@@ -36,8 +38,86 @@ public class PearlJam {
         return foodMenu;
     }
 
-    public void addCustomerToWaitingList(Customer customer) {
-        waitingList.add(customer);
+    public void clearWaitingList(){
+        this.waitingList.clear();
+    }
+
+    public void generateWaitingList(int day) {
+        String filePath = (new TheJoestars()).getFilePath();
+        clearWaitingList();
+
+        // Adding customers to waiting list from AssignFood.csv
+        try{
+            Scanner in = new Scanner(new FileInputStream(filePath));
+            String line;
+            String[] lineElements;
+
+            in.nextLine(); // skip header
+            while(in.hasNextLine()){
+                line = in.nextLine();
+                lineElements = line.split(",");
+                if(lineElements[0].equals(Integer.toString(day)) && (lineElements[4].equalsIgnoreCase(getNameRestaurant()))){ // fifth column (index 4) in AssignFood is restaurant name
+                    String name = lineElements[1];
+                    String age = lineElements[2];
+                    String gender = lineElements[3];
+                    String order = lineElements[5];
+                    int arrivalTime = Integer.parseInt(lineElements[7]);
+                    Customer customer = new Customer(name, age, gender, order, arrivalTime);
+                    waitingList.add(customer);
+                }
+            }
+            in.close();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+
+        // Debug for adding customers
+        // System.out.println("Successfully added customers to waiting list (size: " + waitingList.size() + "):");
+        // for (int i = 0; i < waitingList.size(); i++) {
+        //     System.out.println(waitingList.get(i).toString());
+        // }
+
+        // Sorting waiting list according to arrival time: bubble sort
+        boolean notSorted = true;
+        boolean swappingOccured = false;
+        int index = 0;
+        int epoch = 1; // for debugging below
+        while(notSorted){
+            Customer current = waitingList.get(index);
+            Customer toCompare = waitingList.get(index + 1);
+            Customer temp;
+            if(current.getArrivalTime() > toCompare.getArrivalTime()){
+                temp = toCompare;
+                waitingList.set(index + 1, current);
+                waitingList.set(index, temp);
+                swappingOccured = true;
+            }
+            index++;
+            if(index == waitingList.size() - 1){ // if cycle through list once without any swapping, list is sorted
+                index = 0;
+                if(swappingOccured == false){
+                    notSorted = false;
+                }
+                swappingOccured = false;
+                // Debug
+                // System.out.println("List after epoch " + epoch);
+                // for (int i = 0; i < waitingList.size(); i++) {
+                //     System.out.println(waitingList.get(i).toString());
+                // }
+            }
+        }
+
+        // Assign waiting list order number for customers
+        int orderNumber = 1;
+        for (int i = 0; i < waitingList.size(); i++) {
+            waitingList.get(i).setOrderNumber(orderNumber++);
+        }
+
+        // Debug for sorting customers
+        // System.out.println("Successfully sorted customers in waiting list (size: " + waitingList.size() + "):");
+        // for (int i = 0; i < waitingList.size(); i++) {
+        //     System.out.println(waitingList.get(i).toString());
+        // }
     }
 
     public void processOrders(){} // placeholder: to be overridden
@@ -46,32 +126,24 @@ public class PearlJam {
         System.out.println("Restaurant: " + nameRestaurant);
         System.out.println("Waiting List");
         displayCustomers(waitingList);
-        System.out.println("Order Processing List");
-        displayCustomers(orderProcessingList);
-        System.out.println("======================================================================");
+        // System.out.println("Order Processing List");
+        // displayCustomers(orderProcessingList);
     }
 
     public void displayCustomers(Iterable<Customer> customers) {
-        System.out.println("+----+--------------------+-----+--------+-");
-        System.out.println("| No | Name               | Age | Gender |");
-        System.out.println("+----+--------------------+-----+--------+-");
+        System.out.println("+----+-------------------------+-----+--------+---------------------------------------------+");
+        System.out.println("| No | Name                    | Age | Gender | Order                                       |");
+        System.out.println("+----+-------------------------+-----+--------+---------------------------------------------+");
 
         int index = 1;
         for (Customer customer : customers) {
-            System.out.printf("| %-2d | %-18s | %-3d | %-6s |%n", index++, customer.getNameCustomer(), customer.getAge(), customer.getGender());
+            System.out.printf("| %-2d | %-23s | %-3s | %-6s | %-43s |%n", index++, customer.getNameCustomer(), customer.getAge(), customer.getGender(), customer.getOrder());
         }
 
-        System.out.println("-+-------------------------------------+");
-        System.out.println("| Order                               |");
-        System.out.println("-+-------------------------------------+");
-
-        for (Customer customer : customers) {
-            System.out.println("| " + customer.getOrder());
-        }
-
-        System.out.println("-+-------------------------------------+");
+        System.out.println("+----+-------------------------+-----+--------+---------------------------------------------+");
     }
 
+    /* Purpose: Displays the food menu for the current restaurant */
     public void displayMenu() {
         System.out.println(getNameRestaurant() + "\'s Menu");
         System.out.println("+---------------------------------------------------------+");
@@ -81,13 +153,14 @@ public class PearlJam {
         System.out.println("+---------------------------------------------------------+");
     }
 
+    /* Purpose: Gets the menu items specific to a restaurant */
     public List<String[]> getMenuItems(){
-        String[][] menuItems = new TheJoestars().getFoodMenu();
+        List<String[]> menuItems = (new TheJoestars()).getFoodMenu();
         List<String[]> foodMenu = new ArrayList<>();
-        for (int i = 0; i < menuItems.length; i++) {
-            if(menuItems[i][0].equalsIgnoreCase(getNameRestaurant())){
-                String itemName = menuItems[i][1];
-                String price = menuItems[i][2];
+        for (int i = 0; i < menuItems.size(); i++) {
+            if(menuItems.get(i)[0].equalsIgnoreCase(getNameRestaurant())){
+                String itemName = menuItems.get(i)[1];
+                String price = menuItems.get(i)[2];
                 foodMenu.add(new String[]{itemName, price});
             }
         }

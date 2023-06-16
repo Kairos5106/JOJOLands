@@ -29,6 +29,7 @@ public class Menu{
     boolean viewResidentProfile = false;
     boolean initialiseGoldenSpirit = false;
     boolean viewFoodMenu = false;
+    boolean viewPearlJamList = false;
 
     /* Constructors */
     public Menu(){
@@ -289,6 +290,14 @@ public class Menu{
 
     public boolean viewFoodMenu(){
         return this.viewFoodMenu;
+    }
+
+    public void setViewPearlJamList(boolean setting){
+        this.viewPearlJamList = setting;
+    }
+
+    public boolean viewPearlJamList(){
+        return this.viewPearlJamList;
     }
 
     /* ****************** Methods B: Display methods ****************** */

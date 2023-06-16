@@ -22,6 +22,7 @@ import DSTeam3.maps.locations.VineyardMenu;
 import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
 import DSTeam3.source.Joestars.*;
+import DSTeam3.source.PearlJam.base.PearlJam;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -149,6 +150,14 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewFoodMenu();
     }
 
+    public boolean viewPearlJamList(){
+        return currentMenu.viewPearlJamList();
+    }
+
+    public PearlJam getCurrentRestaurant(){
+        return getCurrentLocation().getRestaurant();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -192,6 +201,12 @@ public class GameInterface extends UserInterface{
                 currentMenu.setReturnToFrontPage(true);
                 currentMenu.setViewFoodMenu(false);
                 divider(70);
+            }
+            if(viewPearlJamList()){
+                getCurrentRestaurant().generateWaitingList(time.getDayCount());
+                getCurrentRestaurant().displayWaitingListAndOrderProcessingList();
+                currentMenu.setViewPearlJamList(false);
+                currentMenu.setReturnToFrontPage(true);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){

@@ -7,7 +7,7 @@ public class TheJoestars {
     static int day = 1;
     static String filePath = "DSTeam3\\source\\AssignFood.csv";
 
-    static String[][] menuItems = {
+    static String[][] originalMenuItems = {
             {"Jade Garden", "Braised Chicken in Black Bean Sauce", "15.00"},
             {"Jade Garden", "Braised Goose Web with Vermicelli", "21.00"},
             {"Jade Garden", "Deep-fried Hiroshima Oysters", "17.00"},
@@ -34,6 +34,8 @@ public class TheJoestars {
             {"Savage Garden", "Joseph\'s Tequila", "35.00"},
             {"Savage Garden", "Kakyoin\'s Cherry", "3.50"},
             {"Savage Garden", "Kakyoin\'s Porridge", "4.44"}};
+
+    static List<String[]> currentMenuItems = new ArrayList<>();
 
     static String[] residents = {
             "Erina Pendleton,70,Female",
@@ -109,34 +111,31 @@ public class TheJoestars {
             "Weather Report,39,Male"};
 
     public TheJoestars(){
+        currentMenuItems = Arrays.asList(originalMenuItems);
         assignFoodToResidents();
     }
 
     public static void main(String[] args) {
-        assignFoodToResidents();
-        setDay(2);
-        assignFoodToResidents();
-        setDay(3);
-        assignFoodToResidents();
-        setDay(4);
-        assignFoodToResidents();
-        setDay(5);
-        assignFoodToResidents();
-        setDay(6);
-        assignFoodToResidents();
-        setDay(7);
-        assignFoodToResidents();
-        displayOrderHistory("Weather Report");
+
     }
 
-    public static String[][] getFoodMenu(){
-        return menuItems;
+    public static List<String[]> getFoodMenu(){
+        return currentMenuItems;
+    }
+
+    public static int getCurrentMenuSize(){
+        return currentMenuItems.size();
     }
 
     public static void setDay(int dayNo){
         day = dayNo;
     }
 
+    public static String getFilePath(){
+        return filePath;
+    }
+
+    /* Purpose: Creates a .csv file called AssignFood that stores information regarding resident food assignment */
     public static void assignFoodToResidents(){
         boolean append = false;
         if(day != 1){
@@ -150,7 +149,7 @@ public class TheJoestars {
 
             Random random = new Random();
             List<String> assignedResidents = new ArrayList<>(Arrays.asList(residents));
-            List<String[]> shuffledMenuItems = new ArrayList<>(Arrays.asList(menuItems));
+            List<String[]> shuffledMenuItems = getFoodMenu();
             Collections.shuffle(shuffledMenuItems);
 
             for (int i = 0; i < assignedResidents.size(); i++) {

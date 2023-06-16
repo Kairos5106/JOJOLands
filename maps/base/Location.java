@@ -84,6 +84,10 @@ class Location{
         return this.currentMapName;
     }
 
+    public PearlJam getRestaurant(){
+        return this.restaurant;
+    }
+
     /* Method B: Display methods */
 
 

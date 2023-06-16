@@ -2,31 +2,31 @@ package DSTeam3.source.PearlJam.base;
 
 public class Customer {
     private String nameCustomer;
-    private int age;
+    private String age;
     private String gender;
     private String order;
     private int orderNumber;
     private String nameRestaurant; // restaurant specific identifier
-    private String arrivalTime;
+    private int arrivalTime;
 
     // Constructor methods
     public Customer() {
         nameCustomer = null;
-        age = 0;
+        age = null;
         gender = null;
         order = null;
         orderNumber = 0;
         nameRestaurant = null;
-        arrivalTime = null;
+        arrivalTime = 0;
     }
 
-    public Customer(String nameCustomer, int age, String gender) {
+    public Customer(String nameCustomer, String age, String gender) {
         this.nameCustomer = nameCustomer;
         this.age = age;
         this.gender = gender;
     }
 
-    public Customer(String nameCustomer, int age, String gender, String order, String arrivalTime) {
+    public Customer(String nameCustomer, String age, String gender, String order, int arrivalTime) {
         this.nameCustomer = nameCustomer;
         this.age = age;
         this.gender = gender;
@@ -39,7 +39,7 @@ public class Customer {
         return nameCustomer;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
@@ -59,7 +59,7 @@ public class Customer {
         return nameRestaurant;
     }
 
-    public String getArrivalTime() {
+    public int getArrivalTime() {
         return arrivalTime;
     }
 
@@ -68,7 +68,7 @@ public class Customer {
         this.nameCustomer = nameCustomer;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -80,15 +80,24 @@ public class Customer {
         this.order = order;
     }
 
-    public void setOrderNumber() {
-        this.orderNumber++;
+    public void setOrderNumber(int number) {
+        this.orderNumber = number;
     }
 
     public void setNameRestaurant(String nameRestaurant) {
         this.nameRestaurant = nameRestaurant;
     }
 
-    public void setArrivalTime(String arrivalTime) {
+    public void setArrivalTime(int arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+    public String toString(){
+        return String.format("%-30s" +
+                            "%5s" +
+                            "%10s" + 
+                            "%40s" +
+                            "%5s" +
+                            "%3s", getNameCustomer(), getAge(), getGender(), getOrder(), getArrivalTime(), getOrderNumber());
     }
 }

@@ -74,13 +74,13 @@ public class JadeGardenRestaurant extends PearlJam{
         return lastCustomer;
     }
     // Custom Comparator class
-    private static class CustomerComparator implements Comparator<Customer> {
-        @Override
-        public int compare(Customer c1, Customer c2) {
-            // Compare customers based on arrival time
-            return c1.getArrivalTime().compareTo(c2.getArrivalTime());
-        }
-    }
+    // private static class CustomerComparator implements Comparator<Customer> {
+    //     @Override
+    //     // public int compare(Customer c1, Customer c2) {
+    //         // Compare customers based on arrival time
+    //         // return c1.getArrivalTime().compareTo(c2.getArrivalTime());
+    //     }
+    // }
 
     /*============================================= PEARL JAM =============================================*/
 }
