@@ -7,5 +7,6 @@ public class PassioneRestaurant extends Location{
     public PassioneRestaurant(){
         super();
         this.nameOfLocation = "Passione Restaurant";
+        this.menu = new PassioneRestaurantMenu();
     }
 }

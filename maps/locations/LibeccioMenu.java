@@ -13,13 +13,21 @@ public class LibeccioMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
+        Option viewWaitingList = new Option("View waiting list and order processing list");
+
+        Option viewMenu = new Option("View menu");
+
+        Option viewSales = new Option("View sales information");
+        
+        Option milagroMan = new Option("Milagro Man");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewWaitingList, viewMenu, viewSales, milagroMan, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -52,15 +60,24 @@ public class LibeccioMenu extends Menu {
             case "Vineyard":
                 setMovingLocations(true);
                 return "Vineyard";
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View menu":
+                setViewFoodMenu(true);
+                break;
+            case "View waiting list and order processing list":
+                setViewPearlJamList(true);
                 break;
         }
         return null;

@@ -13,12 +13,12 @@ public class TrattoriaTrussardiMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
-        Option viewWaitingList = new Option("View waiting list and Order Processing List");
+        Option viewWaitingList = new Option("View waiting list and order processing list");
 
         Option viewMenu = new Option("View menu");
-        
-        Option viewSalesInfo = new Option("View sales information");
 
+        Option viewSales = new Option("View sales information");
+        
         Option milagroMan = new Option("Milagro Man");
 
         Option backPrevious = new Option("Back to previous location");
@@ -27,7 +27,7 @@ public class TrattoriaTrussardiMenu extends Menu {
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewWaitingList, viewMenu, viewSales, milagroMan, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -57,12 +57,33 @@ public class TrattoriaTrussardiMenu extends Menu {
             case "San Giorgio Maggiore":
                 setMovingLocations(true);
                 return "San Giorgio Maggiore";
+            case "Joestar Mansion":
+                setMovingLocations(true);
+                return "Joestar Mansion";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
+            case "DIO's Mansion":
+                setMovingLocations(true);
+                return "DIO's Mansion";
+            case "Angelo Rock":
+                setMovingLocations(true);
+                return "Angelo Rock";
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View menu":
+                setViewFoodMenu(true);
+                break;
+            case "View waiting list and order processing list":
+                setViewPearlJamList(true);
                 break;
         }
         return null;

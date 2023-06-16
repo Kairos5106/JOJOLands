@@ -8,5 +8,10 @@ public class CafeDeux extends Location{
         super();
         this.nameOfLocation = "Cafe Deux Magots";
         this.menu = new CafeDeuxMenu();
+        this.restaurant = new CafeDeuxRestaurant();
+    }
+
+    public void displayFoodMenu(){
+        this.restaurant.displayMenu();
     }
 }

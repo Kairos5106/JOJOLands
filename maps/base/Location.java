@@ -2,13 +2,16 @@ package DSTeam3.maps.base;
 
 import java.util.ArrayList;
 import DSTeam3.ui.base.*;
+import DSTeam3.source.PearlJam.base.*;
 
 public /* Purpose: Represents a node in the map */
 class Location{
     /* Instance variables */
     protected String nameOfLocation;
     protected Menu menu;
-    
+    protected String currentMapName;
+    protected PearlJam restaurant;
+
     /* nearbyLocations and distanceOfNearby are linked in a way as in a nearby object in nearbyLocations arraylist will have the 
      * same index as its distance counterpart in distanceOfNearby arraylist.
      */
@@ -18,6 +21,10 @@ class Location{
     /* Constructor */
     public Location(){}
 
+    public Location(String currentMapName){
+        this.currentMapName = currentMapName;
+    }
+    
     /* Method A: Getter and setter methods */
     /* Purpose: Adds a reference of the nearby location to the current location
      */
@@ -69,6 +76,18 @@ class Location{
         return this.menu;
     }
 
+    public void setCurrentMapName(String mapName){
+        this.currentMapName = mapName;
+    }
+
+    public String getCurrentMapName(){
+        return this.currentMapName;
+    }
+
+    public PearlJam getRestaurant(){
+        return this.restaurant;
+    }
+
     /* Method B: Display methods */
 
 
@@ -85,4 +104,6 @@ class Location{
         if(this.nearbyLocations.contains(location)){return true;}
         return false;
     }
+
+    public void displayFoodMenu(){}
 }

@@ -51,4 +51,12 @@ public class Stack<E>{
     public void clear(){
         stack.clear();
     }
+
+    public int size(){
+        return stack.size();
+    }
+
+    public E get(int index){
+        return stack.get(index);
+    }
 }
