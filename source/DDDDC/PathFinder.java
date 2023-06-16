@@ -1,26 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DSTeam3.source.DDDDC;
 import java.util.*;
-/**
- *
- * @author Acer
- */
+
 public class PathFinder {
     private static List<List<Location>> shortestPaths;
 
     public static void findShortestPaths(Location source, Location destination) {
         shortestPaths = new ArrayList<>();
         List<Location> currentPath = new ArrayList<>();
-        currentPath.add(source); 
+        currentPath.add(source);
         findPathsHelper(source, destination, currentPath);
         displayShortestPaths();
     }
 
     private static void findPathsHelper(Location current, Location destination, List<Location> currentPath) {
-        if (current == destination && currentPath.size() > 1) {
+        if (current == destination) {
             shortestPaths.add(new ArrayList<>(currentPath));
             return;
         }
@@ -38,7 +31,7 @@ public class PathFinder {
 
     private static void displayShortestPaths() {
         if (shortestPaths.isEmpty()) {
-            System.out.println("No paths found to the destination.");
+            System.out.println("No paths found between the source and destination.");
             return;
         }
 
@@ -99,12 +92,15 @@ public class PathFinder {
         townHall.addNeighbour(jadeGarden, 5);
         townHall.addNeighbour(cafeDeux, 4);
 
+        moriohGrand.addNeighbour(townHall, 5);
         moriohGrand.addNeighbour(jadeGarden, 3);
         moriohGrand.addNeighbour(trattoriaTrussardi, 6);
 
+        trattoriaTrussardi.addNeighbour(moriohGrand, 6);
         trattoriaTrussardi.addNeighbour(sanGiorgio, 3);
         trattoriaTrussardi.addNeighbour(greenDolphin, 6);
 
+        greenDolphin.addNeighbour(trattoriaTrussardi, 6);
         greenDolphin.addNeighbour(libeccio, 3);
         greenDolphin.addNeighbour(angeloRock, 2);
 
@@ -114,48 +110,63 @@ public class PathFinder {
         libeccio.addNeighbour(sanGiorgio, 4);
 
         sanGiorgio.addNeighbour(jadeGarden, 2);
+        sanGiorgio.addNeighbour(trattoriaTrussardi, 3);
+        sanGiorgio.addNeighbour(libeccio, 4);
 
         jadeGarden.addNeighbour(joestarMansion, 2);
         jadeGarden.addNeighbour(cafeDeux, 3);
+        jadeGarden.addNeighbour(sanGiorgio, 2);
+        jadeGarden.addNeighbour(moriohGrand, 3);
+        jadeGarden.addNeighbour(townHall, 5);
 
         cafeDeux.addNeighbour(polnareffLand, 4);
         cafeDeux.addNeighbour(savageGarden, 4);
+        cafeDeux.addNeighbour(jadeGarden, 3);
 
         joestarMansion.addNeighbour(savageGarden, 4);
         joestarMansion.addNeighbour(vineyard, 3);
+        joestarMansion.addNeighbour(jadeGarden, 2);
+        joestarMansion.addNeighbour(libeccio, 6);
 
         dioMansion.addNeighbour(vineyard, 3);
         dioMansion.addNeighbour(angeloRock, 3);
+        dioMansion.addNeighbour(libeccio, 2);
 
         vineyard.addNeighbour(savageGarden, 8);
+        vineyard.addNeighbour(joestarMansion, 3);
+        vineyard.addNeighbour(dioMansion, 3);
 
         savageGarden.addNeighbour(polnareffLand, 6);
+        savageGarden.addNeighbour(vineyard, 8);
+        savageGarden.addNeighbour(joestarMansion, 4);
+        savageGarden.addNeighbour(cafeDeux, 4);
 
-        // Prompt the user for the destination location
+        // Prompt the user for source and destination
         Scanner scanner = new Scanner(System.in);
         System.out.print("Source: ");
         String sourceName = scanner.nextLine();
         System.out.print("Destination: ");
         String destinationName = scanner.nextLine();
 
-        // Find the top three shortest paths to the destination
+        // Find the top three shortest paths
         Location source = null;
         Location destination = null;
         for (Location location : Arrays.asList(
                 townHall, moriohGrand, trattoriaTrussardi, greenDolphin, libeccio, sanGiorgio,
                 jadeGarden, cafeDeux, joestarMansion, dioMansion, angeloRock, vineyard,
                 savageGarden, polnareffLand)) {
+            if (location.getName().equalsIgnoreCase(sourceName)) {
+                source = location;
+            }
             if (location.getName().equalsIgnoreCase(destinationName)) {
                 destination = location;
-                break;
             }
         }
 
-        if (destination != null) {
+        if (source != null && destination != null) {
             findShortestPaths(source, destination);
         } else {
-            System.out.println("Invalid destination location.");
+            System.out.println("Invalid source or destination location.");
         }
     }
-         
 }
