@@ -161,6 +161,7 @@ public class TheJoestars {
                 String[] menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
 
                 // Generate a random time anywhere including and in between 0 minutes and 60 minutes
+                // Because restaurants only open for an hour a day
                 int minutes = random.nextInt(61);
                 String time = String.format("%02d", minutes);
 

@@ -18,6 +18,7 @@ public class PearlJam {
         foodMenu = getMenuItems();
     }
 
+    // Accessor and Mutator methods of the instance variables
     public void setNameRestaurant(String nameRestaurant){
         this.nameRestaurant = nameRestaurant;
     }
@@ -90,7 +91,7 @@ public class PearlJam {
             Customer current = waitingList.get(index);
             Customer toCompare = waitingList.get(index + 1);
             Customer temp;
-            if(current.getArrivalTime() > toCompare.getArrivalTime()){
+            if(current.getArrivalTime() > toCompare.getArrivalTime()){ // from [current,toCompare] --> [toCompare,current] if current arrived later than tocompare
                 temp = toCompare;
                 waitingList.set(index + 1, current);
                 waitingList.set(index, temp);
@@ -111,6 +112,7 @@ public class PearlJam {
             }
         }
 
+        // Waiting list now contains customers sorted in order of arrivalTime (first arrived ot last arrived)
         // Assign waiting list order number for customers
         int orderNumber = 1;
         for (int i = 0; i < waitingList.size(); i++) {
@@ -128,6 +130,7 @@ public class PearlJam {
 
     public void displayWaitingList(){
         System.out.println("Restaurant: " + nameRestaurant);
+        System.out.println();
         System.out.println("Waiting List");
         displayCustomers(waitingList);
         System.out.println();
