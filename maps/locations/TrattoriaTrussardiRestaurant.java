@@ -13,12 +13,12 @@ public class TrattoriaTrussardiRestaurant extends PearlJam{
     /* Pattern: 
      * - first round: youngest man first, then oldest woman
      * - second round: oldest man, then youngest woman
-     * - third round: second youngest man (current youngest man), then second oldest woman (current oldest woman)
+     * - third round: second youngest man (currentF youngest man), then second oldest woman (currentF oldest woman)
      * - if only one gender left, only one person is chosen
      * - customer with unspecified ages will be served last for each gender
     */
     // Note: all people in dataset have gender
-    
+
     @Override
     public void generateOrderProcessingList(){
         List<Customer> waitingListCopy = getWaitingList();
@@ -35,10 +35,10 @@ public class TrattoriaTrussardiRestaurant extends PearlJam{
             customer = waitingListCopy.get(i);
             if(!customer.getAge().equals("N/A")){
                 if(customer.getGender().equals("Male")){
-                    maleWaitingList.add(waitingListCopy.get(i));
+                    maleWaitingList.add(customer);
                 }
                 else if(customer.getGender().equals("Female")){
-                    femaleWaitingList.add(waitingListCopy.get(i));
+                    femaleWaitingList.add(customer);
                 }
             }  
         }
@@ -46,12 +46,11 @@ public class TrattoriaTrussardiRestaurant extends PearlJam{
         for (int i = 0; i < waitingListCopy.size(); i++) {
             customerNoAge = waitingListCopy.get(i);
             if(customerNoAge.getAge().equals("N/A")){
-                customer = waitingListCopy.get(i);
-                if(customer.getGender().equals("Male")){
-                    maleWaitingListNoAge.add(waitingListCopy.get(i));
+                if(customerNoAge.getGender().equals("Male")){
+                    maleWaitingListNoAge.add(customerNoAge);
                 }
                 else if(customerNoAge.getGender().equals("Female")){
-                    femaleWaitingListNoAge.add(waitingListCopy.get(i));
+                    femaleWaitingListNoAge.add(customerNoAge);
                 }
             }  
         }
@@ -67,18 +66,18 @@ public class TrattoriaTrussardiRestaurant extends PearlJam{
         boolean notSorted = true;
         boolean swappingOccurred = false;
         int maleIndex = 0;
-        while(notSorted) {
-            Customer current = maleWaitingList.get(maleIndex);
-            Customer toCompare = maleWaitingList.get(maleIndex + 1);
+        while(notSorted && !maleWaitingList.isEmpty()) {
+            Customer currentM = maleWaitingList.get(maleIndex);
+            Customer toCompareM = maleWaitingList.get(maleIndex + 1);
             Customer temp;
-            if((Integer.parseInt(current.getAge())) > (Integer.parseInt(toCompare.getAge()))) {
-                temp = toCompare;
-                maleWaitingList.set(maleIndex + 1, current);
+            if((Integer.parseInt(currentM.getAge())) > (Integer.parseInt(toCompareM.getAge()))) {
+                temp = toCompareM;
+                maleWaitingList.set(maleIndex + 1, currentM);
                 maleWaitingList.set(maleIndex, temp);
                 swappingOccurred = true;
             }
             maleIndex++;
-            if(maleIndex == maleWaitingList.size() - 1) {
+            if(maleIndex == maleWaitingList.size() - 2) {
                 maleIndex = 0;
                 if(swappingOccurred == false){
                     notSorted = false;
@@ -95,18 +94,18 @@ public class TrattoriaTrussardiRestaurant extends PearlJam{
         notSorted = true;
         swappingOccurred = false;
         int femaleIndex = 0;
-        while(notSorted) {
-            Customer current = femaleWaitingList.get(femaleIndex);
-            Customer toCompare = femaleWaitingList.get(femaleIndex + 1);
+        while(notSorted && !femaleWaitingList.isEmpty()) {
+            Customer currentF = femaleWaitingList.get(femaleIndex);
+            Customer toCompareF = femaleWaitingList.get(femaleIndex + 1);
             Customer temp;
-            if((Integer.parseInt(current.getAge())) < (Integer.parseInt(toCompare.getAge()))) {
-                temp = toCompare;
-                femaleWaitingList.set(femaleIndex + 1, current);
+            if((Integer.parseInt(currentF.getAge())) < (Integer.parseInt(toCompareF.getAge()))) {
+                temp = toCompareF;
+                femaleWaitingList.set(femaleIndex + 1, currentF);
                 femaleWaitingList.set(femaleIndex, temp);
                 swappingOccurred = true;
             }
             femaleIndex++;
-            if(femaleIndex == femaleWaitingList.size() - 1) {
+            if(femaleIndex == femaleWaitingList.size() - 2) {
                 femaleIndex = 0;
                 if(swappingOccurred == false){
                     notSorted = false;
@@ -118,44 +117,77 @@ public class TrattoriaTrussardiRestaurant extends PearlJam{
         for (int i = 0 ; i < femaleWaitingList.size() ; i++) {
             System.out.println(femaleWaitingList.get(i));
         }
-
-        // Retrive from waiting lists and put it into orderProcessingList
-        int maleRound = 0;
-        int femaleRound = 0;
+ 
+        // Retrieve from waiting lists and put it into orderProcessingList
         boolean maleTurn = true;
         boolean femaleTurn = false;
+        int maleRound = 0;
+        int femaleRound = 0;
+        int maleRoundNoAge = 0;
+        int femaleRoundNoAge = 0;
+        boolean reverse = false;
+        int maleRoundReverse = maleWaitingList.size() - 1 ;
+        int femaleRoundReverse = femaleWaitingList.size() - 1 ;
+        int maleRoundNoAgeReverse = maleWaitingListNoAge.size() - 1 ;
+        int femaleRoundNoAgeReverse = femaleWaitingListNoAge.size() - 1 ;
 
         while (true) {
-            if (maleTurn) {
-                if (maleRound < maleWaitingList.size()) {
-                    orderProcessingList.add(maleWaitingList.get(maleRound));
-                    maleRound++;
-                    if (maleRound >= maleWaitingList.size() && femaleRound < femaleWaitingList.size()) {
-                        // Only one gender (female) left, choose one person in the next turn
+            if (reverse == false) { // first round is youngest man and oldest woman
+                if (maleTurn) {
+                    if(!maleWaitingList.isEmpty()) {
+                        orderProcessingList.add(maleWaitingList.remove(maleRound));
+                        maleRound++;
+                        maleTurn = false;
+                        femaleTurn = true;
+                    } else if (!maleWaitingListNoAge.isEmpty()) {
+                        orderProcessingList.add(maleWaitingListNoAge.remove(maleRoundNoAge));
+                        maleRoundNoAge++;
                         maleTurn = false;
                         femaleTurn = true;
                     }
-                } else if (maleWaitingListNoAge.size() > 0) {
-                    orderProcessingList.add(maleWaitingListNoAge.remove(0));
-                } else {
-                    maleTurn = false;
-                    femaleTurn = true;
-                }
-            } else if (femaleTurn) {
-                if (femaleRound < femaleWaitingList.size()) {
-                    orderProcessingList.add(femaleWaitingList.get(femaleRound));
-                    femaleRound++;
-                    if (femaleRound >= femaleWaitingList.size() && maleRound < maleWaitingList.size()) {
-                        // Only one gender (male) left, choose one person in the next turn
+                } else if (femaleTurn) {
+                    if (!femaleWaitingList.isEmpty()) {
+                        orderProcessingList.add(femaleWaitingList.remove(femaleRound));
+                        femaleRound++;
+                        femaleTurn = false;
+                        maleTurn = true;
+                    } else if (!femaleWaitingListNoAge.isEmpty()) {
+                        orderProcessingList.add(femaleWaitingListNoAge.remove(femaleRoundNoAge));
+                        femaleRoundNoAge++;
                         femaleTurn = false;
                         maleTurn = true;
                     }
-                } else if (femaleWaitingListNoAge.size() > 0) {
-                    orderProcessingList.add(femaleWaitingListNoAge.remove(0));
-                } else {
-                    femaleTurn = false;
-                    maleTurn = true;
                 }
+                reverse = true;
+            }
+            
+            else if (reverse == true) { // second round is oldest man and youngest woman
+                if (maleTurn) {
+                    if(!maleWaitingList.isEmpty()) {
+                        orderProcessingList.add(maleWaitingList.remove(maleRoundReverse));
+                        maleRoundReverse--;
+                        maleTurn = false;
+                        femaleTurn = true;
+                    } else if (!maleWaitingListNoAge.isEmpty()) {
+                        orderProcessingList.add(maleWaitingListNoAge.remove(maleRoundNoAgeReverse));
+                        maleRoundNoAgeReverse--;
+                        maleTurn = false;
+                        femaleTurn = true;
+                    }
+                } else if (femaleTurn) {
+                    if (!femaleWaitingList.isEmpty()) {
+                        orderProcessingList.add(femaleWaitingList.remove(femaleRoundReverse));
+                        femaleRoundReverse++;
+                        femaleTurn = false;
+                        maleTurn = true;
+                    } else if (!femaleWaitingListNoAge.isEmpty()) {
+                        orderProcessingList.add(femaleWaitingListNoAge.remove(femaleRoundNoAgeReverse));
+                        femaleRoundNoAgeReverse++;
+                        femaleTurn = false;
+                        maleTurn = true;
+                    }
+                }
+                reverse = false;
             }
 
             if (!maleTurn && !femaleTurn) {
