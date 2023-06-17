@@ -4,16 +4,32 @@
  */
 package DSTeam3.source.MoodyBlues;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import DSTeam3.source.Joestars.TheJoestars;
+import java.util.*;
+import DSTeam3.ui.*;
 
 /**
  *
  * @author firza
  */
-public class Restaurant {
+public class MoodyBlues {
+    private String name;
+    private List<SalesInformation> dailySales;
+
+    // Constructor: Initializes a new instance of the Restaurant class.
+    // Parameters: name
+    // - name: The name of the restaurant.
+    public MoodyBlues(String name) {
+        this.name = name;
+        dailySales = new ArrayList<>();
+    }
 
     /**
      * @return the name
@@ -42,17 +58,7 @@ public class Restaurant {
     public void setDailySales(List<SalesInformation> dailySales) {
         this.dailySales = dailySales;
     }
-    
-    private String name;
-    private List<SalesInformation> dailySales;
 
-    // Constructor: Initializes a new instance of the Restaurant class.
-    // Parameters: name
-    // - name: The name of the restaurant.
-    public Restaurant(String name) {
-        this.name = name;
-        dailySales = new ArrayList<>();
-    }
 
     // Method: Adds sales information for a specific day to the restaurant's daily sales.
     // Parameters: salesInfo
@@ -80,10 +86,10 @@ public class Restaurant {
         System.out.println("| Food                                | Quantity | Total Price |");
         System.out.println("+-------------------------------------+----------+-------------+");
         for (Food food : salesInfo.getSales()) {
-            System.out.printf("| %-35s | %8d | $%8.2f |\n", food.getName(), food.getQuantity(), food.getTotalPrice());
+            System.out.printf("| %-35s | %8d | $%10.2f |\n", food.getName(), food.getQuantity(), food.getTotalPrice());
         }
         System.out.println("+-------------------------------------+----------+-------------+");
-        System.out.printf("| Total Sales                         |          | $%8.2f |\n", salesInfo.getTotalSales());
+        System.out.printf("| Total Sales                         |          | $%10.2f |\n", salesInfo.getTotalSales());
         System.out.println("+-------------------------------------+----------+-------------+");
         System.out.println();
     }
@@ -202,5 +208,38 @@ public class Restaurant {
         System.out.printf("| Average Sales                       |          | $%8.2f |\n", totalSales / totalCount);
         System.out.println("+-------------------------------------+----------+-------------+");
         System.out.println();
+    }
+
+    public void getSalesInfo(){
+        String filePath = (new TheJoestars()).getFilePath();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            br.readLine(); // skip header
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                // Assuming the CSV file columns are: Day, Location, Menu Item, Price
+                int day = Integer.parseInt(data[0]);
+                String location = data[4];
+                String menuItem = data[5];
+                double price = Double.parseDouble(data[6]);
+
+                // Filter the data based on location and desired columns
+                if (location.equals("Jade Garden")) {
+                    SalesInformation salesInfo;
+                    if (day > getDailySales().size()) {
+                        salesInfo = new SalesInformation();
+                        addSalesInformation(salesInfo);
+                    } else {
+                        salesInfo = getDailySales().get(day - 1);
+                    }
+
+                    Food food = new Food(menuItem, 1, price); // Set quantity as 1 for each food
+                    salesInfo.addSale(food);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

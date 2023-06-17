@@ -30,6 +30,18 @@ public class Food {
     public double getTotalPrice() {
         return totalPrice;
     }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
+    public void setTotalPrice(double totalPrice){
+        this.totalPrice = totalPrice;
+    }
 }
 
 

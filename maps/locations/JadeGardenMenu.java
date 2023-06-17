@@ -118,6 +118,7 @@ public class JadeGardenMenu extends Menu {
                 break;
             case "Exit":
                 setReturnToFrontPage(true);
+                setViewSalesInfo(false);
                 break;
         }
         return "";

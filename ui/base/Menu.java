@@ -411,7 +411,20 @@ public class Menu{
 
     public void setNewDayGreeting(String newDayGreeting){}
 
+    // Make sure the option to view resident info is at index = 1 (2nd option) at every relevant location
     public void setViewResidentMenu(){
-        setCurrentOption(1, true); // Make sure the option to view resident info is at index = 1 at every relevant location
+        setCurrentOption(1, true); 
+    }
+
+    // Make sure the option to view resident info is at index = 3 (4th option) at every restaurant
+    public void setViewSalesMenu(){
+        setCurrentOption(3, true);
+    }
+
+    // Resets the selected suboptions for the current option
+    public void resetSelectedOptions(){
+        for (int i = 0; i < getCurrentOption().getSuboptionsCount(); i++) {
+            getCurrentOption().setSelected(i, false);
+        }
     }
 }

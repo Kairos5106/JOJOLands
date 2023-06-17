@@ -22,6 +22,7 @@ import DSTeam3.maps.locations.VineyardMenu;
 import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
 import DSTeam3.source.Joestars.*;
+import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.PearlJam;
 
 public class GameInterface extends UserInterface{
@@ -186,6 +187,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewTotalAvgSales();
     }
     
+    public MoodyBlues getMoodyBlues(){
+        return getCurrentLocation().getRestaurantSales();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -236,6 +241,7 @@ public class GameInterface extends UserInterface{
                 getCurrentRestaurant().displayWaitingList();
                 getCurrentRestaurant().generateOrderProcessingList();
                 getCurrentRestaurant().displayOrderProcessingList();
+                divider(70);
                 currentMenu.setViewPearlJamList(false);
                 currentMenu.setReturnToFrontPage(true);
             }
@@ -281,6 +287,45 @@ public class GameInterface extends UserInterface{
                     currentMenu.setSortResidentInfo(false);
                 }
             }
+            if(viewSalesInfo()){
+                getMoodyBlues().getSalesInfo(); // need to modify this, for now, just run everything once per run
+                currentMenu.setGreeting("Sales Information");
+                if(viewSales()){   
+                    int day = Integer.parseInt(prompt("Enter day: "));
+                    divider(70);
+                    getMoodyBlues().displaySales(day);
+                    currentMenu.setViewSales(false);
+                    divider(70);
+                }
+                if(viewAggregated()){
+                    currentMenu.setGreeting("Select which aggregated information to view: ");
+                    currentMenu.resetSelectedOptions();
+                }
+                if(viewMinSales()){
+                    System.out.printf("Minimum Sales: $%.2f\n", getMoodyBlues().getMinimumSales());
+                }
+                if(viewMaxSales()){
+                    System.out.printf("Maximum Sales: $%.2f\n", getMoodyBlues().getMaximumSales());
+                }
+                if(viewTopK()){
+                    int k = Integer.parseInt(prompt("Enter value of k: "));
+                    getMoodyBlues().displayTopHighestSales(k);
+                }
+                if(viewTotalAvgSales()){
+                    getMoodyBlues().displayTotalAndAverageSales();
+                }
+            }
+            if(viewMinSales() || viewMaxSales() || viewTopK() || viewTotalAvgSales()){
+                currentMenu.setViewSalesMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
+                currentMenu.setViewMinSales(false);
+                currentMenu.setViewMaxSales(false);
+                currentMenu.setViewTopK(false);
+                currentMenu.setViewTotalAvgSales(false);
+                currentMenu.setViewAggregated(false);
+                divider(70);
+            }
 
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
@@ -294,14 +339,16 @@ public class GameInterface extends UserInterface{
             // Conditional actions go here and below
             if(sortResidentInfo() || viewResidentProfile()){
                 currentMenu.setViewResidentMenu();
-                for (int i = 0; i < currentMenu.getCurrentOption().getSuboptionsCount(); i++) {
-                    currentMenu.getCurrentOption().setSelected(i, false);
-                }
+                currentMenu.resetSelectedOptions();
+            }
+            if(viewSalesInfo() && !viewAggregated()){
+                currentMenu.setViewSalesMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
             }
             if(isAdvancingNext()){
                 endDay();
                 joestars.setDay(time.getDayCount());
-                System.out.println("Advancing to next day. Assigning food for day " + time.getDayCount()); // debug
                 joestars.assignFoodToResidents();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
                 currentMenu.defineOptions();

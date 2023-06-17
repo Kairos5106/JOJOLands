@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class MoodyBluesTester  {
    
     public static void main(String[] args) {
-        Restaurant restaurant = new Restaurant("Jade Garden");
+        MoodyBlues restaurant = new MoodyBlues("Jade Garden");
 
         // Read data from the CSV file
         String csvFile = "DSTeam3\\source\\AssignFood.csv";
