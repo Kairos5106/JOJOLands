@@ -260,7 +260,6 @@ public class MoodyBlues {
                 }
             }
             foodInfo.remove(foodNameWithHighest);
-            System.out.println("Food info size before removal: " + foodInfo.size() + "\nRemoved " + foodNameWithHighest + " from foodInfo\nFood info size: " + foodInfo.size());
             String[] contents = new String[]{foodNameWithHighest, String.format("%.2f", highestSales)};
             foodsByHighestSales.add(contents);
         }

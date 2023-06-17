@@ -307,6 +307,7 @@ public class GameInterface extends UserInterface{
                 }
                 if(viewTopK()){
                     int k = Integer.parseInt(prompt("Enter value of k: "));
+                    divider(70);
                     moodyBlues.displayTopHighestSales(k);
                 }
                 if(viewTotalAvgSales()){
