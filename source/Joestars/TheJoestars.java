@@ -160,6 +160,30 @@ public class TheJoestars {
 
                 String[] menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
 
+                switch (name) {
+                    case "Jonathan Joestar":
+                        
+                        break;
+                    case "Joseph Joestar":
+                        
+                        break;
+                    case "Jotaro Kujo":
+                        
+                        break;
+                    case "Josuke Higashikata":
+                        
+                        break;
+                    case "Giorno Giovanna":
+                        
+                        break;
+                    case "Jolyne Cujoh":
+                        
+                        break;
+                    default:
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+                        break;
+                }
+
                 // Generate a random time anywhere including and in between 0 minutes and 60 minutes
                 // Because restaurants only open for an hour a day
                 int minutes = random.nextInt(61);
