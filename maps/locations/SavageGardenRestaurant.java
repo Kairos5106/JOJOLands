@@ -34,10 +34,6 @@ public class SavageGardenRestaurant extends PearlJam{
         int dayNumber = Integer.parseInt(extractDayNumber[2]);
 
         // int dayNumber = 4;
-        for (int i = 0 ; i < waitingListCopy.size() ; i++) {
-            System.out.println(waitingListCopy.get(i));
-        }
-        System.out.println();
 
         // Customer whose number matches the dayNumber will be served first
         for (int i = 0 ; i < waitingListCopy.size() ; i++) {

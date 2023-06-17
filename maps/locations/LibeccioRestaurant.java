@@ -30,12 +30,8 @@ public class LibeccioRestaurant extends PearlJam{
         String dayInfo = gameInterface.getDayInfo();
         System.out.println(dayInfo);
         String[] extractDayNumber = dayInfo.split(" ");
-        int dayNumber = Integer.parseInt(extractDayNumber[2]);
+        int dayNumber = Integer.parseInt(extractDayNumber[2]);*/
 
-        for (int i = 0 ; i < waitingListCopy.size() ; i++) {
-            System.out.println(waitingListCopy.get(i));
-        }
-        System.out.println();*/
         int dayNumber = 4;
 
         // While waitingList is not empty
