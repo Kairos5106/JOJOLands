@@ -30,6 +30,13 @@ public class Menu{
     boolean initialiseGoldenSpirit = false;
     boolean viewFoodMenu = false;
     boolean viewPearlJamList = false;
+    boolean viewSalesInfo = false;
+    boolean viewSales = false;
+    boolean viewAggregated = false;
+    boolean viewMinSales = false;
+    boolean viewMaxSales = false;
+    boolean viewTopK = false;
+    boolean viewTotalAvgSales = false;
 
     /* Constructors */
     public Menu(){
@@ -300,6 +307,62 @@ public class Menu{
         return this.viewPearlJamList;
     }
 
+    public void setViewSalesInfo(boolean setting){
+        this.viewSalesInfo = setting;
+    }
+
+    public boolean viewSalesInfo(){
+        return this.viewSalesInfo;
+    }
+
+    public void setViewSales(boolean setting){
+        this.viewSales = setting;
+    }
+
+    public boolean viewSales(){
+        return this.viewSales;
+    }
+
+    public void setViewAggregated(boolean setting){
+        this.viewAggregated = setting;
+    }
+
+    public boolean viewAggregated(){
+        return this.viewAggregated;
+    }
+
+    public void setViewMinSales(boolean setting){
+        this.viewMinSales = setting;
+    }
+
+    public boolean viewMinSales(){
+        return this.viewMinSales;
+    }
+
+    public void setViewMaxSales(boolean setting){
+        this.viewMaxSales = setting;
+    }
+
+    public boolean viewMaxSales(){
+        return this.viewMaxSales;
+    }
+
+    public void setViewTopK(boolean setting){
+        this.viewTopK = setting;
+    }
+
+    public boolean viewTopK(){
+        return this.viewTopK;
+    }
+
+    public void setViewTotalAvgSales(boolean setting){
+        this.viewTotalAvgSales = setting;
+    }
+
+    public boolean viewTotalAvgSales(){
+        return this.viewTotalAvgSales;
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
@@ -348,7 +411,20 @@ public class Menu{
 
     public void setNewDayGreeting(String newDayGreeting){}
 
+    // Make sure the option to view resident info is at index = 1 (2nd option) at every relevant location
     public void setViewResidentMenu(){
-        setCurrentOption(1, true); // Make sure the option to view resident info is at index = 1 at every relevant location
+        setCurrentOption(1, true); 
+    }
+
+    // Make sure the option to view resident info is at index = 3 (4th option) at every restaurant
+    public void setViewSalesMenu(){
+        setCurrentOption(3, true);
+    }
+
+    // Resets the selected suboptions for the current option
+    public void resetSelectedOptions(){
+        for (int i = 0; i < getCurrentOption().getSuboptionsCount(); i++) {
+            getCurrentOption().setSelected(i, false);
+        }
     }
 }

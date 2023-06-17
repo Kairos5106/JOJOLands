@@ -165,7 +165,7 @@ public class TheJoestars {
                 String time = String.format("%02d", minutes);
 
                 // Write the resident information along with menu item details and time
-                writer.println(Integer.toString(day) + "," + name + "," + age + "," + gender + "," + menuItem[0] + "," + menuItem[1] + "," + menuItem[2] + "," + time);
+                writer.println(Integer.toString(day) + "," + name + "," + age + "," + gender + "," + menuItem[0] + "," + menuItem[1] + "," + String.format("%.2f", Double.parseDouble(menuItem[2])) + "," + time);
             }
 
             writer.close();
