@@ -33,34 +33,33 @@ public class SavageGardenRestaurant extends PearlJam{
         String[] extractDayNumber = dayInfo.split(" ");
         int dayNumber = Integer.parseInt(extractDayNumber[2]);
 
-        // int dayNumber = 4;
+        //int dayNumber = 4;
 
-        // Customer whose number matches the dayNumber will be served first (put to front of queue)
-        int index = 0;
-        boolean reverseOrder = false;
+        // Customer whose number matches the dayNumber will be served first (offer to front of queue)
+        int queueSize = waitingListCopy.size();
+        int count = 1;
+        int forwardIndex = 0;
+        int reverseIndex = queueSize - 1;
 
         while (!waitingListCopy.isEmpty()) {
-            int customerNumber = index + 1;
-
-            if (customerNumber == dayNumber) {
-                queue.offer(waitingListCopy.remove(index));
-            } else {
-                index++;
-            }
-
-            if (index == waitingListCopy.size() - 1) {
-                if (!reverseOrder) {
-                    index = 0;
-                    reverseOrder = true;
+            if (count == dayNumber) {
+                if (forwardIndex <= reverseIndex) {
+                    Customer match = waitingListCopy.get(forwardIndex);
+                    queue.offer(match);
+                    waitingListCopy.remove(forwardIndex);
+                    reverseIndex--; // decrement after remove bcs will be used when reverse order
                 } else {
-                    index = waitingListCopy.size() - 1;
+                    Customer match = waitingListCopy.get(reverseIndex);
+                    queue.offer(match);
+                    waitingListCopy.remove(reverseIndex);
+                    forwardIndex++;
                 }
+                count = 1;
+                queueSize--;
             } else {
-                if (reverseOrder) {
-                    index--;
-                } else {
-                    index++;
-                }
+                count++;
+                forwardIndex = (forwardIndex + 1) % queueSize;
+                reverseIndex = (reverseIndex - 1 + queueSize) % queueSize;
             }
         }
 

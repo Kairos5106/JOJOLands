@@ -26,31 +26,31 @@ public class LibeccioRestaurant extends PearlJam{
         Stack<Customer> stack = new Stack<>();
 
         // Get day number
-        /*GameInterface gameInterface = new GameInterface();
+        GameInterface gameInterface = new GameInterface();
         String dayInfo = gameInterface.getDayInfo();
         System.out.println(dayInfo);
         String[] extractDayNumber = dayInfo.split(" ");
-        int dayNumber = Integer.parseInt(extractDayNumber[2]);*/
+        int dayNumber = Integer.parseInt(extractDayNumber[2]);
 
-        int dayNumber = 4;
+        /*int dayNumber = 4;
+        System.out.println("Day Number: " + dayNumber);*/
 
         // While waitingList is not empty
         // Customer with number same as multiple of dayNumber remove from waiting list and push into stack bcs they'll be served last
-        int index = 0;
+        int count = 1;
         while (!waitingListCopy.isEmpty()) {
-            int customerNumber = index + 1;
-
-            // If customerNumber is multiple of current day, push to bottom of stack
-            if (customerNumber % dayNumber == 0) {
-                stack.push(waitingListCopy.remove(index));
-            } else {
-                index++;
+            List<Customer> temp = new ArrayList<>();
+            for (int i = 0 ; i < waitingListCopy.size() ; i++) {
+                if (count % dayNumber == 0) {
+                    stack.push(waitingListCopy.get(i));
+                    temp.add(waitingListCopy.get(i));
+                }
+                count++;
             }
-
-            // Go circular
-            if (index == waitingListCopy.size()) {
-                index = 0;
+            for (Customer removed : temp) {
+                waitingListCopy.remove(removed);
             }
+            temp.clear();
         }
 
         // Pop stack from top into orderProcessingList (he's the first customer that'll be served)

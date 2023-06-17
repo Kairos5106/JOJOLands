@@ -51,48 +51,50 @@ public class TrattoriaTrussardiRestaurant extends PearlJam {
 
         // Sort maleWaitingList in order of youngest to oldest
         Collections.sort(maleWaitingList, Comparator.comparingInt(this::parseAge));
+        for (int i=0 ; i<maleWaitingList.size() ; i++) {
+            System.out.println(maleWaitingList.get(i));
+        }
 
         // Sort femaleWaitingList in order of oldest to youngest
         Collections.sort(femaleWaitingList, Comparator.comparingInt(this::parseAge).reversed());
+        for (int i=0 ; i<femaleWaitingList.size() ; i++) {
+            System.out.println(femaleWaitingList.get(i));
+        }
 
         // Retrieve customers from waiting lists and put them into the orderProcessingList
-        boolean maleTurn = true;
-        boolean femaleTurn = false;
-        int maleIndex = 0;
-        int femaleIndex = 0;
-        int maleIndexNoAge = 0 ;
-        int femaleIndexNoAge = 0;
-        boolean reverse = false;
-
-        while (!maleWaitingList.isEmpty() || !femaleWaitingList.isEmpty() ||
-                !maleWaitingListNoAge.isEmpty() || !femaleWaitingListNoAge.isEmpty()) {
-
+        while (!maleWaitingList.isEmpty() || !femaleWaitingList.isEmpty()) {
             if (!maleWaitingList.isEmpty()) {
-                orderProcessingList.add(maleWaitingList.get(maleIndex));
-                maleIndex++;
-                if (maleIndex == maleWaitingList.size()) {
-                    maleIndex = 0;
-                }
-            } else if (!maleWaitingListNoAge.isEmpty()) {
-                orderProcessingList.add(maleWaitingListNoAge.get(maleIndexNoAge));
-                maleIndexNoAge++;
-                if (maleIndexNoAge == maleWaitingListNoAge.size()) {
-                    maleIndexNoAge = 0;
-                }
+                Customer youngestMale = maleWaitingList.get(0);
+                orderProcessingList.add(youngestMale);
+                maleWaitingList.remove(0);
             }
-
             if (!femaleWaitingList.isEmpty()) {
-                orderProcessingList.add(femaleWaitingList.get(femaleIndex));
-                femaleIndex++;
-                if (femaleIndex == femaleWaitingList.size()) {
-                    femaleIndex = 0;
-                }
-            } else if (!femaleWaitingListNoAge.isEmpty()) {
-                orderProcessingList.add(femaleWaitingListNoAge.get(femaleIndexNoAge));
-                femaleIndexNoAge++;
-                if (femaleIndexNoAge == femaleWaitingListNoAge.size()) {
-                    femaleIndexNoAge = 0;
-                }
+                Customer oldestFemale = femaleWaitingList.get(0);
+                orderProcessingList.add(oldestFemale);
+                femaleWaitingList.remove(0);
+            }
+            if (!maleWaitingList.isEmpty()) {
+                Customer oldestMale = maleWaitingList.get(maleWaitingList.size() - 1);
+                orderProcessingList.add(oldestMale);
+                maleWaitingList.remove(maleWaitingList.size() - 1);
+            }
+            if (!femaleWaitingList.isEmpty()) {
+                Customer youngestFemale = maleWaitingList.get(femaleWaitingList.size() - 1);
+                orderProcessingList.add(youngestFemale);
+                femaleWaitingList.remove(femaleWaitingList.size() - 1);
+            }
+        }
+
+        while (!maleWaitingListNoAge.isEmpty() || !femaleWaitingListNoAge.isEmpty()) {
+            if (!maleWaitingListNoAge.isEmpty()) {
+                Customer maleNoAge = maleWaitingListNoAge.get(0);
+                orderProcessingList.add(maleNoAge);
+                maleWaitingListNoAge.remove(0);
+            }
+            if (!femaleWaitingListNoAge.isEmpty()) {
+                Customer femaleNoAge = femaleWaitingListNoAge.get(0);
+                orderProcessingList.add(femaleNoAge);
+                femaleWaitingListNoAge.remove(0);
             }
         }
 
