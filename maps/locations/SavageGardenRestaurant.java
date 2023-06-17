@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 import DSTeam3.source.PearlJam.base.*;
+import DSTeam3.ui.GameInterface;
 
 public class SavageGardenRestaurant extends PearlJam{
     public SavageGardenRestaurant(){
@@ -13,10 +14,10 @@ public class SavageGardenRestaurant extends PearlJam{
     }
 
     /* Pattern: 
-     * - Each person say number from 1, starting from the first person
-     * - If number matches the dayNumber, the person is SERVED FIRST
-     * - Next person start over from 1
-     * - If reach each of queue, start over from last person and move in reverse order
+     * - each person say number from 1, starting from the first person
+     * - if number matches the dayNumber, the person is SERVED FIRST
+     * - next person start over from 1
+     * - if reach each of queue, start over from last person and move in reverse order
     */
 
     @Override
@@ -26,17 +27,17 @@ public class SavageGardenRestaurant extends PearlJam{
         Queue<Customer> queue = new LinkedList<>();
 
         // Get day number
-        /*GameInterface gameInterface = new GameInterface();
+        GameInterface gameInterface = new GameInterface();
         String dayInfo = gameInterface.getDayInfo();
         System.out.println(dayInfo);
         String[] extractDayNumber = dayInfo.split(" ");
         int dayNumber = Integer.parseInt(extractDayNumber[2]);
 
+        // int dayNumber = 4;
         for (int i = 0 ; i < waitingListCopy.size() ; i++) {
             System.out.println(waitingListCopy.get(i));
         }
-        System.out.println();*/
-        int dayNumber = 4;
+        System.out.println();
 
         // Customer whose number matches the dayNumber will be served first
         for (int i = 0 ; i < waitingListCopy.size() ; i++) {

@@ -13,10 +13,10 @@ public class LibeccioRestaurant extends PearlJam{
     }
 
     /* Pattern: 
-     * - Each person say number starting from 1
-     * - If number is multiple of current day, REMOVE them from queue and served last
-     * - The next peson removed is served second last, and so on
-     * - If reach end of queue, start over from beginning
+     * - each person say number starting from 1
+     * - if number is multiple of current day, REMOVE them from queue and served last
+     * - the next peson removed is served second last, and so on
+     * - if reach end of queue, start over from beginning
     */
 
     @Override
