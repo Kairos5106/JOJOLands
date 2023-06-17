@@ -12,7 +12,6 @@ class Location{
     protected Menu menu;
     protected String currentMapName;
     protected PearlJam restaurant;
-    protected MoodyBlues restaurantSales;
 
     /* nearbyLocations and distanceOfNearby are linked in a way as in a nearby object in nearbyLocations arraylist will have the 
      * same index as its distance counterpart in distanceOfNearby arraylist.
@@ -88,10 +87,6 @@ class Location{
 
     public PearlJam getRestaurant(){
         return this.restaurant;
-    }
-
-    public MoodyBlues getRestaurantSales(){
-        return this.restaurantSales;
     }
 
     /* Method B: Display methods */

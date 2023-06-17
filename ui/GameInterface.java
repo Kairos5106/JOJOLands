@@ -35,6 +35,7 @@ public class GameInterface extends UserInterface{
     HeavensDoor heavensDoor = new HeavensDoor();
     TheJoestars joestars = new TheJoestars();
     GoldenSpirit goldenSpirit = new GoldenSpirit();
+    MoodyBlues moodyBlues = new MoodyBlues();
 
     /* Constructors */
     public GameInterface(){}
@@ -186,10 +187,6 @@ public class GameInterface extends UserInterface{
     public boolean viewTotalAvgSales(){
         return currentMenu.viewTotalAvgSales();
     }
-    
-    public MoodyBlues getMoodyBlues(){
-        return getCurrentLocation().getRestaurantSales();
-    }
 
     /* ****************** Methods B: Display methods ****************** */
 
@@ -288,12 +285,13 @@ public class GameInterface extends UserInterface{
                 }
             }
             if(viewSalesInfo()){
-                getMoodyBlues().getSalesInfo(); // need to modify this, for now, just run everything once per run
+                moodyBlues.setName(getCurrentLocation().getName());
+                moodyBlues.readFile();
                 currentMenu.setGreeting("Sales Information");
                 if(viewSales()){   
                     int day = Integer.parseInt(prompt("Enter day: "));
                     divider(70);
-                    getMoodyBlues().displaySales(day);
+                    moodyBlues.displaySales(day);
                     currentMenu.setViewSales(false);
                     divider(70);
                 }
@@ -302,17 +300,20 @@ public class GameInterface extends UserInterface{
                     currentMenu.resetSelectedOptions();
                 }
                 if(viewMinSales()){
-                    System.out.printf("Minimum Sales: $%.2f\n", getMoodyBlues().getMinimumSales());
+                    System.out.printf("Minimum Sales: $%.2f\n", moodyBlues.getMinimumSales());
                 }
                 if(viewMaxSales()){
-                    System.out.printf("Maximum Sales: $%.2f\n", getMoodyBlues().getMaximumSales());
+                    System.out.printf("Maximum Sales: $%.2f\n", moodyBlues.getMaximumSales());
                 }
                 if(viewTopK()){
                     int k = Integer.parseInt(prompt("Enter value of k: "));
-                    getMoodyBlues().displayTopHighestSales(k);
+                    moodyBlues.displayTopHighestSales(k);
                 }
                 if(viewTotalAvgSales()){
-                    getMoodyBlues().displayTotalAndAverageSales();
+                    int startDay = Integer.parseInt(prompt("Enter start day: "));
+                    int endDay = Integer.parseInt(prompt("Enter end day: "));
+                    divider(70);
+                    moodyBlues.displayTotalAndAverageSales(startDay, endDay);
                 }
             }
             if(viewMinSales() || viewMaxSales() || viewTopK() || viewTotalAvgSales()){

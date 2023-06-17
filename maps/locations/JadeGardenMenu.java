@@ -7,6 +7,9 @@ public class JadeGardenMenu extends Menu {
         this.setLocationName("Jade Garden");
     }
 
+    public static void main(String[] args) {
+    }
+
     /* Purpose: Defines the options for the menu */
     @Override
     public void defineOptions(){        

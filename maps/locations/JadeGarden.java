@@ -10,7 +10,6 @@ public class JadeGarden extends Location{
         this.nameOfLocation = "Jade Garden";
         this.menu = new JadeGardenMenu();
         this.restaurant = new JadeGardenRestaurant();
-        this.restaurantSales = new MoodyBlues(nameOfLocation);
     }
 
     public void displayFoodMenu(){
