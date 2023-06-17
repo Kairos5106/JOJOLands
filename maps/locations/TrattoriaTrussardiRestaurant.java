@@ -64,77 +64,35 @@ public class TrattoriaTrussardiRestaurant extends PearlJam {
         int femaleIndexNoAge = 0;
         boolean reverse = false;
 
-        while (true) {
-            if (reverse == false) {
-                if (maleTurn) {
-                    if (!maleWaitingList.isEmpty()) {
-                        orderProcessingList.add(maleWaitingList.get(maleIndex));
-                        maleIndex++;
-                        maleTurn = false;
-                        femaleTurn = true;
-                    } else if (!maleWaitingListNoAge.isEmpty()) {
-                        orderProcessingList.add(maleWaitingListNoAge.get(maleIndexNoAge));
-                        maleIndexNoAge++;
-                        maleTurn = false;
-                        femaleTurn = true;
-                    } else {
-                        break;
-                    }
-                } else if (femaleTurn) {
-                    if (!femaleWaitingList.isEmpty()) {
-                        orderProcessingList.add(femaleWaitingList.get(femaleIndex));
-                        femaleIndex++;
-                        femaleTurn = false;
-                        maleTurn = true;
-                    } else if (!femaleWaitingListNoAge.isEmpty()) {
-                        orderProcessingList.add(femaleWaitingListNoAge.get(femaleIndexNoAge));
-                        femaleIndexNoAge++;
-                        femaleTurn = false;
-                        maleTurn = true;
-                    } else {
-                        break;
-                    }
+        while (!maleWaitingList.isEmpty() || !femaleWaitingList.isEmpty() ||
+                !maleWaitingListNoAge.isEmpty() || !femaleWaitingListNoAge.isEmpty()) {
+
+            if (!maleWaitingList.isEmpty()) {
+                orderProcessingList.add(maleWaitingList.get(maleIndex));
+                maleIndex++;
+                if (maleIndex == maleWaitingList.size()) {
+                    maleIndex = 0;
                 }
-
-                reverse = true;
-
-            } else {
-                if (maleTurn) {
-                    if (!maleWaitingList.isEmpty()) {
-                        orderProcessingList.add(maleWaitingList.get(maleIndex));
-                        maleIndex++;
-                        maleTurn = false;
-                        femaleTurn = true;
-                    } else if (!maleWaitingListNoAge.isEmpty()) {
-                        orderProcessingList.add(maleWaitingListNoAge.get(maleIndexNoAge));
-                        maleIndexNoAge++;
-                        maleTurn = false;
-                        femaleTurn = true;
-                    } else {
-                        break;
-                    }
-                } else if (femaleTurn) {
-                    if (!femaleWaitingList.isEmpty()) {
-                        orderProcessingList.add(femaleWaitingList.get(femaleIndex));
-                        femaleIndex++;
-                        femaleTurn = false;
-                        maleTurn = true;
-                    } else if (!femaleWaitingListNoAge.isEmpty()) {
-                        orderProcessingList.add(femaleWaitingListNoAge.get(femaleIndexNoAge));
-                        femaleIndexNoAge++;
-                        femaleTurn = false;
-                        maleTurn = true;
-                    } else {
-                        break;
-                    }
+            } else if (!maleWaitingListNoAge.isEmpty()) {
+                orderProcessingList.add(maleWaitingListNoAge.get(maleIndexNoAge));
+                maleIndexNoAge++;
+                if (maleIndexNoAge == maleWaitingListNoAge.size()) {
+                    maleIndexNoAge = 0;
                 }
-
-                reverse = false;
-                
             }
 
-            if (!maleTurn && !femaleTurn) {
-                break;
+            if (!femaleWaitingList.isEmpty()) {
+                orderProcessingList.add(femaleWaitingList.get(femaleIndex));
+                femaleIndex++;
+                if (femaleIndex == femaleWaitingList.size()) {
+                    femaleIndex = 0;
+                }
+            } else if (!femaleWaitingListNoAge.isEmpty()) {
+                orderProcessingList.add(femaleWaitingListNoAge.get(femaleIndexNoAge));
+                femaleIndexNoAge++;
+                if (femaleIndexNoAge == femaleWaitingListNoAge.size()) {
+                    femaleIndexNoAge = 0;
+                }
             }
         }
 

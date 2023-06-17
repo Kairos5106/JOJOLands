@@ -38,22 +38,22 @@ public class LibeccioRestaurant extends PearlJam{
         // Customer with number same as multiple of dayNumber remove from waiting list and push into stack bcs they'll be served last
         int index = 0;
         while (!waitingListCopy.isEmpty()) {
-            //index %= waitingListCopy.size(); // to reset the value of index to zero when it becomes greater than or equal to the size of the list
-            
-            int customerNumber = index;
+            int customerNumber = index + 1;
 
             // If customerNumber is multiple of current day, push to bottom of stack
-            if ((customerNumber + 1) % dayNumber == 0) {
+            if (customerNumber % dayNumber == 0) {
                 stack.push(waitingListCopy.remove(index));
+            } else {
+                index++;
             }
 
             // Go circular
-            if (index == waitingListCopy.size() - 1) {
+            if (index == waitingListCopy.size()) {
                 index = 0;
             }
         }
 
-        // Pop stack from top (customer last in because his number didnt match multiple of dayNumber) into orderProcessingList (he's the first customer that'll be served)
+        // Pop stack from top into orderProcessingList (he's the first customer that'll be served)
         while (!stack.isEmpty()) {
             orderProcessingList.add(stack.pop());
         }

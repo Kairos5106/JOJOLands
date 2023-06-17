@@ -35,20 +35,32 @@ public class SavageGardenRestaurant extends PearlJam{
 
         // int dayNumber = 4;
 
-        // Customer whose number matches the dayNumber will be served first
-        for (int i = 0 ; i < waitingListCopy.size() ; i++) {
-            //index %= waitingListCopy.size(); // to reset the value of index to zero when it becomes greater than or equal to the size of the list
-            
-            int customerNumber = i;
+        // Customer whose number matches the dayNumber will be served first (put to front of queue)
+        int index = 0;
+        boolean reverseOrder = false;
 
-            // If customerNumber matches dayNumber, offer to front of queue
-            if ((customerNumber + 1) == dayNumber) {
-                queue.offer(waitingListCopy.remove(i));
+        while (!waitingListCopy.isEmpty()) {
+            int customerNumber = index + 1;
+
+            if (customerNumber == dayNumber) {
+                queue.offer(waitingListCopy.remove(index));
+            } else {
+                index++;
             }
 
-            // Go circular
-            if (i == waitingListCopy.size() - 1) {
-                i = 0;
+            if (index == waitingListCopy.size() - 1) {
+                if (!reverseOrder) {
+                    index = 0;
+                    reverseOrder = true;
+                } else {
+                    index = waitingListCopy.size() - 1;
+                }
+            } else {
+                if (reverseOrder) {
+                    index--;
+                } else {
+                    index++;
+                }
             }
         }
 
