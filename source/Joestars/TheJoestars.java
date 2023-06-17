@@ -2,11 +2,12 @@ package DSTeam3.source.Joestars;
 
 import java.io.*;
 import java.util.*;
+import DSTeam3.source.Joestars.OrderList;;
 
 public class TheJoestars {
     static int day = 1;
     static String filePath = "DSTeam3\\source\\AssignFood.csv";
-
+    
     static String[][] originalMenuItems = {
             {"Jade Garden", "Braised Chicken in Black Bean Sauce", "15.00"},
             {"Jade Garden", "Braised Goose Web with Vermicelli", "21.00"},
@@ -158,26 +159,26 @@ public class TheJoestars {
                 String age = residentInfo[1];
                 String gender = residentInfo[2];
 
-                String[] menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+                String[] menuItem; //= shuffledMenuItems.get(i % shuffledMenuItems.size());
 
                 switch (name) {
                     case "Jonathan Joestar":
-                        
+                        menuItem = jonathanFood(shuffledMenuItems);
                         break;
                     case "Joseph Joestar":
-                        
+                        menuItem = josephFood(shuffledMenuItems);
                         break;
                     case "Jotaro Kujo":
-                        
+                        menuItem = jotaroFood(shuffledMenuItems);
                         break;
                     case "Josuke Higashikata":
-                        
+                        menuItem = josukeFood(shuffledMenuItems );
                         break;
                     case "Giorno Giovanna":
-                        
+                        menuItem = giornoFood(shuffledMenuItems);
                         break;
                     case "Jolyne Cujoh":
-                        
+                        menuItem = jolyneFood(shuffledMenuItems);
                         break;
                     default:
                         menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
@@ -222,5 +223,43 @@ public class TheJoestars {
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }
+    }
+
+    /* =================================== THE 6 JOESTARS FOOD ASSIGNMENT METHODS =================================== */
+
+    static ArrayList<OrderList> joestarOrderList = new ArrayList<>();
+    Random random = new Random();
+    private String restaurant;
+    private String food;
+    private String price;
+    private int joestarIndex = -1;
+
+    public List<String[]> jonathanFood(List<String[]> shuffledMenuItems) {
+        
+    }
+
+
+
+
+
+
+
+}
+
+class Pair<T> {
+    private final T first;
+    private final T second;
+
+    public Pair(T first, T second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public T first() {
+        return first;
+    }
+
+    public T second() {
+        return second;
     }
 }
