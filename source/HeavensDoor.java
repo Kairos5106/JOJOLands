@@ -6,17 +6,24 @@ import java.util.*;
 public class HeavensDoor {
     static String[] residentsFileContent = getFileContent("DSTeam3\\source\\residents.csv");
     static String[] standsFileContent = getFileContent("DSTeam3\\source\\stands.csv"); 
-    static Map<String, String> standUsersByName = getStandUsersByName(standsFileContent);
-    static Map<String, String[]> userInformation = getUserInformation(residentsFileContent);
+    static Map<String, String> standUsersByName = getStandUsersByName(standsFileContent); // character name, stand name
+    static Map<String, String[]> userInformation = getUserInformation(residentsFileContent); // character name, {age, gender, residential area}
+    static Map<String, String[]> npcPersonalInfo = getNPCPersonalInfo(residentsFileContent); // character name, {age, gender, parents}
+    static Map<String, String[]> standInfo = getStandInfo(standsFileContent); // stand name, {power, speed, range, stamina , precision, develop. potent.}
     static List<List<String>> originalData;
     static List<List<String>> sortedData;
 
     static String location;
+    static String profileName;
 
     static boolean sorted = false;
 
     public HeavensDoor(){
         this.location = null;
+    }
+
+    public static void main(String[] args) {
+
     }
 
     public void setLocation(String location){
@@ -32,7 +39,11 @@ public class HeavensDoor {
         return sorted;
     }
 
-    public static void display(){
+    public static String getProfileName(){
+        return profileName;
+    }
+
+    public static void displayResidents(){
         System.out.println("Resident Information in " + location);
         if(isSorted()){
             printSortedStandsFileContent(sortedData); // output 2: print sorted information
@@ -67,7 +78,6 @@ public class HeavensDoor {
                 contentBuilder.append(in.nextLine()).append("\n");
             }
             in.close();
-
             content = contentBuilder.toString().trim();
         }catch(FileNotFoundException e){
             System.out.println("File not found");
@@ -247,5 +257,89 @@ public class HeavensDoor {
             }
         }
         return standAbilitiesByName;
+    }
+
+    public static Map<String, String[]> getNPCPersonalInfo(String[] residentsFileContent){
+        Map<String, String[]> npcPersonalInfo = new HashMap<>();
+        for (String line : residentsFileContent) {
+            String[] columns = line.split(",");
+            String npcName = columns[0];
+            String age = columns[1];
+            String gender = columns[2];
+            String parents;
+            if(columns.length == 5){
+                parents = columns[4];
+            }
+            else{
+                parents = columns[4] + ", " + columns[5];
+            }
+            String[] personalInfo = new String[]{age, gender, parents};
+
+            npcPersonalInfo.put(npcName, personalInfo);
+        }
+        return npcPersonalInfo;
+    }
+
+    public static Map<String, String[]> getStandInfo(String[] standsFileContent){
+        Map<String, String[]> standInfo = new HashMap<>();
+        for (String line : standsFileContent) {
+            String[] columns = line.split(",");
+            String standName = columns[0];
+            String destructivePower = columns[2];
+            String speed = columns[3];
+            String range = columns[4];
+            String stamina = columns[5];
+            String precision = columns[6];
+            String developmentPotential = columns[7];
+
+            String[] standStats= new String[]{destructivePower, speed, range, stamina, precision, developmentPotential};
+
+            standInfo.put(standName, standStats);
+        }
+        return standInfo;
+    }
+
+    public static void promptResidentProfile(){
+        Scanner in = new Scanner(System.in);
+        while(true){
+            System.out.print("Enter the resident's name: ");
+            profileName = in.nextLine();
+
+            if(npcPersonalInfo.containsKey(profileName)){
+                break;
+            }
+            else{
+                System.out.println("Resident not found. Please re-enter a valid resident name.");
+            }
+        }
+    }
+    
+    public static void displayResidentProfile(){
+        // Display personal info
+        String[] personalInfo = npcPersonalInfo.get(profileName);
+        System.out.println(profileName + "'s Profile");
+        System.out.println("Name\t: " + profileName);
+        System.out.println("Age\t: " + personalInfo[0]);
+        System.out.println("Gender\t: " + personalInfo[1]);
+        System.out.println("Parents\t: " + personalInfo[2]);
+        System.out.println();
+
+        // Display stand info
+        String standName = standUsersByName.get(profileName);
+        if(standName != null){
+            String[] standStats = standInfo.get(standName);
+            System.out.println("Stand\t\t\t: " + standName);
+            System.out.println("Destructive Power\t: " + standStats[0]);
+            System.out.println("Speed\t\t\t: " + standStats[1]);
+            System.out.println("Range\t\t\t: " + standStats[2]);
+            System.out.println("Stamina\t\t\t: " + standStats[3]);
+            System.out.println("Precision\t\t: " + standStats[4]);
+            System.out.println("Development Potential\t: " + standStats[5]);
+            System.out.println();
+        }
+        else{
+            System.out.println(profileName + " does not have a Stand.\n");
+        }
+        // Display order history
     }
 }

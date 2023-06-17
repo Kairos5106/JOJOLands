@@ -2,6 +2,8 @@ package DSTeam3.maps.base;
 
 import java.util.ArrayList;
 import DSTeam3.ui.base.*;
+import DSTeam3.source.MoodyBlues.MoodyBlues;
+import DSTeam3.source.PearlJam.base.*;
 
 public /* Purpose: Represents a node in the map */
 class Location{
@@ -9,6 +11,7 @@ class Location{
     protected String nameOfLocation;
     protected Menu menu;
     protected String currentMapName;
+    protected PearlJam restaurant;
 
     /* nearbyLocations and distanceOfNearby are linked in a way as in a nearby object in nearbyLocations arraylist will have the 
      * same index as its distance counterpart in distanceOfNearby arraylist.
@@ -82,6 +85,10 @@ class Location{
         return this.currentMapName;
     }
 
+    public PearlJam getRestaurant(){
+        return this.restaurant;
+    }
+
     /* Method B: Display methods */
 
 
@@ -98,4 +105,6 @@ class Location{
         if(this.nearbyLocations.contains(location)){return true;}
         return false;
     }
+
+    public void displayFoodMenu(){}
 }

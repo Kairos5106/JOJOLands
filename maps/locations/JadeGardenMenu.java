@@ -7,6 +7,9 @@ public class JadeGardenMenu extends Menu {
         this.setLocationName("Jade Garden");
     }
 
+    public static void main(String[] args) {
+    }
+
     /* Purpose: Defines the options for the menu */
     @Override
     public void defineOptions(){        
@@ -19,6 +22,16 @@ public class JadeGardenMenu extends Menu {
 
         Option viewSales = new Option("View sales information");
         
+        Option viewAggregated = new Option("View aggregated information");
+        viewAggregated.addSuboptions("Minimum sales");
+        viewAggregated.addSuboptions("Maximum sales");
+        viewAggregated.addSuboptions("Top k highest sales");
+        viewAggregated.addSuboptions("Total and average sales");
+
+        viewSales.addSuboptions("View sales");
+        viewSales.addSuboptions(viewAggregated);
+        viewSales.addSuboptions("Exit");
+
         Option milagroMan = new Option("Milagro Man");
 
         Option backPrevious = new Option("Back to previous location");
@@ -78,6 +91,37 @@ public class JadeGardenMenu extends Menu {
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View menu":
+                setViewFoodMenu(true);
+                break;
+            case "View waiting list and order processing list":
+                setViewPearlJamList(true);
+                break;
+            case "View sales information":
+                setViewSalesInfo(true);
+                break;
+            case "View sales":
+                setViewSales(true);
+                break;
+            case "View aggregated information":
+                setViewAggregated(true);
+                break;
+            case "Minimum sales":
+                setViewMinSales(true);
+                break;
+            case "Maximum sales":
+                setViewMaxSales(true);
+                break;
+            case "Top k highest sales":
+                setViewTopK(true);
+                break;
+            case "Total and average sales":
+                setViewTotalAvgSales(true);
+                break;
+            case "Exit":
+                setReturnToFrontPage(true);
+                setViewSalesInfo(false);
                 break;
         }
         return "";

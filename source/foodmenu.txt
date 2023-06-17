@@ -1,0 +1,27 @@
+Jade Garden,Braised Chicken in Black Bean Sauce,15.00
+Jade Garden,Braised Goose Web with Vermicelli,21.00
+Jade Garden,Deep-fried Hiroshima Oysters,17.00
+Jade Garden,Poached Tofu with Dried Shrimps,2.00
+Jade Garden,Scrambled Egg White with Milk,10.00
+Cafe Deux Magots,Sampling Matured Cheese Platter,23.00
+Cafe Deux Magots,Sampling Matured Cheese Platter,23.00
+Cafe Deux Magots,Spring Lobster Salad,35.00
+Cafe Deux Magots,Spring Organic Omelette,23.00
+Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00
+Cafe Deux Magots,White Asparagus,26.00
+Trattoria Trussardi,Caprese Salad,10.00
+Trattoria Trussardi,Creme caramel,6.50
+Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00
+Trattoria Trussardi,Spaghetti alla Puttanesca,15.00
+Libeccio,Formaggio,12.50
+Libeccio,Ghiaccio,1.01
+Libeccio,Melone,5.20
+Libeccio,Prosciutto and Pesci,20.23
+Libeccio,Risotto,13.14
+Libeccio,Zucchero and Sale,0.60
+Savage Garden,Abbacchio’s Tea,1.00
+Savage Garden,DIO’s Bread,36.14
+Savage Garden,Giorno’s Donuts,6.66
+Savage Garden,Joseph’s Tequila,35.00
+Savage Garden,Kakyoin’s Cherry,3.50
+Savage Garden,Kakyoin’s Porridge,4.44

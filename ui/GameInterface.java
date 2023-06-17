@@ -19,7 +19,11 @@ import DSTeam3.maps.locations.SavageGardenMenu;
 import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
+import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
+import DSTeam3.source.Joestars.*;
+import DSTeam3.source.MoodyBlues.MoodyBlues;
+import DSTeam3.source.PearlJam.base.PearlJam;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -29,6 +33,9 @@ public class GameInterface extends UserInterface{
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
 
     HeavensDoor heavensDoor = new HeavensDoor();
+    TheJoestars joestars = new TheJoestars();
+    GoldenSpirit goldenSpirit = new GoldenSpirit();
+    MoodyBlues moodyBlues = new MoodyBlues();
 
     /* Constructors */
     public GameInterface(){}
@@ -133,6 +140,54 @@ public class GameInterface extends UserInterface{
         return currentMenu.sortResidentInfo();
     }
 
+    public boolean viewResidentProfile(){
+        return currentMenu.viewResidentProfile();
+    }
+
+    public boolean initialiseGoldenSpirit(){
+        return currentMenu.initialiseGoldenSpirit();
+    }
+
+    public boolean viewFoodMenu(){
+        return currentMenu.viewFoodMenu();
+    }
+
+    public boolean viewPearlJamList(){
+        return currentMenu.viewPearlJamList();
+    }
+
+    public PearlJam getCurrentRestaurant(){
+        return getCurrentLocation().getRestaurant();
+    }
+
+    public boolean viewSalesInfo(){
+        return currentMenu.viewSalesInfo();
+    }
+
+    public boolean viewSales(){
+        return currentMenu.viewSales();
+    }
+
+    public boolean viewAggregated(){
+        return currentMenu.viewAggregated();
+    }
+
+    public boolean viewMinSales(){
+        return currentMenu.viewMinSales();
+    }
+
+    public boolean viewMaxSales(){
+        return currentMenu.viewMaxSales();
+    }
+
+    public boolean viewTopK(){
+        return currentMenu.viewTopK();
+    }
+
+    public boolean viewTotalAvgSales(){
+        return currentMenu.viewTotalAvgSales();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -153,6 +208,7 @@ public class GameInterface extends UserInterface{
         setCurrentMenu(getCurrentMenu());
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
+        joestars.assignFoodToResidents();
         String input = "";
         divider(70);
         while(!getExitInterface()){
@@ -165,6 +221,26 @@ public class GameInterface extends UserInterface{
                 String[] nearbyLocationList = getNearbyLocationNames();
                 currentMenu.getCurrentOption().addSuboptions(nearbyLocationList);
                 currentMenu.setOpenMoveLocationsMenu(false);
+            }
+            if(initialiseGoldenSpirit()){
+                goldenSpirit.GoldenSpirit();
+                currentMenu.setInitialiseGoldenSpirit(false);
+                currentMenu.setReturnToFrontPage(true);
+            }
+            if(viewFoodMenu()){
+                getCurrentLocation().displayFoodMenu();
+                currentMenu.setReturnToFrontPage(true);
+                currentMenu.setViewFoodMenu(false);
+                divider(70);
+            }
+            if(viewPearlJamList()){
+                getCurrentRestaurant().generateWaitingList(time.getDayCount());
+                getCurrentRestaurant().displayWaitingList();
+                getCurrentRestaurant().generateOrderProcessingList();
+                getCurrentRestaurant().displayOrderProcessingList();
+                divider(70);
+                currentMenu.setViewPearlJamList(false);
+                currentMenu.setReturnToFrontPage(true);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){
@@ -195,10 +271,62 @@ public class GameInterface extends UserInterface{
             }
             if(viewResidentInfo()){
                 heavensDoor.setLocation(currentMenu.getLocationName());
-                heavensDoor.display();
+                if(viewResidentProfile()){
+                    heavensDoor.promptResidentProfile();
+                    divider(70);
+                    heavensDoor.displayResidentProfile();
+                    joestars.displayOrderHistory(heavensDoor.getProfileName());
+                    currentMenu.setViewResidentProfile(false);
+                    divider(70);
+                }
+                heavensDoor.displayResidents();
                 if(sortResidentInfo()){
                     currentMenu.setSortResidentInfo(false);
                 }
+            }
+            if(viewSalesInfo()){
+                moodyBlues.setName(getCurrentLocation().getName());
+                moodyBlues.readFile();
+                currentMenu.setGreeting("Sales Information");
+                if(viewSales()){   
+                    int day = Integer.parseInt(prompt("Enter day: "));
+                    divider(70);
+                    moodyBlues.displaySales(day);
+                    currentMenu.setViewSales(false);
+                    divider(70);
+                }
+                if(viewAggregated()){
+                    currentMenu.setGreeting("Select which aggregated information to view: ");
+                    currentMenu.resetSelectedOptions();
+                }
+                if(viewMinSales()){
+                    System.out.printf("Minimum Sales: $%.2f\n", moodyBlues.getMinimumSales());
+                }
+                if(viewMaxSales()){
+                    System.out.printf("Maximum Sales: $%.2f\n", moodyBlues.getMaximumSales());
+                }
+                if(viewTopK()){
+                    int k = Integer.parseInt(prompt("Enter value of k: "));
+                    divider(70);
+                    moodyBlues.displayTopHighestSales(k);
+                }
+                if(viewTotalAvgSales()){
+                    int startDay = Integer.parseInt(prompt("Enter start day: "));
+                    int endDay = Integer.parseInt(prompt("Enter end day: "));
+                    divider(70);
+                    moodyBlues.displayTotalAndAverageSales(startDay, endDay);
+                }
+            }
+            if(viewMinSales() || viewMaxSales() || viewTopK() || viewTotalAvgSales()){
+                currentMenu.setViewSalesMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
+                currentMenu.setViewMinSales(false);
+                currentMenu.setViewMaxSales(false);
+                currentMenu.setViewTopK(false);
+                currentMenu.setViewTotalAvgSales(false);
+                currentMenu.setViewAggregated(false);
+                divider(70);
             }
 
             currentMenu.runDisplay();
@@ -211,14 +339,19 @@ public class GameInterface extends UserInterface{
             }
 
             // Conditional actions go here and below
-            if(sortResidentInfo()){
+            if(sortResidentInfo() || viewResidentProfile()){
                 currentMenu.setViewResidentMenu();
-                for (int i = 0; i < currentMenu.getCurrentOption().getSuboptionsCount(); i++) {
-                    currentMenu.getCurrentOption().setSelected(i, false);
-                }
+                currentMenu.resetSelectedOptions();
+            }
+            if(viewSalesInfo() && !viewAggregated()){
+                currentMenu.setViewSalesMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
             }
             if(isAdvancingNext()){
                 endDay();
+                joestars.setDay(time.getDayCount());
+                joestars.assignFoodToResidents();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
@@ -311,5 +444,9 @@ class Clock{
         dayCount++;
         if(dayOfWeek == 7){dayOfWeek = 1;}
         else{dayOfWeek++;}
+    }
+
+    public int getDayCount(){
+        return this.dayCount;
     }
 }

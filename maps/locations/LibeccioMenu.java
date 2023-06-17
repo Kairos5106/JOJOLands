@@ -13,13 +13,31 @@ public class LibeccioMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
+        Option viewWaitingList = new Option("View waiting list and order processing list");
+
+        Option viewMenu = new Option("View menu");
+
+        Option viewSales = new Option("View sales information");
+        
+        Option viewAggregated = new Option("View aggregated information");
+        viewAggregated.addSuboptions("Minimum sales");
+        viewAggregated.addSuboptions("Maximum sales");
+        viewAggregated.addSuboptions("Top k highest sales");
+        viewAggregated.addSuboptions("Total and average sales");
+
+        viewSales.addSuboptions("View sales");
+        viewSales.addSuboptions(viewAggregated);
+        viewSales.addSuboptions("Exit");
+        
+        Option milagroMan = new Option("Milagro Man");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewWaitingList, viewMenu, viewSales, milagroMan, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -64,6 +82,37 @@ public class LibeccioMenu extends Menu {
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View menu":
+                setViewFoodMenu(true);
+                break;
+            case "View waiting list and order processing list":
+                setViewPearlJamList(true);
+                break;
+            case "View sales information":
+                setViewSalesInfo(true);
+                break;
+            case "View sales":
+                setViewSales(true);
+                break;
+            case "View aggregated information":
+                setViewAggregated(true);
+                break;
+            case "Minimum sales":
+                setViewMinSales(true);
+                break;
+            case "Maximum sales":
+                setViewMaxSales(true);
+                break;
+            case "Top k highest sales":
+                setViewTopK(true);
+                break;
+            case "Total and average sales":
+                setViewTotalAvgSales(true);
+                break;
+            case "Exit":
+                setReturnToFrontPage(true);
+                setViewSalesInfo(false);
                 break;
         }
         return null;
