@@ -2,10 +2,17 @@ package DSTeam3.source.TheWorld;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import DSTeam3.source.Joestars.TheJoestars;
+import DSTeam3.source.MilagroMan.MilagroMan;
+import java.util.List;
 
 /* Keeps track of the current state of the game and the essential variables to account for in a game */
 public class GameState {
@@ -15,10 +22,20 @@ public class GameState {
     private String mapName;
     private int dayCount;
     private String currentDateTimeStr;
+    private List<String[]> saleEntries; // a copy of AssignFood.csv
 
     public GameState(){
         mapName = "";
         dayCount = 0;
+        saleEntries = new ArrayList<>();
+    }
+
+    public void setSaleEntries(List<String[]> saleEntries){
+        this.saleEntries = saleEntries;
+    }
+
+    public List<String[]> getSaleEntries(){
+        return this.saleEntries;
     }
 
     public void setMapName(String mapName){
@@ -67,6 +84,9 @@ public class GameState {
             ArrayList<String> information = new ArrayList<>();
             while(in.hasNextLine()){
                 String line = in.nextLine();
+                if(line.equals("assignfood")){
+                    break;
+                }
                 information.add(line.split("=")[1]);
             }
             String[] informationArray = new String[information.size()];
@@ -74,8 +94,55 @@ public class GameState {
                 informationArray[i] = information.get(i);
             }
             loadSaveFile(informationArray);
+
+            // Saving AssignFood data
+            List<String[]> saleEntries = new ArrayList<>();
+            while(in.hasNextLine()){
+                String line = in.nextLine();
+                String[] entry = line.split(",");
+                saleEntries.add(entry);
+            }
+            setSaleEntries(saleEntries);
             in.close();
         }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void saveFoodFile(){
+        String filePath = (new TheJoestars()).getFilePath();
+        List<String[]> saleEntries = new ArrayList<>();
+        try{
+            Scanner in = new Scanner(new FileInputStream(filePath));
+            while(in.hasNextLine()){
+                String line = in.nextLine();
+                String[] row = line.split(",");
+                saleEntries.add(row);
+            }
+            in.close();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        setSaleEntries(saleEntries);
+    }
+
+    public void loadFoodFile(){
+        String filePath = (new TheJoestars()).getFilePath();
+        try{
+            PrintWriter writer = new PrintWriter(new FileOutputStream(filePath));
+            for (String[] entry : saleEntries) {
+                String day = entry[0];
+                String residentName = entry[1];
+                String age = entry[2];
+                String gender = entry[3];
+                String location = entry[4];
+                String menuItem = entry[5];
+                String price = entry[6];
+                String time = entry[7];
+                writer.printf("%s,%s,%s,%s,%s,%s,%s,%s\n", day, residentName, age, gender, location, menuItem, price, time);
+            }
+            writer.close();
+        }catch(IOException e){
             e.printStackTrace();
         }
     }

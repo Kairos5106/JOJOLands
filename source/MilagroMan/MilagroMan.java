@@ -21,6 +21,10 @@ public class MilagroMan {
         saleEntries = saleEntriesList;
     }
 
+    public static List<String[]> getSaleEntries(){
+        return saleEntries;
+    }
+
     public static void readFile(){
         // Getting sale entries
         String filePath = (new TheJoestars().getFilePath());
