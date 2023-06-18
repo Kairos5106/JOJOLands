@@ -37,6 +37,9 @@ public class Menu{
     boolean viewMaxSales = false;
     boolean viewTopK = false;
     boolean viewTotalAvgSales = false;
+    boolean milagroMan = false;
+    boolean modifyFoodPrices = false;
+    boolean returnToMilagroMan = false;
 
     /* Constructors */
     public Menu(){
@@ -363,6 +366,30 @@ public class Menu{
         return this.viewTotalAvgSales;
     }
 
+    public void setMilagroMan(boolean setting){
+        this.milagroMan = setting;
+    }
+
+    public boolean milagroManIsActive(){
+        return this.milagroMan;
+    }
+
+    public void setModifyFoodPrices(boolean setting){
+        this.modifyFoodPrices = setting;
+    }
+
+    public boolean modifyFoodPrices(){
+        return this.modifyFoodPrices;
+    }
+
+    public void setReturnToMilagroMan(boolean setting){
+        this.returnToMilagroMan = setting;
+    }
+
+    public boolean returnToMilagroMan(){
+        return this.returnToMilagroMan;
+    }
+    
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
@@ -419,6 +446,11 @@ public class Menu{
     // Make sure the option to view resident info is at index = 3 (4th option) at every restaurant
     public void setViewSalesMenu(){
         setCurrentOption(3, true);
+    }
+
+    // Make sure the option to view resident info is at index = 4 (5th option) at every restaurant
+    public void setMilagroManMenu(){
+        setCurrentOption(4, true);
     }
 
     // Resets the selected suboptions for the current option

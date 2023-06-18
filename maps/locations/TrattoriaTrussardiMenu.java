@@ -17,6 +17,7 @@ public class TrattoriaTrussardiMenu extends Menu {
 
         Option viewMenu = new Option("View menu");
 
+        // Options for view sales information - start
         Option viewSales = new Option("View sales information");
         
         Option viewAggregated = new Option("View aggregated information");
@@ -28,6 +29,7 @@ public class TrattoriaTrussardiMenu extends Menu {
         viewSales.addSuboptions("View sales");
         viewSales.addSuboptions(viewAggregated);
         viewSales.addSuboptions("Exit");
+        // Options for view sales information - end
         
         Option milagroMan = new Option("Milagro Man");
 
@@ -117,8 +119,23 @@ public class TrattoriaTrussardiMenu extends Menu {
                 setViewTotalAvgSales(true);
                 break;
             case "Exit":
-                setReturnToFrontPage(true);
+                if(milagroManIsActive()){
+                    setReturnToMilagroMan(true);
+                }
+                else{
+                    setReturnToFrontPage(true);
+                }
                 setViewSalesInfo(false);
+                break;
+            case "Milagro Man":
+                setMilagroMan(true);
+                break;
+            case "Modify food prices":
+                setModifyFoodPrices(true);
+                break;
+            case "Exit Milagro Man":
+                setMilagroMan(false);
+                setReturnToFrontPage(true);
                 break;
         }
         return null;

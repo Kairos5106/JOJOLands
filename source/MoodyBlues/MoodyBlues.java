@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import DSTeam3.source.Joestars.TheJoestars;
+import DSTeam3.source.MilagroMan.MilagroMan;
+
 import java.util.*;
 
 /**
@@ -21,13 +23,6 @@ import java.util.*;
  * @author firza
  */
 public class MoodyBlues {
-    public static void main(String[] args) {
-        MoodyBlues test = new MoodyBlues();
-        test.setName("Jade Garden");
-        test.readFile();
-        System.out.println("Day count: " + test.dayCount);
-    }
-
     static String restaurantName;
     static List<String[]> saleEntries; // basically a copy of AssignFood.csv except only has entries of location = restaurantName
     static int dayCount;
@@ -68,9 +63,15 @@ public class MoodyBlues {
         return quantity;
     }
 
-    public void readFile(){
+    public void readFile(boolean milagroManIsActive){
         // Getting sale entries
-        String filePath = (new TheJoestars().getFilePath());
+        String filePath;
+        if(milagroManIsActive){
+            filePath = (new MilagroMan()).getFilePath();
+        }
+        else{
+            filePath = (new TheJoestars()).getFilePath();
+        }
         List<String[]> saleEntries = new ArrayList<>();
         int maxDays = 0;
         try{

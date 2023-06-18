@@ -8,7 +8,6 @@ Day,Name,Age,Gender,Location,MenuItem,Price,Time
 1,Joseph Joestar,18,Male,Savage Garden,DIO's Bread,36.14,09
 1,Josuke Higashikata,16,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,54
 1,Jotaro Kujo,17,Male,Libeccio,Melone,5.20,51
-1,Lisa Lisa,50,Female,Jade Garden,Deep-fried Hiroshima Oysters,17.00,18
 1,Suzi Q.,N/A,Female,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,25
 1,Tomoko Higashikata,37,Female,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,30
 1,Iggy,N/A,Male,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,20
@@ -34,7 +33,6 @@ Day,Name,Age,Gender,Location,MenuItem,Price,Time
 1,Tonio Trussardi,29,Male,Savage Garden,DIO's Bread,36.14,23
 1,Toshikazu Hazamada,18,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,11
 1,Yukako Yamagishi,N/A,Female,Libeccio,Melone,5.20,48
-1,Yuya Fungami,N/A,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,26
 1,Akira Otoishi,19,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,51
 1,Anjuro Katagiri,34,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,08
 1,Keicho Nijimura,18,Male,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,14
@@ -60,7 +58,6 @@ Day,Name,Age,Gender,Location,MenuItem,Price,Time
 1,Melone,N/A,Male,Savage Garden,DIO's Bread,36.14,24
 1,Pesci,N/A,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,36
 1,Prosciutto,N/A,Male,Libeccio,Melone,5.20,05
-1,Risotto Nero,28,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,36
 1,Sale,N/A,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,60
 1,Secco,N/A,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,02
 1,Squalo,N/A,Male,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,28
@@ -95,7 +92,6 @@ Day,Name,Age,Gender,Location,MenuItem,Price,Time
 2,Vanilla Ice,N/A,Male,Cafe Deux Magots,White Asparagus,26.00,59
 2,Aya Tsuji,N/A,Female,Savage Garden,Kakyoin's Porridge,4.44,37
 2,Hayato Kawajiri,11,Male,Libeccio,Melone,5.20,36
-2,Koichi Hirose,15,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,13
 2,Mikitaka Hazekura,216,Male,Savage Garden,DIO's Bread,36.14,28
 2,Okuyasu Nijimura,15,Male,Savage Garden,Joseph's Tequila,35.00,31
 2,Reimi Sugimoto,16,Female,Jade Garden,Poached Tofu with Dried Shrimps,12.00,20
@@ -121,7 +117,6 @@ Day,Name,Age,Gender,Location,MenuItem,Price,Time
 2,Narancia Ghirga,17,Male,Cafe Deux Magots,White Asparagus,26.00,40
 2,Pannacotta Fugo,16,Male,Savage Garden,Kakyoin's Porridge,4.44,12
 2,Trish Una,15,Female,Libeccio,Melone,5.20,24
-2,Carne,N/A,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,02
 2,Cioccolata,34,Male,Savage Garden,DIO's Bread,36.14,14
 2,Diavolo,33,Male,Savage Garden,Joseph's Tequila,35.00,12
 2,Formaggio,N/A,Male,Jade Garden,Poached Tofu with Dried Shrimps,12.00,12
@@ -212,3 +207,8 @@ Day,Name,Age,Gender,Location,MenuItem,Price,Time
 3,Foo Fighters,22,Female,Cafe Deux Magots,Spring Organic Omelette,23.00,33
 3,Narciso Anasui,25,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,32
 3,Weather Report,39,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,41
+1,Yuya Fungami,N/A,Male,Jade Garden,Deep-fried Hiroshima Oysters,50.00,26
+2,Koichi Hirose,15,Male,Jade Garden,Deep-fried Hiroshima Oysters,50.00,13
+1,Lisa Lisa,50,Female,Jade Garden,Deep-fried Hiroshima Oysters,50.00,18
+2,Carne,N/A,Male,Jade Garden,Deep-fried Hiroshima Oysters,50.00,02
+1,Risotto Nero,28,Male,Jade Garden,Deep-fried Hiroshima Oysters,50.00,36

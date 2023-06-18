@@ -22,6 +22,7 @@ import DSTeam3.maps.locations.VineyardMenu;
 import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
 import DSTeam3.source.Joestars.*;
+import DSTeam3.source.MilagroMan.MilagroMan;
 import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.PearlJam;
 
@@ -36,6 +37,9 @@ public class GameInterface extends UserInterface{
     TheJoestars joestars = new TheJoestars();
     GoldenSpirit goldenSpirit = new GoldenSpirit();
     MoodyBlues moodyBlues = new MoodyBlues();
+    MilagroMan milagro = new MilagroMan();
+
+    static boolean alreadyGeneratedDefaultMilagro = false;
 
     /* Constructors */
     public GameInterface(){}
@@ -188,6 +192,18 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewTotalAvgSales();
     }
 
+    public boolean milagroManIsActive(){
+        return currentMenu.milagroManIsActive();
+    }
+
+    public boolean modifyFoodPrices(){
+        return currentMenu.modifyFoodPrices();
+    }
+
+    public boolean returnToMilagroMan(){
+        return currentMenu.returnToMilagroMan();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -286,8 +302,14 @@ public class GameInterface extends UserInterface{
             }
             if(viewSalesInfo()){
                 moodyBlues.setName(getCurrentLocation().getName());
-                moodyBlues.readFile();
-                currentMenu.setGreeting("Sales Information");
+                System.out.println("milagromanactive at salesinfo: " + milagroManIsActive());
+                moodyBlues.readFile(milagroManIsActive());
+                if(milagroManIsActive()){
+                    currentMenu.setGreeting("Sales Information (Milagro Man)");
+                }
+                else{
+                    currentMenu.setGreeting("Sales Information");
+                }
                 if(viewSales()){   
                     int day = Integer.parseInt(prompt("Enter day: "));
                     divider(70);
@@ -327,6 +349,38 @@ public class GameInterface extends UserInterface{
                 currentMenu.setViewTotalAvgSales(false);
                 currentMenu.setViewAggregated(false);
                 divider(70);
+            }
+            if(milagroManIsActive()){
+                milagro.setRestaurantName(getCurrentLocation().getName());
+                milagro.readFile();
+                if(!alreadyGeneratedDefaultMilagro){
+                    milagro.generateSaleEntries();
+                    alreadyGeneratedDefaultMilagro = true;
+                    System.out.println("Generating default entries for modified prices"); // debug
+                }
+                if(!viewSalesInfo()){
+                    currentMenu.setGreeting("Milagro Man Mode");
+                }
+                if(modifyFoodPrices()){
+                    milagro.promptModifyFoodPrice();
+                    milagro.generateSaleEntries();
+                    System.out.println("Generating modified entries for modified prices"); // debug
+                }
+            }
+            else{
+                alreadyGeneratedDefaultMilagro = false;
+                milagro.resetVar();
+            }
+            if(modifyFoodPrices() || returnToMilagroMan()){
+                if(!returnToMilagroMan()){
+                    divider(70);
+                }
+                currentMenu.setMilagroManMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
+                currentMenu.setModifyFoodPrices(false);
+                currentMenu.setReturnToMilagroMan(false);
+                currentMenu.setGreeting("Milagro Man Mode");
             }
 
             currentMenu.runDisplay();
