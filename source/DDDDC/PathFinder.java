@@ -1,4 +1,10 @@
-package DSTeam3.source.DDDDC;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ds_assignment;
+import java.util.*;
+//DIRTY DEEDS DONE CHEAP
 import java.util.*;
 
 public class PathFinder {
@@ -86,6 +92,7 @@ public class PathFinder {
         Location vineyard = new Location("Vineyard");
         Location savageGarden = new Location("Savage Garden");
         Location polnareffLand = new Location("Polnareff Land");
+        Location passioneRestaurant = new Location("Passione Restaurant");
 
         // Define all the locations and their connections here
         if(mapName.equals("Default Map")){
@@ -144,9 +151,75 @@ public class PathFinder {
         }
         else if(mapName.equals("Alternate Map")){
             // Define connections for locations in alternate map
+            townHall.addNeighbour(moriohGrand, 2);
+            townHall.addNeighbour(greenDolphin, 3);
+            townHall.addNeighbour(passioneRestaurant, 7);
+            
+            moriohGrand.addNeighbour(townHall, 2);
+            moriohGrand.addNeighbour(sanGiorgio, 3);
+            moriohGrand.addNeighbour(joestarMansion, 4);
+            moriohGrand.addNeighbour(greenDolphin, 2);
+
+            trattoriaTrussardi.addNeighbour(joestarMansion, 5);
+            trattoriaTrussardi.addNeighbour(greenDolphin, 4);
+            trattoriaTrussardi.addNeighbour(passioneRestaurant, 1);
+            
+            passioneRestaurant.addNeighbour(townHall , 7);
+            passioneRestaurant.addNeighbour(trattoriaTrussardi, 1);
+            passioneRestaurant.addNeighbour(angeloRock, 6);
+            passioneRestaurant.addNeighbour(dioMansion, 2);
+            passioneRestaurant.addNeighbour(cafeDeux, 4);
+
+            sanGiorgio.addNeighbour(savageGarden, 6);
+
+            jadeGarden.addNeighbour(angeloRock, 1);
+            jadeGarden.addNeighbour(polnareffLand, 2);
+            
+            cafeDeux.addNeighbour(passioneRestaurant , 4);
+            cafeDeux.addNeighbour(vineyard, 4);
+            cafeDeux.addNeighbour(dioMansion, 1);
+            
+            dioMansion.addNeighbour(passioneRestaurant, 2);
+            dioMansion.addNeighbour(cafeDeux, 1);
+            dioMansion.addNeighbour(polnareffLand, 2);
+            
+            vineyard.addNeighbour(cafeDeux,4);
+            vineyard.addNeighbour(savageGarden, 4);
+            
+            polnareffLand.addNeighbour(jadeGarden, 2);
+            polnareffLand.addNeighbour(dioMansion, 1);
+            polnareffLand.addNeighbour(angeloRock, 2);
         }
         else if(mapName.equals("Parallel Map")){
             // Define connections for locations in parallel map
+            townHall.addNeighbour(trattoriaTrussardi, 6);
+            townHall.addNeighbour(vineyard, 3);
+            townHall.addNeighbour(libeccio, 2);
+            townHall.addNeighbour(cafeDeux, 4);
+
+            moriohGrand.addNeighbour(joestarMansion, 4);
+            moriohGrand.addNeighbour(cafeDeux, 6);
+
+            trattoriaTrussardi.addNeighbour(joestarMansion, 5);
+            trattoriaTrussardi.addNeighbour(dioMansion, 4);
+            trattoriaTrussardi.addNeighbour(angeloRock, 3);
+
+            greenDolphin.addNeighbour(angeloRock, 8);
+            greenDolphin.addNeighbour(dioMansion, 6);
+
+            libeccio.addNeighbour(vineyard, 3);
+
+            sanGiorgio.addNeighbour(joestarMansion, 5);
+            sanGiorgio.addNeighbour(savageGarden, 6);
+
+            jadeGarden.addNeighbour(joestarMansion, 3);
+            jadeGarden.addNeighbour(cafeDeux, 3);
+            jadeGarden.addNeighbour(savageGarden, 4);
+
+            cafeDeux.addNeighbour(polnareffLand, 2);
+            cafeDeux.addNeighbour(savageGarden, 5);
+
+            dioMansion.addNeighbour(angeloRock, 1);
         }
 
         // Prompt the user for source and destination
@@ -178,3 +251,4 @@ public class PathFinder {
         }
     }
 }
+
