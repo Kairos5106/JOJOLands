@@ -65,14 +65,13 @@ public class MilagroMan {
     public static void generateSaleEntries(){
         // Scan arraylist for foodName and day. If found, make a copy of string array and modify prices
         for (String foodName: foodNameToChanges.keySet()) {
-            // Debug
             double price = Double.parseDouble(foodNameToChanges.get(foodName)[0]);
             int startDay = Integer.parseInt(foodNameToChanges.get(foodName)[1]);
             int endDay = Integer.parseInt(foodNameToChanges.get(foodName)[2]);
-            System.out.println("startDay="+startDay);
-            System.out.println("endDay="+endDay);
-            System.out.println("foodName="+foodName);
-            System.out.println("price="+price);
+            // System.out.println("startDay="+startDay); // Debug
+            // System.out.println("endDay="+endDay); // Debug
+            // System.out.println("foodName="+foodName); // Debug
+            // System.out.println("price="+price); // Debug
             for (int i = 0; i < saleEntries.size(); i++) {
                 String[] entry = saleEntries.get(i);
                 int dayOfEntry = Integer.parseInt(entry[0]);
