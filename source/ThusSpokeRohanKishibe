@@ -79,10 +79,9 @@ public class ThusSpokeRohanKishibe {
         return totalDistance;
     }
 
-    public static void main(String[] args) {
-        // Define all the locations and their connections here
+    public static void PathFinderMethod(String mapName) {
         Location townHall = new Location("Town Hall");
-        Location moriohGrand = new Location("Morioh Grand Hotel");
+        Location moriohGrand = new Location("Morioh Grand");
         Location trattoriaTrussardi = new Location("Trattoria Trussardi");
         Location greenDolphin = new Location("Green Dolphin");
         Location libeccio = new Location("Libeccio");
@@ -90,75 +89,141 @@ public class ThusSpokeRohanKishibe {
         Location jadeGarden = new Location("Jade Garden");
         Location cafeDeux = new Location("Cafe Deux Magots");
         Location joestarMansion = new Location("Joestar Mansion");
-        Location dioMansion = new Location("DIO's Mansion");
+        Location dioMansion = new Location("Dio Mansion");
         Location angeloRock = new Location("Angelo Rock");
         Location vineyard = new Location("Vineyard");
         Location savageGarden = new Location("Savage Garden");
         Location polnareffLand = new Location("Polnareff Land");
+        Location passioneRestaurant = new Location("Passione Restaurant");
+
+        // Define all the locations and their connections here
+        if(mapName.equals("Default Map")){
+            townHall.addNeighbour(moriohGrand, 5);
+            townHall.addNeighbour(jadeGarden, 5);
+            townHall.addNeighbour(cafeDeux, 4);
+    
+            moriohGrand.addNeighbour(townHall, 5);
+            moriohGrand.addNeighbour(jadeGarden, 3);
+            moriohGrand.addNeighbour(trattoriaTrussardi, 6);
+    
+            trattoriaTrussardi.addNeighbour(moriohGrand, 6);
+            trattoriaTrussardi.addNeighbour(sanGiorgio, 3);
+            trattoriaTrussardi.addNeighbour(greenDolphin, 6);
+    
+            greenDolphin.addNeighbour(trattoriaTrussardi, 6);
+            greenDolphin.addNeighbour(libeccio, 3);
+            greenDolphin.addNeighbour(angeloRock, 2);
+    
+            libeccio.addNeighbour(dioMansion, 2);
+            libeccio.addNeighbour(vineyard, 6);
+            libeccio.addNeighbour(joestarMansion, 6);
+            libeccio.addNeighbour(sanGiorgio, 4);
+    
+            sanGiorgio.addNeighbour(jadeGarden, 2);
+            sanGiorgio.addNeighbour(trattoriaTrussardi, 3);
+            sanGiorgio.addNeighbour(libeccio, 4);
+    
+            jadeGarden.addNeighbour(joestarMansion, 2);
+            jadeGarden.addNeighbour(cafeDeux, 3);
+            jadeGarden.addNeighbour(sanGiorgio, 2);
+            jadeGarden.addNeighbour(moriohGrand, 3);
+            jadeGarden.addNeighbour(townHall, 5);
+    
+            cafeDeux.addNeighbour(polnareffLand, 4);
+            cafeDeux.addNeighbour(savageGarden, 4);
+            cafeDeux.addNeighbour(jadeGarden, 3);
+    
+            joestarMansion.addNeighbour(savageGarden, 4);
+            joestarMansion.addNeighbour(vineyard, 3);
+            joestarMansion.addNeighbour(jadeGarden, 2);
+            joestarMansion.addNeighbour(libeccio, 6);
+    
+            dioMansion.addNeighbour(vineyard, 3);
+            dioMansion.addNeighbour(angeloRock, 3);
+            dioMansion.addNeighbour(libeccio, 2);
+    
+            vineyard.addNeighbour(savageGarden, 8);
+            vineyard.addNeighbour(joestarMansion, 3);
+            vineyard.addNeighbour(dioMansion, 3);
+    
+            savageGarden.addNeighbour(polnareffLand, 6);
+            savageGarden.addNeighbour(vineyard, 8);
+            savageGarden.addNeighbour(joestarMansion, 4);
+            savageGarden.addNeighbour(cafeDeux, 4);
+        }
+        else if(mapName.equals("Alternate Map")){
+            // Define connections for locations in alternate map
+            townHall.addNeighbour(moriohGrand, 2);
+            townHall.addNeighbour(greenDolphin, 3);
+            townHall.addNeighbour(passioneRestaurant, 7);
+            
+            moriohGrand.addNeighbour(townHall, 2);
+            moriohGrand.addNeighbour(sanGiorgio, 3);
+            moriohGrand.addNeighbour(joestarMansion, 4);
+            moriohGrand.addNeighbour(greenDolphin, 2);
+
+            trattoriaTrussardi.addNeighbour(joestarMansion, 5);
+            trattoriaTrussardi.addNeighbour(greenDolphin, 4);
+            trattoriaTrussardi.addNeighbour(passioneRestaurant, 1);
+            
+            passioneRestaurant.addNeighbour(townHall , 7);
+            passioneRestaurant.addNeighbour(trattoriaTrussardi, 1);
+            passioneRestaurant.addNeighbour(angeloRock, 6);
+            passioneRestaurant.addNeighbour(dioMansion, 2);
+            passioneRestaurant.addNeighbour(cafeDeux, 4);
+
+            sanGiorgio.addNeighbour(savageGarden, 6);
+
+            jadeGarden.addNeighbour(angeloRock, 1);
+            jadeGarden.addNeighbour(polnareffLand, 2);
+            
+            cafeDeux.addNeighbour(passioneRestaurant , 4);
+            cafeDeux.addNeighbour(vineyard, 4);
+            cafeDeux.addNeighbour(dioMansion, 1);
+            
+            dioMansion.addNeighbour(passioneRestaurant, 2);
+            dioMansion.addNeighbour(cafeDeux, 1);
+            dioMansion.addNeighbour(polnareffLand, 2);
+            
+            vineyard.addNeighbour(cafeDeux,4);
+            vineyard.addNeighbour(savageGarden, 4);
+            
+            polnareffLand.addNeighbour(jadeGarden, 2);
+            polnareffLand.addNeighbour(dioMansion, 1);
+            polnareffLand.addNeighbour(angeloRock, 2);
+        }
+        else if(mapName.equals("Parallel Map")){
+            // Define connections for locations in parallel map
+            townHall.addNeighbour(trattoriaTrussardi, 6);
+            townHall.addNeighbour(vineyard, 3);
+            townHall.addNeighbour(libeccio, 2);
+            townHall.addNeighbour(cafeDeux, 4);
+
+            moriohGrand.addNeighbour(joestarMansion, 4);
+            moriohGrand.addNeighbour(cafeDeux, 6);
+
+            trattoriaTrussardi.addNeighbour(joestarMansion, 5);
+            trattoriaTrussardi.addNeighbour(dioMansion, 4);
+            trattoriaTrussardi.addNeighbour(angeloRock, 3);
+
+            greenDolphin.addNeighbour(angeloRock, 8);
+            greenDolphin.addNeighbour(dioMansion, 6);
+
+            libeccio.addNeighbour(vineyard, 3);
+
+            sanGiorgio.addNeighbour(joestarMansion, 5);
+            sanGiorgio.addNeighbour(savageGarden, 6);
+
+            jadeGarden.addNeighbour(joestarMansion, 3);
+            jadeGarden.addNeighbour(cafeDeux, 3);
+            jadeGarden.addNeighbour(savageGarden, 4);
+
+            cafeDeux.addNeighbour(polnareffLand, 2);
+            cafeDeux.addNeighbour(savageGarden, 5);
+
+            dioMansion.addNeighbour(angeloRock, 1);
+        }
         
-        // Define the connections between locations
-        townHall.addNeighbour(moriohGrand, 5);
-        townHall.addNeighbour(jadeGarden, 5);
-        townHall.addNeighbour(cafeDeux, 4);
-
-        moriohGrand.addNeighbour(townHall, 5);
-        moriohGrand.addNeighbour(jadeGarden, 3);
-        moriohGrand.addNeighbour(trattoriaTrussardi, 6);
-
-        trattoriaTrussardi.addNeighbour(moriohGrand, 6);
-        trattoriaTrussardi.addNeighbour(sanGiorgio, 3);
-        trattoriaTrussardi.addNeighbour(greenDolphin, 6);
-
-        greenDolphin.addNeighbour(trattoriaTrussardi, 6);
-        greenDolphin.addNeighbour(libeccio, 3);
-        greenDolphin.addNeighbour(angeloRock, 2);
-
-        libeccio.addNeighbour(dioMansion, 2);
-        libeccio.addNeighbour(vineyard, 6);
-        libeccio.addNeighbour(joestarMansion, 6);
-        libeccio.addNeighbour(sanGiorgio, 4);
-        libeccio.addNeighbour(greenDolphin, 3);
-
-        sanGiorgio.addNeighbour(jadeGarden, 2);
-        sanGiorgio.addNeighbour(trattoriaTrussardi, 3);
-        sanGiorgio.addNeighbour(libeccio, 4);
-
-        jadeGarden.addNeighbour(joestarMansion, 2);
-        jadeGarden.addNeighbour(cafeDeux, 3);
-        jadeGarden.addNeighbour(sanGiorgio, 2);
-        jadeGarden.addNeighbour(moriohGrand, 3);
-        jadeGarden.addNeighbour(townHall, 5);
-
-        cafeDeux.addNeighbour(polnareffLand, 4);
-        cafeDeux.addNeighbour(savageGarden, 4);
-        cafeDeux.addNeighbour(jadeGarden, 3);
-        cafeDeux.addNeighbour(townHall, 4);
-
-        joestarMansion.addNeighbour(savageGarden, 4);
-        joestarMansion.addNeighbour(vineyard, 3);
-        joestarMansion.addNeighbour(jadeGarden, 2);
-        joestarMansion.addNeighbour(libeccio, 6);
-
-        dioMansion.addNeighbour(vineyard, 3);
-        dioMansion.addNeighbour(angeloRock, 3);
-        dioMansion.addNeighbour(libeccio, 2);
-        
-        angeloRock.addNeighbour(greenDolphin, 2);
-        angeloRock.addNeighbour(dioMansion, 3);
-
-        vineyard.addNeighbour(savageGarden, 8);
-        vineyard.addNeighbour(joestarMansion, 3);
-        vineyard.addNeighbour(dioMansion, 3);
-        vineyard.addNeighbour(libeccio, 6);
-
-        savageGarden.addNeighbour(polnareffLand, 6);
-        savageGarden.addNeighbour(vineyard, 8);
-        savageGarden.addNeighbour(joestarMansion, 4);
-        savageGarden.addNeighbour(cafeDeux, 4);
-        
-        polnareffLand.addNeighbour(cafeDeux, 4);
-        polnareffLand.addNeighbour(savageGarden, 6);
-
         // Prompt the user for locations to visit
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the locations: ");
