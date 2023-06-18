@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DSTeam3.source.DDDDC;
+
 import java.util.*;
 /**
  *
@@ -29,7 +30,7 @@ public class Location {
         return neighbours;
     }    
 
-    void addNeighbour(Location location, int distance) {
+    public void addNeighbour(Location location, int distance) {
        neighbours.add(new Neighbour(location, distance));
     }
 }

@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ds_assignment;
-import java.util.*;
+package DSTeam3.source;
 
-public class ThusSpokeRohanKishibe {
+import java.util.*;
+import DSTeam3.source.DDDDC.Location;
+import DSTeam3.source.DDDDC.Neighbour;
+
+public class ThusSpokeRohan {
     private static List<List<Location>> shortestPaths;
 
     public static void findShortestPaths(Location source, List<Location> destinations) {
