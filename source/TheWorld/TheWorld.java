@@ -32,6 +32,9 @@ public class TheWorld {
                 ArrayList<String> information = new ArrayList<>();
                 while(in.hasNextLine()){
                     String line = in.nextLine();
+                    if(line.equals("assignfood")){
+                        break;
+                    }
                     information.add(line.split("=")[1]);
                 }
                 gameStateToDetect = new GameState();
@@ -70,7 +73,26 @@ public class TheWorld {
             PrintWriter writer = new PrintWriter(new FileOutputStream(specificFilePath));
             writer.printf("mapName=%s\n", gameState.getMapName());
             writer.printf("dayCount=%d\n", gameState.getDayCount());
-            writer.printf("dateCreated=%s", gameState.getCurrentDateTimeStr()); // no newline at last line
+            writer.printf("dateCreated=%s\n", gameState.getCurrentDateTimeStr());
+
+            // AssignFood.csv starts from here
+            writer.println("assignfood");
+            for (String[] entry : gameState.getSaleEntries()) {
+                String day = entry[0];
+                String residentName = entry[1];
+                String age = entry[2];
+                String gender = entry[3];
+                String location = entry[4];
+                String menuItem = entry[5];
+                String price = entry[6];
+                String time = entry[7];
+                if(gameState.getSaleEntries().indexOf(entry) != gameState.getSaleEntries().size() - 1){
+                     writer.printf("%s,%s,%s,%s,%s,%s,%s,%s\n", day, residentName, age, gender, location, menuItem, price, time);
+                }
+                else{
+                    writer.printf("%s,%s,%s,%s,%s,%s,%s,%s", day, residentName, age, gender, location, menuItem, price, time);
+                }
+            }
             writer.close();
         }catch(IOException e){
             e.printStackTrace();

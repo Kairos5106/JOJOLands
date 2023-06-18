@@ -272,7 +272,7 @@ public class GameInterface extends UserInterface{
             setMap(gameState.getMapName());
             setDayCount(gameState.getDayCount());
             time.setDayOfWeek(gameState.getDayCount());
-            loadingSaveFile = false;
+            joestars.setDay(gameState.getDayCount());
             System.out.println("Loading into " + gameState.getMapName() + " on Day " + gameState.getDayCount() + " ...");
         }
         map.defineLocations();
@@ -280,7 +280,13 @@ public class GameInterface extends UserInterface{
         setCurrentMenu(getCurrentMenu());
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
-        joestars.assignFoodToResidents();
+        if(loadingSaveFile){
+            loadingSaveFile = false;
+            gameState.loadFoodFile();
+        }
+        else{
+            joestars.assignFoodToResidents();
+        }
         gameState.setMapName(getMap().getMapName());
         String input = "";
         divider(70);
@@ -325,6 +331,8 @@ public class GameInterface extends UserInterface{
             if(createSaveFile()){
                 gameState.setCurrentDateTimeToNow();
                 gameState.setDayCount(time.getDayCount());
+                milagro.readFile();
+                gameState.setSaleEntries(milagro.getSaleEntries());
                 world.saveGame(gameState);
                 currentMenu.setCreateSaveFile(false);
                 currentMenu.setReturnToFrontPage(true);
