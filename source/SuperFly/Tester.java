@@ -27,32 +27,32 @@ public class Tester {
         // Test RedHotChiliPepper with DefaultMap
         RedHotChiliPepper redHotChiliPepper1 = new RedHotChiliPepper(defaultMap);
         int minimumLength1 = redHotChiliPepper1.findMinimumLength();
-        System.out.println("DefaultMap - Total Length: " + minimumLength1 + " km");
+        System.out.println("DefaultMap - Total Length: " + minimumLength1 + " km\n");
 
         // Test RedHotChiliPepper with AlternateMap
         RedHotChiliPepper redHotChiliPepper2 = new RedHotChiliPepper(alternateMap);
         int minimumLength2 = redHotChiliPepper2.findMinimumLength();
-        System.out.println("AlternateMap - Total Length: " + minimumLength2 + " km");
+        System.out.println("AlternateMap - Total Length: " + minimumLength2 + " km\n");
 
         // Test RedHotChiliPepper with ParallelMap
         RedHotChiliPepper redHotChiliPepper3 = new RedHotChiliPepper(parallelMap);
         int minimumLength3 = redHotChiliPepper3.findMinimumLength();
-        System.out.println("ParallelMap - Total Length: " + minimumLength3 + " km");
+        System.out.println("ParallelMap - Total Length: " + minimumLength3 + " km\n");
 
         // Test TheHand with DefaultMap
         TheHand theHand1 = new TheHand(defaultMap);
         int totalRemovedConnections1 = theHand1.findTotalRemovedConnections();
-        System.out.println("DefaultMap - Total Removed Connections: " + totalRemovedConnections1);
+        System.out.println("DefaultMap - Total Removed Connections: " + totalRemovedConnections1 + "\n");
 
         // Test TheHand with AlternateMap
         TheHand theHand2 = new TheHand(alternateMap);
         int totalRemovedConnections2 = theHand2.findTotalRemovedConnections();
-        System.out.println("AlternateMap - Total Removed Connections: " + totalRemovedConnections2);
+        System.out.println("AlternateMap - Total Removed Connections: " + totalRemovedConnections2 + "\n");
 
         // Test TheHand with ParallelMap
         TheHand theHand3 = new TheHand(parallelMap);
         int totalRemovedConnections3 = theHand3.findTotalRemovedConnections();
-        System.out.println("ParallelMap - Total Removed Connections: " + totalRemovedConnections3);
+        System.out.println("ParallelMap - Total Removed Connections: " + totalRemovedConnections3 + "\n");
     }
 }
 

@@ -18,13 +18,15 @@ public class AngeloRockMenu extends Menu {
         viewResident.addSuboptions("Sort");
         viewResident.addSuboptions("Exit");
 
+        Option redHot = new Option("Red Hot Chilli Pepper");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewResident, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, redHot, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -81,6 +83,10 @@ public class AngeloRockMenu extends Menu {
                 break;
             case "View resident profile":
                 setViewResidentProfile(true);
+                break;
+            case "Red Hot Chilli Pepper":
+                setViewRedHotChilliPepper(true);
+                setReturnToFrontPage(true);
                 break;
         }
         return null;
