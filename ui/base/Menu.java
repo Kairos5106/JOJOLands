@@ -45,6 +45,7 @@ public class Menu{
     boolean viewTheHand = false;
     boolean createSaveFile = false;
     boolean loadSaveFile = false;
+    boolean viewRohan = false;
 
     /* Constructors */
     public Menu(){
@@ -434,6 +435,14 @@ public class Menu{
         return this.loadSaveFile;
     }
 
+    public void setViewRohan(boolean setting){
+        this.viewRohan = setting;
+    }
+
+    public boolean viewRohan(){
+        return this.viewRohan;
+    }
+    
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
