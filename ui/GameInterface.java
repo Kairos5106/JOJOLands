@@ -1,5 +1,8 @@
 package DSTeam3.ui;
 
+import DSTeam3.maps.AlternateMap;
+import DSTeam3.maps.DefaultMap;
+import DSTeam3.maps.ParallelMap;
 import DSTeam3.maps.base.*;
 import DSTeam3.ui.base.Menu;
 import DSTeam3.ui.base.Option;
@@ -44,26 +47,39 @@ public class GameInterface extends UserInterface{
     TheWorld world = new TheWorld();
     GameState gameState = new GameState();
 
+    boolean loadingSaveFile = false;
     static boolean alreadyGeneratedDefaultMilagro = false;
 
     /* Constructors */
     public GameInterface(GameState gameStateToLoad){
-        
+        this.gameState = gameStateToLoad;
+        loadingSaveFile = true;
     }
 
     public GameInterface(Map map){
         this.map = map;
     }
 
-    public GameInterface(Map map, Menu menu){
-        this.map = map;
-        this.currentMenu = menu;
-    }
-
     /* ****************** Method A: Getter and setter methods ****************** */
+
+    public void setDayCount(int dayCount){
+        time.setDayCount(dayCount);
+    }
 
     public String getDayInfo(){
         return time.dayInfo();
+    }
+
+    public void setMap(String mapName){
+        if(mapName.equalsIgnoreCase("Default Map")){
+            this.map = new DefaultMap();
+        }
+        else if(mapName.equalsIgnoreCase("Alternate Map")){
+            this.map = new AlternateMap();
+        }
+        else{
+            this.map = new ParallelMap();
+        }
     }
 
     public Map getMap(){
@@ -238,6 +254,13 @@ public class GameInterface extends UserInterface{
 
     @Override
     public void initiate(){
+        if(loadingSaveFile){
+            setMap(gameState.getMapName());
+            setDayCount(gameState.getDayCount());
+            time.setDayOfWeek(gameState.getDayCount());
+            loadingSaveFile = false;
+            System.out.println("Loading into " + gameState.getMapName() + " on Day " + gameState.getDayCount() + " ...");
+        }
         map.defineLocations();
         presetListOfMenus();
         setCurrentMenu(getCurrentMenu());
@@ -477,7 +500,6 @@ public class GameInterface extends UserInterface{
                 currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
-                
                 if(hasForwardLocation()){
                     currentMenu.setHasForwardAdded(false);
                 }
@@ -544,5 +566,13 @@ class Clock{
 
     public int getDayCount(){
         return this.dayCount;
+    }
+
+    public void setDayCount(int dayCount){
+        this.dayCount = dayCount;
+    }
+
+    public void setDayOfWeek(int dayCount){
+        this.dayOfWeek = dayCount % 7;
     }
 }

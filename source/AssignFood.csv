@@ -1,72 +1,72 @@
 Day,Name,Age,Gender,Location,MenuItem,Price,Time
-1,Erina Pendleton,70,Female,Jade Garden,Scrambled Egg White with Milk,10.00,17
-1,George Joestar II,32,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,54
-1,Giorno Giovanna,15,Male,Savage Garden,Joseph's Tequila,35.00,56
-1,Holy Kujo,45,Female,Libeccio,Formaggio,12.50,03
-1,Jolyne Cujoh,19,Female,Savage Garden,Kakyoin's Porridge,4.44,46
-1,Jonathan Joestar,20,Male,Libeccio,Ghiaccio,1.01,18
-1,Joseph Joestar,18,Male,Libeccio,Prosciutto and Pesci,20.23,16
-1,Josuke Higashikata,16,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,53
-1,Jotaro Kujo,17,Male,Trattoria Trussardi,Caprese Salad,10.00,33
-1,Lisa Lisa,50,Female,Libeccio,Melone,5.20,24
-1,Suzi Q.,N/A,Female,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,48
-1,Tomoko Higashikata,37,Female,Savage Garden,Kakyoin's Cherry,3.50,06
-1,Iggy,N/A,Male,Libeccio,Risotto,13.14,24
-1,Jean Pierre Polnareff,24,Male,Jade Garden,Poached Tofu with Dried Shrimps,12.00,21
-1,Muhammad Avdol,29,Male,Savage Garden,Giorno's Donuts,6.66,16
-1,Noriaki Kakyoin,17,Male,Cafe Deux Magots,White Asparagus,26.00,44
-1,DIO,121,Male,Cafe Deux Magots,Spring Organic Omelette,23.00,34
-1,Donatello Versus,25,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,44
-1,Enrico Pucci,39,Male,Trattoria Trussardi,Creme Caramel,6.50,47
-1,Enya the Hag,N/A,Female,Savage Garden,DIO's Bread,36.14,22
-1,Rikiel,24,Male,Cafe Deux Magots,Spring Lobster Salad,35.00,03
-1,Ungalo,24,Male,Jade Garden,Braised Goose Web with Vermicelli,21.00,26
-1,Vanilla Ice,N/A,Male,Savage Garden,Abbacchio's Tea,1.00,23
-1,Aya Tsuji,N/A,Female,Libeccio,Zucchero and Sale,0.60,06
-1,Hayato Kawajiri,11,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,33
-1,Koichi Hirose,15,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,32
-1,Mikitaka Hazekura,216,Male,Jade Garden,Scrambled Egg White with Milk,10.00,41
-1,Okuyasu Nijimura,15,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,51
-1,Reimi Sugimoto,16,Female,Savage Garden,Joseph's Tequila,35.00,15
-1,Rohan Kishibe,20,Male,Libeccio,Formaggio,12.50,22
-1,Shigekiyo Yangu,14,Male,Savage Garden,Kakyoin's Porridge,4.44,51
-1,Tamami Kobayashi,20,Male,Libeccio,Ghiaccio,1.01,38
-1,Tonio Trussardi,29,Male,Libeccio,Prosciutto and Pesci,20.23,16
-1,Toshikazu Hazamada,18,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,17
-1,Yukako Yamagishi,N/A,Female,Trattoria Trussardi,Caprese Salad,10.00,17
-1,Yuya Fungami,N/A,Male,Libeccio,Melone,5.20,15
-1,Akira Otoishi,19,Male,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,39
-1,Anjuro Katagiri,34,Male,Savage Garden,Kakyoin's Cherry,3.50,51
-1,Keicho Nijimura,18,Male,Libeccio,Risotto,13.14,18
-1,Ken Oyanagi,11,Male,Jade Garden,Poached Tofu with Dried Shrimps,12.00,26
-1,Masazo Kinoto,29,Male,Savage Garden,Giorno's Donuts,6.66,51
-1,Terunosuke Miyamoto,N/A,Male,Cafe Deux Magots,White Asparagus,26.00,41
-1,Toyohiro Kanedaichi,N/A,Male,Cafe Deux Magots,Spring Organic Omelette,23.00,44
-1,Yoshihiro Kira,N/A,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,38
-1,Yoshikage Kira,33,Male,Trattoria Trussardi,Creme Caramel,6.50,39
-1,Bruno Bucciarati,20,Male,Savage Garden,DIO's Bread,36.14,28
-1,Guido Mista,18,Male,Cafe Deux Magots,Spring Lobster Salad,35.00,41
-1,Leone Abbacchio,21,Male,Jade Garden,Braised Goose Web with Vermicelli,21.00,30
-1,Narancia Ghirga,17,Male,Savage Garden,Abbacchio's Tea,1.00,19
-1,Pannacotta Fugo,16,Male,Libeccio,Zucchero and Sale,0.60,00
-1,Trish Una,15,Female,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,29
-1,Carne,N/A,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,54
-1,Cioccolata,34,Male,Jade Garden,Scrambled Egg White with Milk,10.00,11
-1,Diavolo,33,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,51
-1,Formaggio,N/A,Male,Savage Garden,Joseph's Tequila,35.00,59
-1,Ghiaccio,N/A,Male,Libeccio,Formaggio,12.50,00
-1,Illuso,N/A,Male,Savage Garden,Kakyoin's Porridge,4.44,09
-1,Mario Zucchero,24,Male,Libeccio,Ghiaccio,1.01,52
-1,Melone,N/A,Male,Libeccio,Prosciutto and Pesci,20.23,27
-1,Pesci,N/A,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,17
-1,Prosciutto,N/A,Male,Trattoria Trussardi,Caprese Salad,10.00,60
-1,Risotto Nero,28,Male,Libeccio,Melone,5.20,54
-1,Sale,N/A,Male,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,50
-1,Secco,N/A,Male,Savage Garden,Kakyoin's Cherry,3.50,08
-1,Squalo,N/A,Male,Libeccio,Risotto,13.14,27
-1,Tizzano,N/A,Male,Jade Garden,Poached Tofu with Dried Shrimps,12.00,39
-1,Emporio Alnino,11,Male,Savage Garden,Giorno's Donuts,6.66,49
-1,Ermes Costello,21,Female,Cafe Deux Magots,White Asparagus,26.00,16
-1,Foo Fighters,22,Female,Cafe Deux Magots,Spring Organic Omelette,23.00,59
-1,Narciso Anasui,25,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,53
-1,Weather Report,39,Male,Trattoria Trussardi,Creme Caramel,6.50,29
+1,Erina Pendleton,70,Female,Savage Garden,Kakyoin's Porridge,4.44,36
+1,George Joestar II,32,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,39
+1,Giorno Giovanna,15,Male,Savage Garden,Abbacchio's Tea,1.00,55
+1,Holy Kujo,45,Female,Libeccio,Prosciutto and Pesci,20.23,09
+1,Jolyne Cujoh,19,Female,Cafe Deux Magots,White Asparagus,26.00,34
+1,Jonathan Joestar,20,Male,Libeccio,Ghiaccio,1.01,07
+1,Joseph Joestar,18,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,22
+1,Josuke Higashikata,16,Male,Jade Garden,Braised Goose Web with Vermicelli,21.00,58
+1,Jotaro Kujo,17,Male,Libeccio,Formaggio,12.50,18
+1,Lisa Lisa,50,Female,Savage Garden,Kakyoin's Cherry,3.50,23
+1,Suzi Q.,N/A,Female,Libeccio,Melone,5.20,48
+1,Tomoko Higashikata,37,Female,Savage Garden,DIO's Bread,36.14,18
+1,Iggy,N/A,Male,Jade Garden,Scrambled Egg White with Milk,10.00,30
+1,Jean Pierre Polnareff,24,Male,Trattoria Trussardi,Creme Caramel,6.50,34
+1,Muhammad Avdol,29,Male,Cafe Deux Magots,Spring Lobster Salad,35.00,14
+1,Noriaki Kakyoin,17,Male,Savage Garden,Giorno's Donuts,6.66,32
+1,DIO,121,Male,Jade Garden,Poached Tofu with Dried Shrimps,12.00,03
+1,Donatello Versus,25,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,43
+1,Enrico Pucci,39,Male,Savage Garden,Joseph's Tequila,35.00,44
+1,Enya the Hag,N/A,Female,Libeccio,Risotto,13.14,28
+1,Rikiel,24,Male,Cafe Deux Magots,Spring Organic Omelette,23.00,40
+1,Ungalo,24,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,17
+1,Vanilla Ice,N/A,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,21
+1,Aya Tsuji,N/A,Female,Trattoria Trussardi,Caprese Salad,10.00,47
+1,Hayato Kawajiri,11,Male,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,51
+1,Koichi Hirose,15,Male,Libeccio,Zucchero and Sale,0.60,40
+1,Mikitaka Hazekura,216,Male,Savage Garden,Kakyoin's Porridge,4.44,19
+1,Okuyasu Nijimura,15,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,16
+1,Reimi Sugimoto,16,Female,Savage Garden,Abbacchio's Tea,1.00,05
+1,Rohan Kishibe,20,Male,Libeccio,Prosciutto and Pesci,20.23,21
+1,Shigekiyo Yangu,14,Male,Cafe Deux Magots,White Asparagus,26.00,42
+1,Tamami Kobayashi,20,Male,Libeccio,Ghiaccio,1.01,58
+1,Tonio Trussardi,29,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,57
+1,Toshikazu Hazamada,18,Male,Jade Garden,Braised Goose Web with Vermicelli,21.00,05
+1,Yukako Yamagishi,N/A,Female,Libeccio,Formaggio,12.50,47
+1,Yuya Fungami,N/A,Male,Savage Garden,Kakyoin's Cherry,3.50,31
+1,Akira Otoishi,19,Male,Libeccio,Melone,5.20,50
+1,Anjuro Katagiri,34,Male,Savage Garden,DIO's Bread,36.14,16
+1,Keicho Nijimura,18,Male,Jade Garden,Scrambled Egg White with Milk,10.00,23
+1,Ken Oyanagi,11,Male,Trattoria Trussardi,Creme Caramel,6.50,35
+1,Masazo Kinoto,29,Male,Cafe Deux Magots,Spring Lobster Salad,35.00,33
+1,Terunosuke Miyamoto,N/A,Male,Savage Garden,Giorno's Donuts,6.66,59
+1,Toyohiro Kanedaichi,N/A,Male,Jade Garden,Poached Tofu with Dried Shrimps,12.00,00
+1,Yoshihiro Kira,N/A,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,23
+1,Yoshikage Kira,33,Male,Savage Garden,Joseph's Tequila,35.00,21
+1,Bruno Bucciarati,20,Male,Libeccio,Risotto,13.14,18
+1,Guido Mista,18,Male,Cafe Deux Magots,Spring Organic Omelette,23.00,44
+1,Leone Abbacchio,21,Male,Cafe Deux Magots,Truffle-flavoured Poultry Supreme,34.00,23
+1,Narancia Ghirga,17,Male,Jade Garden,Deep-fried Hiroshima Oysters,17.00,05
+1,Pannacotta Fugo,16,Male,Trattoria Trussardi,Caprese Salad,10.00,34
+1,Trish Una,15,Female,Cafe Deux Magots,Sampling Matured Cheese Platter,23.00,13
+1,Carne,N/A,Male,Libeccio,Zucchero and Sale,0.60,48
+1,Cioccolata,34,Male,Savage Garden,Kakyoin's Porridge,4.44,47
+1,Diavolo,33,Male,Trattoria Trussardi,Spaghetti alla Puttanesca,15.00,43
+1,Formaggio,N/A,Male,Savage Garden,Abbacchio's Tea,1.00,58
+1,Ghiaccio,N/A,Male,Libeccio,Prosciutto and Pesci,20.23,41
+1,Illuso,N/A,Male,Cafe Deux Magots,White Asparagus,26.00,34
+1,Mario Zucchero,24,Male,Libeccio,Ghiaccio,1.01,36
+1,Melone,N/A,Male,Jade Garden,Braised Chicken in Black Bean Sauce,15.00,17
+1,Pesci,N/A,Male,Jade Garden,Braised Goose Web with Vermicelli,21.00,53
+1,Prosciutto,N/A,Male,Libeccio,Formaggio,12.50,34
+1,Risotto Nero,28,Male,Savage Garden,Kakyoin's Cherry,3.50,49
+1,Sale,N/A,Male,Libeccio,Melone,5.20,60
+1,Secco,N/A,Male,Savage Garden,DIO's Bread,36.14,09
+1,Squalo,N/A,Male,Jade Garden,Scrambled Egg White with Milk,10.00,35
+1,Tizzano,N/A,Male,Trattoria Trussardi,Creme Caramel,6.50,45
+1,Emporio Alnino,11,Male,Cafe Deux Magots,Spring Lobster Salad,35.00,03
+1,Ermes Costello,21,Female,Savage Garden,Giorno's Donuts,6.66,59
+1,Foo Fighters,22,Female,Jade Garden,Poached Tofu with Dried Shrimps,12.00,53
+1,Narciso Anasui,25,Male,Trattoria Trussardi,Lamb Chops with Apple Sauce,25.00,08
+1,Weather Report,39,Male,Savage Garden,Joseph's Tequila,35.00,15

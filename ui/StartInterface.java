@@ -50,6 +50,7 @@ public class StartInterface extends UserInterface{
                 world.detectAvailableSaveFiles();
                 world.displayAvailableSaveFiles();
                 world.promptSaveFile();
+                divider(70);
             }
         }
     }

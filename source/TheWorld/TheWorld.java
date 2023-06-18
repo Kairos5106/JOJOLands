@@ -14,7 +14,7 @@ public class TheWorld {
     static HashMap<Integer, GameState> availableSaveFiles = new HashMap<>();
     static String filePath = "DSTeam3\\source\\TheWorld\\saves\\saveFile_"; // to append save file name at the end
     static String filePathToLoad = "";
-    static GameState gameStateToLoad = null;
+    static GameState gameStateToLoad = new GameState();
 
     public TheWorld(){
         detectAvailableSaveFiles();
@@ -84,7 +84,6 @@ public class TheWorld {
         Scanner in = new Scanner(System.in);
         int saveFileIndex = in.nextInt();
         filePathToLoad = filePath + String.format("%d", saveFileIndex);
-        in.close();
         gameStateToLoad.loadSaveFile(filePathToLoad);
     }
 
