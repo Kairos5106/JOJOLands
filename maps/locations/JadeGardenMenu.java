@@ -7,6 +7,9 @@ public class JadeGardenMenu extends Menu {
         this.setLocationName("Jade Garden");
     }
 
+    public static void main(String[] args) {
+    }
+
     /* Purpose: Defines the options for the menu */
     @Override
     public void defineOptions(){        
@@ -17,9 +20,26 @@ public class JadeGardenMenu extends Menu {
 
         Option viewMenu = new Option("View menu");
 
+        // Options for view sales information - start
         Option viewSales = new Option("View sales information");
         
+        Option viewAggregated = new Option("View aggregated information");
+        viewAggregated.addSuboptions("Minimum sales");
+        viewAggregated.addSuboptions("Maximum sales");
+        viewAggregated.addSuboptions("Top k highest sales");
+        viewAggregated.addSuboptions("Total and average sales");
+
+        viewSales.addSuboptions("View sales");
+        viewSales.addSuboptions(viewAggregated);
+        viewSales.addSuboptions("Exit");
+        // Options for view sales information - end
+
+        // Options for milagro man - start
         Option milagroMan = new Option("Milagro Man");
+        milagroMan.addSuboptions("Modify food prices");
+        milagroMan.addSuboptions(viewSales);
+        milagroMan.addSuboptions("Exit Milagro Man");
+        // Options for milagro man - end
 
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
@@ -84,6 +104,46 @@ public class JadeGardenMenu extends Menu {
                 break;
             case "View waiting list and order processing list":
                 setViewPearlJamList(true);
+                break;
+            case "View sales information":
+                setViewSalesInfo(true);
+                break;
+            case "View sales":
+                setViewSales(true);
+                break;
+            case "View aggregated information":
+                setViewAggregated(true);
+                break;
+            case "Minimum sales":
+                setViewMinSales(true);
+                break;
+            case "Maximum sales":
+                setViewMaxSales(true);
+                break;
+            case "Top k highest sales":
+                setViewTopK(true);
+                break;
+            case "Total and average sales":
+                setViewTotalAvgSales(true);
+                break;
+            case "Exit":
+                if(milagroManIsActive()){
+                    setReturnToMilagroMan(true);
+                }
+                else{
+                    setReturnToFrontPage(true);
+                }
+                setViewSalesInfo(false);
+                break;
+            case "Milagro Man":
+                setMilagroMan(true);
+                break;
+            case "Modify food prices":
+                setModifyFoodPrices(true);
+                break;
+            case "Exit Milagro Man":
+                setMilagroMan(false);
+                setReturnToFrontPage(true);
                 break;
         }
         return "";

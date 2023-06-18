@@ -18,13 +18,15 @@ public class GreenDolphinMenu extends Menu {
         viewResident.addSuboptions("Sort");
         viewResident.addSuboptions("Exit");
     
+        Option ddddc = new Option("Dirty Deeds Done Dirt Cheap");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewResident, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, ddddc, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -69,6 +71,9 @@ public class GreenDolphinMenu extends Menu {
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "Dirty Deeds Done Dirt Cheap":
+                setInitialiseDDDDC(true);
                 break;
             case "View resident information":
                 setViewResidentInfo(true);

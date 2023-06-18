@@ -21,11 +21,11 @@ public class JadeGardenRestaurant extends PearlJam{
         int backIndex = waitingListCopy.size() - 1;
 
         while(!waitingListCopy.isEmpty()){
-            if(!waitingListCopy.isEmpty()){
+            if(!waitingListCopy.isEmpty()){ // get current first customer
                 orderProcessingList.add(waitingListCopy.remove(frontIndex));
-                backIndex--;
+                backIndex--; // decrement in size after remove
             }
-            if(!waitingListCopy.isEmpty()){
+            if(!waitingListCopy.isEmpty()){ // get current last customer
                 orderProcessingList.add(waitingListCopy.remove(backIndex--));
             }
         }

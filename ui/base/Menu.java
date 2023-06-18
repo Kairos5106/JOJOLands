@@ -23,6 +23,7 @@ public class Menu{
     boolean returnToFrontPage = false;
     boolean moveTownHall = false;
     boolean wantMoveForward = false;
+    boolean initialiseDDDDC = false;
     boolean hasForwardAdded = false;
     boolean viewResidentInfo = false;
     boolean sortResidentInfo = false;
@@ -30,6 +31,20 @@ public class Menu{
     boolean initialiseGoldenSpirit = false;
     boolean viewFoodMenu = false;
     boolean viewPearlJamList = false;
+    boolean viewSalesInfo = false;
+    boolean viewSales = false;
+    boolean viewAggregated = false;
+    boolean viewMinSales = false;
+    boolean viewMaxSales = false;
+    boolean viewTopK = false;
+    boolean viewTotalAvgSales = false;
+    boolean milagroMan = false;
+    boolean modifyFoodPrices = false;
+    boolean returnToMilagroMan = false;
+    boolean viewRedHotChilliPepper = false;
+    boolean viewTheHand = false;
+    boolean createSaveFile = false;
+    boolean loadSaveFile = false;
 
     /* Constructors */
     public Menu(){
@@ -45,7 +60,6 @@ public class Menu{
         this.greeting = greeting;
         this.locationName = locationName; // set to null if not used
     }
-
     public Menu(String greeting, String locationName, String currentMapName){
         this.greeting = greeting;
         this.locationName = locationName;
@@ -235,6 +249,14 @@ public class Menu{
         return this.wantMoveForward;
     }
 
+    public void setInitialiseDDDDC(boolean setting){
+        this.initialiseDDDDC = setting;
+    }
+
+    public boolean initialiseDDDDC(){
+        return this.initialiseDDDDC;
+    }
+
     public void setCurrentMapName(String currentMapName){
         this.currentMapName = currentMapName;
     }
@@ -300,6 +322,118 @@ public class Menu{
         return this.viewPearlJamList;
     }
 
+    public void setViewSalesInfo(boolean setting){
+        this.viewSalesInfo = setting;
+    }
+
+    public boolean viewSalesInfo(){
+        return this.viewSalesInfo;
+    }
+
+    public void setViewSales(boolean setting){
+        this.viewSales = setting;
+    }
+
+    public boolean viewSales(){
+        return this.viewSales;
+    }
+
+    public void setViewAggregated(boolean setting){
+        this.viewAggregated = setting;
+    }
+
+    public boolean viewAggregated(){
+        return this.viewAggregated;
+    }
+
+    public void setViewMinSales(boolean setting){
+        this.viewMinSales = setting;
+    }
+
+    public boolean viewMinSales(){
+        return this.viewMinSales;
+    }
+
+    public void setViewMaxSales(boolean setting){
+        this.viewMaxSales = setting;
+    }
+
+    public boolean viewMaxSales(){
+        return this.viewMaxSales;
+    }
+
+    public void setViewTopK(boolean setting){
+        this.viewTopK = setting;
+    }
+
+    public boolean viewTopK(){
+        return this.viewTopK;
+    }
+
+    public void setViewTotalAvgSales(boolean setting){
+        this.viewTotalAvgSales = setting;
+    }
+
+    public boolean viewTotalAvgSales(){
+        return this.viewTotalAvgSales;
+    }
+
+    public void setMilagroMan(boolean setting){
+        this.milagroMan = setting;
+    }
+
+    public boolean milagroManIsActive(){
+        return this.milagroMan;
+    }
+
+    public void setModifyFoodPrices(boolean setting){
+        this.modifyFoodPrices = setting;
+    }
+
+    public boolean modifyFoodPrices(){
+        return this.modifyFoodPrices;
+    }
+
+    public void setReturnToMilagroMan(boolean setting){
+        this.returnToMilagroMan = setting;
+    }
+
+    public boolean returnToMilagroMan(){
+        return this.returnToMilagroMan;
+    }
+    
+    public void setViewRedHotChilliPepper(boolean setting){
+        this.viewRedHotChilliPepper = setting;
+    }
+
+    public boolean viewRedHotChilliPepper(){
+        return this.viewRedHotChilliPepper;
+    }
+
+    public void setViewTheHand(boolean setting){
+        this.viewTheHand = setting;
+    }
+
+    public boolean viewTheHand(){
+        return this.viewTheHand;
+    }
+
+    public void setCreateSaveFile(boolean setting){
+        this.createSaveFile = setting;
+    }
+
+    public boolean createSaveFile(){
+        return this.createSaveFile;
+    }
+
+    public void setLoadSaveFile(boolean setting){
+        this.loadSaveFile = setting;
+    }
+    
+    public boolean loadSaveFile(){
+        return this.loadSaveFile;
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
@@ -348,7 +482,25 @@ public class Menu{
 
     public void setNewDayGreeting(String newDayGreeting){}
 
+    // Make sure the option to view resident info is at index = 1 (2nd option) at every relevant location
     public void setViewResidentMenu(){
-        setCurrentOption(1, true); // Make sure the option to view resident info is at index = 1 at every relevant location
+        setCurrentOption(1, true); 
+    }
+
+    // Make sure the option to view resident info is at index = 3 (4th option) at every restaurant
+    public void setViewSalesMenu(){
+        setCurrentOption(3, true);
+    }
+
+    // Make sure the option to view resident info is at index = 4 (5th option) at every restaurant
+    public void setMilagroManMenu(){
+        setCurrentOption(4, true);
+    }
+
+    // Resets the selected suboptions for the current option
+    public void resetSelectedOptions(){
+        for (int i = 0; i < getCurrentOption().getSuboptionsCount(); i++) {
+            getCurrentOption().setSelected(i, false);
+        }
     }
 }
