@@ -159,7 +159,7 @@ public class GameInterface extends UserInterface{
                 currentMenu.setOpenMoveLocationsMenu(false);
             }
             if(initialiseDDDDC()){
-                PathFinder.PathFinderMethod();
+                PathFinder.PathFinderMethod(getMap().getMapName());
                 currentMenu.setInitialiseDDDDC(false);
                 currentMenu.setReturnToFrontPage(true);
             }
