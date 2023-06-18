@@ -35,7 +35,6 @@ public class StartMenu extends Menu{
         start.addSuboptions("Alternate Map");
         
         Option load = new Option("Load Game");
-        load.addSuboptions("Not developed yet");
         
         Option exit = new Option("Exit");
 
@@ -65,8 +64,8 @@ public class StartMenu extends Menu{
                 setExitInterface(true);
                 break;
             case "Load Game":
-                setGreeting("Enter the path of your save file");
-                System.out.println("Not developed yet");
+                setLoadSaveFile(true);
+                setExitInterface(true);
                 break;
             case "Exit":
                 setExitInterface(true);

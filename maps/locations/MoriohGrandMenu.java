@@ -18,7 +18,7 @@ public class MoriohGrandMenu extends Menu {
         viewResident.addSuboptions("Sort");
         viewResident.addSuboptions("Exit");
 
-        Option theHand = new Option("The Hand"); // havent developed
+        Option theHand = new Option("The Hand");
 
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
@@ -86,6 +86,10 @@ public class MoriohGrandMenu extends Menu {
                 break;
             case "View resident profile":
                 setViewResidentProfile(true);
+                break;
+            case "The Hand":
+                setViewTheHand(true);
+                setReturnToFrontPage(true);
                 break;
         }
         return "";

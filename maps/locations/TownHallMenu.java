@@ -28,7 +28,7 @@ public class TownHallMenu extends Menu {
         
         Option advanceNextDay = new Option("Advance to next day");
         
-        Option saveGame = new Option("Save game"); // havent developed
+        Option saveGame = new Option("Save game");
 
         Option exit = new Option("Exit");
 
@@ -71,7 +71,7 @@ public class TownHallMenu extends Menu {
                 setAdvanceNextDay(true);
                 break;
             case "Save game":
-                System.out.println("Not developed yet");
+                setCreateSaveFile(true);
                 break;
             case "Exit":
                 setExitGame(true);

@@ -40,6 +40,10 @@ public class Menu{
     boolean milagroMan = false;
     boolean modifyFoodPrices = false;
     boolean returnToMilagroMan = false;
+    boolean viewRedHotChilliPepper = false;
+    boolean viewTheHand = false;
+    boolean createSaveFile = false;
+    boolean loadSaveFile = false;
 
     /* Constructors */
     public Menu(){
@@ -390,6 +394,38 @@ public class Menu{
         return this.returnToMilagroMan;
     }
     
+    public void setViewRedHotChilliPepper(boolean setting){
+        this.viewRedHotChilliPepper = setting;
+    }
+
+    public boolean viewRedHotChilliPepper(){
+        return this.viewRedHotChilliPepper;
+    }
+
+    public void setViewTheHand(boolean setting){
+        this.viewTheHand = setting;
+    }
+
+    public boolean viewTheHand(){
+        return this.viewTheHand;
+    }
+
+    public void setCreateSaveFile(boolean setting){
+        this.createSaveFile = setting;
+    }
+
+    public boolean createSaveFile(){
+        return this.createSaveFile;
+    }
+
+    public void setLoadSaveFile(boolean setting){
+        this.loadSaveFile = setting;
+    }
+    
+    public boolean loadSaveFile(){
+        return this.loadSaveFile;
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
