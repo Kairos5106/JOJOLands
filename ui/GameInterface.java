@@ -26,6 +26,8 @@ import DSTeam3.source.MilagroMan.MilagroMan;
 import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.PearlJam;
 import DSTeam3.source.SuperFly.*;
+import DSTeam3.source.TheWorld.GameState;
+import DSTeam3.source.TheWorld.TheWorld;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -39,6 +41,8 @@ public class GameInterface extends UserInterface{
     GoldenSpirit goldenSpirit = new GoldenSpirit();
     MoodyBlues moodyBlues = new MoodyBlues();
     MilagroMan milagro = new MilagroMan();
+    TheWorld world = new TheWorld();
+    GameState gameState = new GameState();
 
     static boolean alreadyGeneratedDefaultMilagro = false;
 
@@ -213,6 +217,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewTheHand();
     }
     
+    public boolean createSaveFile(){
+        return currentMenu.createSaveFile();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -234,6 +242,7 @@ public class GameInterface extends UserInterface{
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
         joestars.assignFoodToResidents();
+        gameState.setMapName(getMap().getMapName());
         String input = "";
         divider(70);
         while(!getExitInterface()){
@@ -266,6 +275,14 @@ public class GameInterface extends UserInterface{
                 divider(70);
                 currentMenu.setViewPearlJamList(false);
                 currentMenu.setReturnToFrontPage(true);
+            }
+            if(createSaveFile()){
+                gameState.setCurrentDateTime();
+                gameState.setDayCount(time.getDayCount());
+                world.saveGame(gameState);
+                currentMenu.setCreateSaveFile(false);
+                currentMenu.setReturnToFrontPage(true);
+                divider(70);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){
@@ -405,6 +422,7 @@ public class GameInterface extends UserInterface{
                 currentMenu.setViewRedHotChilliPepper(false);
             }
 
+            // RUN DISPLAY 
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1, true);
