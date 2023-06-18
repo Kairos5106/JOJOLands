@@ -13,13 +13,20 @@ public class AngeloRockMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
+        Option viewResident = new Option("View resident information");
+        viewResident.addSuboptions("View resident profile");
+        viewResident.addSuboptions("Sort");
+        viewResident.addSuboptions("Exit");
+
+        Option redHot = new Option("Red Hot Chilli Pepper");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, redHot, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -43,15 +50,43 @@ public class AngeloRockMenu extends Menu {
             case "No":
                 setReturnToFrontPage(true);
                 break;
-            case "Dio's Mansion":
+            case "DIO's Mansion":
                 setMovingLocations(true);
-                return "Dio's Mansion";
+                return "DIO's Mansion";
             case "Green Dolphin Street Prison":
                 setMovingLocations(true);
                 return "Green Dolphin Street Prison";
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
+            case "Jade Garden":
+                setMovingLocations(true);
+                return "Jade Garden";
+            case "Polnareff Land":
+                setMovingLocations(true);
+                return "Polnareff Land";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
+                break;
+            case "View resident information":
+                setViewResidentInfo(true);
+                break;
+            case "Exit":
+                setReturnToFrontPage(true);
+                break;
+            case "Sort":
+                setSortResidentInfo(true);
+                break;
+            case "View resident profile":
+                setViewResidentProfile(true);
+                break;
+            case "Red Hot Chilli Pepper":
+                setViewRedHotChilliPepper(true);
+                setReturnToFrontPage(true);
                 break;
         }
         return null;

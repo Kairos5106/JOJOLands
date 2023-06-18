@@ -18,8 +18,14 @@ public class Main{
         }
 
         /* Section 2: Load selected map and user interface */
-        GameInterface gameUI = new GameInterface(startUI.getMapSelected());
-        
+        GameInterface gameUI;
+        if(startUI.loadSaveFile()){
+            gameUI = new GameInterface(startUI.getWorld().getGameStateToLoad());
+        }
+        else{
+            gameUI = new GameInterface(startUI.getMapSelected());
+        }
+
         /* Section 3: Start game */
         gameUI.initiate();
     }

@@ -13,6 +13,11 @@ public class GreenDolphinMenu extends Menu {
         // Defining options and linking them to their respective suboptions
         Option moveTo = new Option("Move to nearby location");
         
+        Option viewResident = new Option("View resident information");
+        viewResident.addSuboptions("View resident profile");
+        viewResident.addSuboptions("Sort");
+        viewResident.addSuboptions("Exit");
+    
         Option ddddc = new Option("Dirty Deeds Done Dirt Cheap");
 
         Option backPrevious = new Option("Back to previous location");
@@ -21,7 +26,7 @@ public class GreenDolphinMenu extends Menu {
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, ddddc, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, ddddc, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -54,12 +59,33 @@ public class GreenDolphinMenu extends Menu {
             case "Angelo Rock":
                 setMovingLocations(true);
                 return "Angelo Rock";
+            case "DIO's Mansion":
+                setMovingLocations(true);
+                return "DIO's Mansion";
+            case "Morioh Grand Hotel":
+                setMovingLocations(true);
+                return "Morioh Grand Hotel";
+            case "Town Hall":
+                setMovingLocations(true);
+                return "Town Hall";
             case "Go forward to visited location":
                 setMovingLocations(true);
                 setWantMoveForward(true);
                 break;
             case "Dirty Deeds Done Dirt Cheap":
                 setInitialiseDDDDC(true);
+                break;
+            case "View resident information":
+                setViewResidentInfo(true);
+                break;
+            case "Exit":
+                setReturnToFrontPage(true);
+                break;
+            case "Sort":
+                setSortResidentInfo(true);
+                break;
+            case "View resident profile":
+                setViewResidentProfile(true);
                 break;
         }
         return null;

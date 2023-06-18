@@ -28,7 +28,7 @@ public class TownHallMenu extends Menu {
         
         Option advanceNextDay = new Option("Advance to next day");
         
-        Option saveGame = new Option("Save game"); // havent developed
+        Option saveGame = new Option("Save game");
 
         Option exit = new Option("Exit");
 
@@ -52,11 +52,26 @@ public class TownHallMenu extends Menu {
             case "Morioh Grand Hotel": // move location
                 setMovingLocations(true);
                 return "Morioh Grand Hotel";
+            case "Trattoria Trussardi":
+                setMovingLocations(true);
+                return "Trattoria Trussardi";
+            case "Vineyard":
+                setMovingLocations(true);
+                return "Vineyard";
+            case "Libeccio":
+                setMovingLocations(true);
+                return "Libeccio";
+            case "Green Dolphin Street Prison":
+                setMovingLocations(true);
+                return "Green Dolphin Street Prison";
+            case "Passione Restaurant":
+                setMovingLocations(true);
+                return "Passione Restaurant";
             case "Advance to next day":
                 setAdvanceNextDay(true);
                 break;
             case "Save game":
-                System.out.println("Not developed yet");
+                setCreateSaveFile(true);
                 break;
             case "Exit":
                 setExitGame(true);
