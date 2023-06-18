@@ -42,6 +42,8 @@ public class Menu{
     boolean returnToMilagroMan = false;
     boolean viewRedHotChilliPepper = false;
     boolean viewTheHand = false;
+    boolean createSaveFile = false;
+    boolean loadSaveFile = false;
 
     /* Constructors */
     public Menu(){
@@ -406,6 +408,22 @@ public class Menu{
 
     public boolean viewTheHand(){
         return this.viewTheHand;
+    }
+
+    public void setCreateSaveFile(boolean setting){
+        this.createSaveFile = setting;
+    }
+
+    public boolean createSaveFile(){
+        return this.createSaveFile;
+    }
+
+    public void setLoadSaveFile(boolean setting){
+        this.loadSaveFile = setting;
+    }
+    
+    public boolean loadSaveFile(){
+        return this.loadSaveFile;
     }
 
     /* ****************** Methods B: Display methods ****************** */

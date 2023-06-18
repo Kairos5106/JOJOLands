@@ -1,5 +1,8 @@
 package DSTeam3.ui;
 
+import DSTeam3.maps.AlternateMap;
+import DSTeam3.maps.DefaultMap;
+import DSTeam3.maps.ParallelMap;
 import DSTeam3.maps.base.*;
 import DSTeam3.ui.base.Menu;
 import DSTeam3.ui.base.Option;
@@ -26,6 +29,8 @@ import DSTeam3.source.MilagroMan.MilagroMan;
 import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.PearlJam;
 import DSTeam3.source.SuperFly.*;
+import DSTeam3.source.TheWorld.GameState;
+import DSTeam3.source.TheWorld.TheWorld;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -39,25 +44,42 @@ public class GameInterface extends UserInterface{
     GoldenSpirit goldenSpirit = new GoldenSpirit();
     MoodyBlues moodyBlues = new MoodyBlues();
     MilagroMan milagro = new MilagroMan();
+    TheWorld world = new TheWorld();
+    GameState gameState = new GameState();
 
+    boolean loadingSaveFile = false;
     static boolean alreadyGeneratedDefaultMilagro = false;
 
     /* Constructors */
-    public GameInterface(){}
+    public GameInterface(GameState gameStateToLoad){
+        this.gameState = gameStateToLoad;
+        loadingSaveFile = true;
+    }
 
     public GameInterface(Map map){
         this.map = map;
     }
 
-    public GameInterface(Map map, Menu menu){
-        this.map = map;
-        this.currentMenu = menu;
-    }
-
     /* ****************** Method A: Getter and setter methods ****************** */
+
+    public void setDayCount(int dayCount){
+        time.setDayCount(dayCount);
+    }
 
     public String getDayInfo(){
         return time.dayInfo();
+    }
+
+    public void setMap(String mapName){
+        if(mapName.equalsIgnoreCase("Default Map")){
+            this.map = new DefaultMap();
+        }
+        else if(mapName.equalsIgnoreCase("Alternate Map")){
+            this.map = new AlternateMap();
+        }
+        else{
+            this.map = new ParallelMap();
+        }
     }
 
     public Map getMap(){
@@ -213,6 +235,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.viewTheHand();
     }
     
+    public boolean createSaveFile(){
+        return currentMenu.createSaveFile();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -228,12 +254,20 @@ public class GameInterface extends UserInterface{
 
     @Override
     public void initiate(){
+        if(loadingSaveFile){
+            setMap(gameState.getMapName());
+            setDayCount(gameState.getDayCount());
+            time.setDayOfWeek(gameState.getDayCount());
+            loadingSaveFile = false;
+            System.out.println("Loading into " + gameState.getMapName() + " on Day " + gameState.getDayCount() + " ...");
+        }
         map.defineLocations();
         presetListOfMenus();
         setCurrentMenu(getCurrentMenu());
         currentMenu.defineOptions();
         currentMenu.setDefaultOption();
         joestars.assignFoodToResidents();
+        gameState.setMapName(getMap().getMapName());
         String input = "";
         divider(70);
         while(!getExitInterface()){
@@ -266,6 +300,14 @@ public class GameInterface extends UserInterface{
                 divider(70);
                 currentMenu.setViewPearlJamList(false);
                 currentMenu.setReturnToFrontPage(true);
+            }
+            if(createSaveFile()){
+                gameState.setCurrentDateTimeToNow();
+                gameState.setDayCount(time.getDayCount());
+                world.saveGame(gameState);
+                currentMenu.setCreateSaveFile(false);
+                currentMenu.setReturnToFrontPage(true);
+                divider(70);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){
@@ -405,6 +447,7 @@ public class GameInterface extends UserInterface{
                 currentMenu.setViewRedHotChilliPepper(false);
             }
 
+            // RUN DISPLAY 
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
             currentMenu.setSelected(Integer.parseInt(input)-1, true);
@@ -457,7 +500,6 @@ public class GameInterface extends UserInterface{
                 currentMenu.setCurrentOption(-1);
                 currentMenu.defineOptions();
                 currentMenu.setDefaultOption();
-                
                 if(hasForwardLocation()){
                     currentMenu.setHasForwardAdded(false);
                 }
@@ -524,5 +566,13 @@ class Clock{
 
     public int getDayCount(){
         return this.dayCount;
+    }
+
+    public void setDayCount(int dayCount){
+        this.dayCount = dayCount;
+    }
+
+    public void setDayOfWeek(int dayCount){
+        this.dayOfWeek = dayCount % 7;
     }
 }
