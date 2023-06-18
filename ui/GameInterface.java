@@ -22,6 +22,8 @@ import DSTeam3.maps.locations.VineyardMenu;
 import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
 import DSTeam3.source.Joestars.*;
+import DSTeam3.source.MilagroMan.MilagroMan;
+import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.PearlJam;
 
 public class GameInterface extends UserInterface{
@@ -34,6 +36,10 @@ public class GameInterface extends UserInterface{
     HeavensDoor heavensDoor = new HeavensDoor();
     TheJoestars joestars = new TheJoestars();
     GoldenSpirit goldenSpirit = new GoldenSpirit();
+    MoodyBlues moodyBlues = new MoodyBlues();
+    MilagroMan milagro = new MilagroMan();
+
+    static boolean alreadyGeneratedDefaultMilagro = false;
 
     /* Constructors */
     public GameInterface(){}
@@ -158,6 +164,46 @@ public class GameInterface extends UserInterface{
         return getCurrentLocation().getRestaurant();
     }
 
+    public boolean viewSalesInfo(){
+        return currentMenu.viewSalesInfo();
+    }
+
+    public boolean viewSales(){
+        return currentMenu.viewSales();
+    }
+
+    public boolean viewAggregated(){
+        return currentMenu.viewAggregated();
+    }
+
+    public boolean viewMinSales(){
+        return currentMenu.viewMinSales();
+    }
+
+    public boolean viewMaxSales(){
+        return currentMenu.viewMaxSales();
+    }
+
+    public boolean viewTopK(){
+        return currentMenu.viewTopK();
+    }
+
+    public boolean viewTotalAvgSales(){
+        return currentMenu.viewTotalAvgSales();
+    }
+
+    public boolean milagroManIsActive(){
+        return currentMenu.milagroManIsActive();
+    }
+
+    public boolean modifyFoodPrices(){
+        return currentMenu.modifyFoodPrices();
+    }
+
+    public boolean returnToMilagroMan(){
+        return currentMenu.returnToMilagroMan();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -208,6 +254,7 @@ public class GameInterface extends UserInterface{
                 getCurrentRestaurant().displayWaitingList();
                 getCurrentRestaurant().generateOrderProcessingList();
                 getCurrentRestaurant().displayOrderProcessingList();
+                divider(70);
                 currentMenu.setViewPearlJamList(false);
                 currentMenu.setReturnToFrontPage(true);
             }
@@ -253,6 +300,88 @@ public class GameInterface extends UserInterface{
                     currentMenu.setSortResidentInfo(false);
                 }
             }
+            if(viewSalesInfo()){
+                moodyBlues.setName(getCurrentLocation().getName());
+                // System.out.println("milagromanactive at salesinfo: " + milagroManIsActive()); // debug
+                moodyBlues.readFile(milagroManIsActive());
+                if(milagroManIsActive()){
+                    currentMenu.setGreeting("Sales Information (Milagro Man)");
+                }
+                else{
+                    currentMenu.setGreeting("Sales Information");
+                }
+                if(viewSales()){   
+                    int day = Integer.parseInt(prompt("Enter day: "));
+                    divider(70);
+                    moodyBlues.displaySales(day);
+                    currentMenu.setViewSales(false);
+                    divider(70);
+                }
+                if(viewAggregated()){
+                    currentMenu.setGreeting("Select which aggregated information to view: ");
+                    currentMenu.resetSelectedOptions();
+                }
+                if(viewMinSales()){
+                    System.out.printf("Minimum Sales: $%.2f\n", moodyBlues.getMinimumSales());
+                }
+                if(viewMaxSales()){
+                    System.out.printf("Maximum Sales: $%.2f\n", moodyBlues.getMaximumSales());
+                }
+                if(viewTopK()){
+                    int k = Integer.parseInt(prompt("Enter value of k: "));
+                    divider(70);
+                    moodyBlues.displayTopHighestSales(k);
+                }
+                if(viewTotalAvgSales()){
+                    int startDay = Integer.parseInt(prompt("Enter start day: "));
+                    int endDay = Integer.parseInt(prompt("Enter end day: "));
+                    divider(70);
+                    moodyBlues.displayTotalAndAverageSales(startDay, endDay);
+                }
+            }
+            if(viewMinSales() || viewMaxSales() || viewTopK() || viewTotalAvgSales()){
+                currentMenu.setViewSalesMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
+                currentMenu.setViewMinSales(false);
+                currentMenu.setViewMaxSales(false);
+                currentMenu.setViewTopK(false);
+                currentMenu.setViewTotalAvgSales(false);
+                currentMenu.setViewAggregated(false);
+                divider(70);
+            }
+            if(milagroManIsActive()){
+                milagro.setRestaurantName(getCurrentLocation().getName());
+                milagro.readFile();
+                if(!alreadyGeneratedDefaultMilagro){
+                    milagro.generateSaleEntries();
+                    alreadyGeneratedDefaultMilagro = true;
+                    // System.out.println("Generating default entries for modified prices"); // debug
+                }
+                if(!viewSalesInfo()){
+                    currentMenu.setGreeting("Milagro Man Mode");
+                }
+                if(modifyFoodPrices()){
+                    milagro.promptModifyFoodPrice();
+                    milagro.generateSaleEntries();
+                    // System.out.println("Generating modified entries for modified prices"); // debug
+                }
+            }
+            else{
+                alreadyGeneratedDefaultMilagro = false;
+                milagro.resetVar();
+            }
+            if(modifyFoodPrices() || returnToMilagroMan()){
+                if(!returnToMilagroMan()){
+                    divider(70);
+                }
+                currentMenu.setMilagroManMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
+                currentMenu.setModifyFoodPrices(false);
+                currentMenu.setReturnToMilagroMan(false);
+                currentMenu.setGreeting("Milagro Man Mode");
+            }
 
             currentMenu.runDisplay();
             input = prompt("Select: ", currentMenu.getMaxOptionRange());
@@ -266,14 +395,16 @@ public class GameInterface extends UserInterface{
             // Conditional actions go here and below
             if(sortResidentInfo() || viewResidentProfile()){
                 currentMenu.setViewResidentMenu();
-                for (int i = 0; i < currentMenu.getCurrentOption().getSuboptionsCount(); i++) {
-                    currentMenu.getCurrentOption().setSelected(i, false);
-                }
+                currentMenu.resetSelectedOptions();
+            }
+            if(viewSalesInfo() && !viewAggregated()){
+                currentMenu.setViewSalesMenu();
+                currentMenu.resetSelectedOptions();
+                currentMenu.setGreeting(null);
             }
             if(isAdvancingNext()){
                 endDay();
                 joestars.setDay(time.getDayCount());
-                System.out.println("Advancing to next day. Assigning food for day " + time.getDayCount()); // debug
                 joestars.assignFoodToResidents();
                 currentMenu.setCurrentOption(-1); // -1 ensures that the menu works properly
                 currentMenu.defineOptions();

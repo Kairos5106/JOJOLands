@@ -2,7 +2,7 @@ package DSTeam3.source.Joestars;
 
 import java.io.*;
 import java.util.*;
-import DSTeam3.source.Joestars.OrderList;;
+import DSTeam3.source.Joestars.OrderList;
 
 public class TheJoestars {
     static int day = 1;
@@ -165,12 +165,15 @@ public class TheJoestars {
                     case "Jonathan Joestar":
                         menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
                         OrderList jonathan = new OrderList(name, menuItem[1], Double.parseDouble(menuItem[2]));
+
                         // Retrieve the past order list of jonathan
-                        List<OrderList> pastOrders = OrderList.getOrdersByMenuItem(currentMenuItems, jonathan.getFood());
+                        List<OrderList> pastOrdersJonathan = OrderList.getOrdersByMenuItem(currentMenuItems, jonathan.getFood());
+                        
                         // Create a frequency map to track the occurrence of each food item
                         Map<String, Integer> frequencyMap = new HashMap<>();
+                        
                         // Update the frequency map based on past orders of Jonathan Joestar
-                        for (OrderList order : pastOrders) {
+                        for (OrderList order : pastOrdersJonathan) {
                             String food = order.getFood();
                             frequencyMap.put(food, frequencyMap.getOrDefault(food, 0) + 1);
                         }
@@ -209,10 +212,33 @@ public class TheJoestars {
                             shuffledMenuItems.set(neighborIndex, neighborItem);
                         }
 
+                        // Reassign the menuItem
                         menuItem = shuffledMenuItems.get(0);
+
                         break;
                     case "Joseph Joestar":
                         menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+                        OrderList joseph = new OrderList(name, menuItem[1], Double.parseDouble(menuItem[2]));
+
+                        // Retrieve the past order list of joseph
+                        List<OrderList> pastOrdersJoseph = OrderList.getOrdersByMenuItem(currentMenuItems, joseph.getFood());
+                        
+                        // Check if food been eaten
+                        boolean foundNewFood = false;
+                        for (String[] menu : shuffledMenuItems) {
+                            String foodName = menu[1];
+                            if (!hasFoodBeenEaten(foodName, pastOrdersJoseph)) {
+                                menuItem = menu;
+                                foundNewFood = true;
+                                break;
+                            }
+                        }
+
+                        // If all foods have been tried or no new food is found, reset Joseph's food history
+                        if (!foundNewFood) {
+                            resetFoodHistory(pastOrdersJoseph);
+                            menuItem = shuffledMenuItems.get(0);
+                        }
 
                         break;
                     case "Jotaro Kujo":
@@ -252,6 +278,7 @@ public class TheJoestars {
         }
     }
 
+    /* Jonathan Jostar */
     // Helper method to find the index of a food item in the shuffled menu items list
     private static int findFoodIndex(List<String[]> shuffledMenuItems, String foodName) {
         for (int i = 0; i < shuffledMenuItems.size(); i++) {
@@ -261,6 +288,22 @@ public class TheJoestars {
         }
         return -1;
     }
+
+    /* Joseph Joestar */
+    // Helper method to reset the food history of Joseph Joestar
+    private static void resetFoodHistory(List<OrderList> pastOrdersJoseph) {
+        pastOrdersJoseph.clear();
+    }
+    // Helper method to check if a food has been eaten by any resident
+    private static boolean hasFoodBeenEaten(String foodName, List<OrderList> pastOrdersJoseph) {
+        for (OrderList order : pastOrdersJoseph) {
+            if (order.getFood().equals(foodName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void displayOrderHistory(String npcName){
         System.out.println("Order History");
@@ -285,14 +328,6 @@ public class TheJoestars {
             e.printStackTrace();
         }
     }
-
-    /* =================================== THE 6 JOESTARS FOOD ASSIGNMENT METHODS =================================== */
-
-   
-
-
-    /* =============================================================================================================== */
-
 }
 
 

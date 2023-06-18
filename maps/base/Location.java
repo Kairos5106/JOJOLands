@@ -2,6 +2,7 @@ package DSTeam3.maps.base;
 
 import java.util.ArrayList;
 import DSTeam3.ui.base.*;
+import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.*;
 
 public /* Purpose: Represents a node in the map */

@@ -91,7 +91,7 @@ public class PearlJam {
             Customer current = waitingList.get(index);
             Customer toCompare = waitingList.get(index + 1);
             Customer temp;
-            if(current.getArrivalTime() > toCompare.getArrivalTime()){ // from [current,toCompare] --> [toCompare,current] if current arrived later than tocompare
+            if(current.getArrivalTime() > toCompare.getArrivalTime()){
                 temp = toCompare;
                 waitingList.set(index + 1, current);
                 waitingList.set(index, temp);
