@@ -25,6 +25,7 @@ import DSTeam3.source.Joestars.*;
 import DSTeam3.source.MilagroMan.MilagroMan;
 import DSTeam3.source.MoodyBlues.MoodyBlues;
 import DSTeam3.source.PearlJam.base.PearlJam;
+import DSTeam3.source.SuperFly.*;
 
 public class GameInterface extends UserInterface{
     /* Instance variables */
@@ -204,6 +205,14 @@ public class GameInterface extends UserInterface{
         return currentMenu.returnToMilagroMan();
     }
 
+    public boolean viewRedHotChilliPepper(){
+        return currentMenu.viewRedHotChilliPepper();
+    }
+
+    public boolean viewTheHand(){
+        return currentMenu.viewTheHand();
+    }
+    
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -381,6 +390,19 @@ public class GameInterface extends UserInterface{
                 currentMenu.setModifyFoodPrices(false);
                 currentMenu.setReturnToMilagroMan(false);
                 currentMenu.setGreeting("Milagro Man Mode");
+            }
+            if(viewTheHand()){
+                TheHand theHand1 = new TheHand(getMap());
+                int totalRemovedConnections1 = theHand1.findTotalRemovedConnections();
+                System.out.println("\nTotal Removed Connections: " + totalRemovedConnections1);
+                divider(70);
+                currentMenu.setViewTheHand(false);
+            }
+            if(viewRedHotChilliPepper()){
+                RedHotChiliPepper redHotChiliPepper1 = new RedHotChiliPepper(getMap());
+                int minimumLength1 = redHotChiliPepper1.findMinimumLength();
+                divider(70);
+                currentMenu.setViewRedHotChilliPepper(false);
             }
 
             currentMenu.runDisplay();

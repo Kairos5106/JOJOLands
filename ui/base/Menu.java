@@ -40,6 +40,8 @@ public class Menu{
     boolean milagroMan = false;
     boolean modifyFoodPrices = false;
     boolean returnToMilagroMan = false;
+    boolean viewRedHotChilliPepper = false;
+    boolean viewTheHand = false;
 
     /* Constructors */
     public Menu(){
@@ -390,6 +392,22 @@ public class Menu{
         return this.returnToMilagroMan;
     }
     
+    public void setViewRedHotChilliPepper(boolean setting){
+        this.viewRedHotChilliPepper = setting;
+    }
+
+    public boolean viewRedHotChilliPepper(){
+        return this.viewRedHotChilliPepper;
+    }
+
+    public void setViewTheHand(boolean setting){
+        this.viewTheHand = setting;
+    }
+
+    public boolean viewTheHand(){
+        return this.viewTheHand;
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     public void printGreeting(){
