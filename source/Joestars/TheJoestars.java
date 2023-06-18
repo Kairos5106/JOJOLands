@@ -302,13 +302,6 @@ public class TheJoestars {
                         // Calculate the remaining budget for Josuke
                         double remainingBudget = 100 - totalSpent;
 
-                        // Check if a week (7 days) has passed
-                        int daysElapsed = day % 7;
-                        if (daysElapsed == 0) {
-                            // Renew the budget to $100
-                            remainingBudget = 100;
-                        }
-
                         // If the selected menu item exceeds the remaining budget, find the cheapest alternative
                         if (Double.parseDouble(menuItem[2]) > remainingBudget) {
                             OrderList cheapestItem = null;
