@@ -47,7 +47,9 @@ public class GameInterface extends UserInterface{
     static boolean alreadyGeneratedDefaultMilagro = false;
 
     /* Constructors */
-    public GameInterface(){}
+    public GameInterface(GameState gameStateToLoad){
+        
+    }
 
     public GameInterface(Map map){
         this.map = map;
@@ -277,7 +279,7 @@ public class GameInterface extends UserInterface{
                 currentMenu.setReturnToFrontPage(true);
             }
             if(createSaveFile()){
-                gameState.setCurrentDateTime();
+                gameState.setCurrentDateTimeToNow();
                 gameState.setDayCount(time.getDayCount());
                 world.saveGame(gameState);
                 currentMenu.setCreateSaveFile(false);
