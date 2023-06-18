@@ -8,7 +8,7 @@ package DSTeam3.source.DDDDC;
  *
  * @EXTRA FEATURES NO.4 DIRTY DEEDS DONE CHEAP
  */
- class Neighbour {
+public class Neighbour {
     private Location location;
     private int distance;
 

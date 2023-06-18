@@ -20,13 +20,15 @@ public class MoriohGrandMenu extends Menu {
 
         Option theHand = new Option("The Hand");
 
+        Option thusSpoke = new Option("Thus Spoke Rohan Kishibe");
+
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
         backPrevious.addSuboptions("No");
 
         Option backTownHall = new Option("Back to Town Hall");
 
-        Option[] options = {moveTo, viewResident, theHand, backPrevious, backTownHall};
+        Option[] options = {moveTo, viewResident, theHand, thusSpoke, backPrevious, backTownHall};
         setOptions(options);
     }
 
@@ -90,6 +92,9 @@ public class MoriohGrandMenu extends Menu {
             case "The Hand":
                 setViewTheHand(true);
                 setReturnToFrontPage(true);
+                break;
+            case "Thus Spoke Rohan Kishibe":
+                setViewRohan(true);
                 break;
         }
         return "";

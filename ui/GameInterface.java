@@ -25,6 +25,7 @@ import DSTeam3.maps.locations.VineyardMenu;
 import DSTeam3.source.DDDDC.PathFinder;
 import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
+import DSTeam3.source.ThusSpokeRohan;
 import DSTeam3.source.Joestars.*;
 import DSTeam3.source.MilagroMan.MilagroMan;
 import DSTeam3.source.MoodyBlues.MoodyBlues;
@@ -48,6 +49,7 @@ public class GameInterface extends UserInterface{
     MilagroMan milagro = new MilagroMan();
     TheWorld world = new TheWorld();
     GameState gameState = new GameState();
+    ThusSpokeRohan rohan = new ThusSpokeRohan();
 
     boolean loadingSaveFile = false;
     static boolean alreadyGeneratedDefaultMilagro = false;
@@ -247,6 +249,10 @@ public class GameInterface extends UserInterface{
         return currentMenu.createSaveFile();
     }
 
+    public boolean viewRohan(){
+        return currentMenu.viewRohan();
+    }
+
     /* ****************** Methods B: Display methods ****************** */
 
     /* ****************** Methods C: Processing methods (everything aside from A and B) ****************** */
@@ -299,6 +305,7 @@ public class GameInterface extends UserInterface{
                 goldenSpirit.GoldenSpirit();
                 currentMenu.setInitialiseGoldenSpirit(false);
                 currentMenu.setReturnToFrontPage(true);
+                divider(70);
             }
             if(viewFoodMenu()){
                 getCurrentLocation().displayFoodMenu();
@@ -322,6 +329,11 @@ public class GameInterface extends UserInterface{
                 currentMenu.setCreateSaveFile(false);
                 currentMenu.setReturnToFrontPage(true);
                 divider(70);
+            }
+            if(viewRohan()){
+                rohan.PathFinderMethod(getMap().getMapName());
+                currentMenu.setReturnToFrontPage(true);
+                currentMenu.setViewRohan(false);
             }
             if(returnToFrontPage()){
                 if(viewResidentInfo()){
