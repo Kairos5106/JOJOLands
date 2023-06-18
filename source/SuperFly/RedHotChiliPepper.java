@@ -9,10 +9,15 @@ package DSTeam3.source.SuperFly;
  * @author firza
  */
 // RedHotChiliPepper.java
-import DSTeam3.maps.base.*;
-import DSTeam3.maps.*;
+import DSTeam3.maps.base.Location;
+import DSTeam3.maps.base.Map;
 import java.util.Queue;
 import java.util.PriorityQueue;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RedHotChiliPepper{
     private Map map;
