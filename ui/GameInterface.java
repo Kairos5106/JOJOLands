@@ -302,7 +302,7 @@ public class GameInterface extends UserInterface{
             }
             if(viewSalesInfo()){
                 moodyBlues.setName(getCurrentLocation().getName());
-                System.out.println("milagromanactive at salesinfo: " + milagroManIsActive());
+                // System.out.println("milagromanactive at salesinfo: " + milagroManIsActive()); // debug
                 moodyBlues.readFile(milagroManIsActive());
                 if(milagroManIsActive()){
                     currentMenu.setGreeting("Sales Information (Milagro Man)");
@@ -356,7 +356,7 @@ public class GameInterface extends UserInterface{
                 if(!alreadyGeneratedDefaultMilagro){
                     milagro.generateSaleEntries();
                     alreadyGeneratedDefaultMilagro = true;
-                    System.out.println("Generating default entries for modified prices"); // debug
+                    // System.out.println("Generating default entries for modified prices"); // debug
                 }
                 if(!viewSalesInfo()){
                     currentMenu.setGreeting("Milagro Man Mode");
@@ -364,7 +364,7 @@ public class GameInterface extends UserInterface{
                 if(modifyFoodPrices()){
                     milagro.promptModifyFoodPrice();
                     milagro.generateSaleEntries();
-                    System.out.println("Generating modified entries for modified prices"); // debug
+                    // System.out.println("Generating modified entries for modified prices"); // debug
                 }
             }
             else{
