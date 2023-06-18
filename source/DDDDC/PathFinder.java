@@ -228,6 +228,11 @@ public class PathFinder {
         System.out.print("Destination: ");
         String destinationName = scanner.nextLine();
 
+        for (int i = 0; i < 70; i++) {
+            System.out.print("=");
+        }
+        System.out.println();
+        
         // Find the top three shortest paths
         Location source = null;
         Location destination = null;

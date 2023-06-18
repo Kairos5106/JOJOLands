@@ -293,6 +293,7 @@ public class GameInterface extends UserInterface{
                 PathFinder.PathFinderMethod(getMap().getMapName());
                 currentMenu.setInitialiseDDDDC(false);
                 currentMenu.setReturnToFrontPage(true);
+                divider(70);
             }
             if(initialiseGoldenSpirit()){
                 goldenSpirit.GoldenSpirit();
