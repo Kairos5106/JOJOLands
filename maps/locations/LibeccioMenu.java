@@ -17,6 +17,7 @@ public class LibeccioMenu extends Menu {
 
         Option viewMenu = new Option("View menu");
 
+        // Options for view sales information - start
         Option viewSales = new Option("View sales information");
         
         Option viewAggregated = new Option("View aggregated information");
@@ -28,8 +29,14 @@ public class LibeccioMenu extends Menu {
         viewSales.addSuboptions("View sales");
         viewSales.addSuboptions(viewAggregated);
         viewSales.addSuboptions("Exit");
+        // Options for view sales information - end
         
+        // Options for milagro man - start
         Option milagroMan = new Option("Milagro Man");
+        milagroMan.addSuboptions("Modify food prices");
+        milagroMan.addSuboptions(viewSales);
+        milagroMan.addSuboptions("Exit Milagro Man");
+        // Options for milagro man - end
 
         Option backPrevious = new Option("Back to previous location");
         backPrevious.addSuboptions("Yes");
@@ -111,8 +118,23 @@ public class LibeccioMenu extends Menu {
                 setViewTotalAvgSales(true);
                 break;
             case "Exit":
-                setReturnToFrontPage(true);
+                if(milagroManIsActive()){
+                    setReturnToMilagroMan(true);
+                }
+                else{
+                    setReturnToFrontPage(true);
+                }
                 setViewSalesInfo(false);
+                break;
+            case "Milagro Man":
+                setMilagroMan(true);
+                break;
+            case "Modify food prices":
+                setModifyFoodPrices(true);
+                break;
+            case "Exit Milagro Man":
+                setMilagroMan(false);
+                setReturnToFrontPage(true);
                 break;
         }
         return null;
