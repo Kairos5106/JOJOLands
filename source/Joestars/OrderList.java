@@ -7,11 +7,23 @@ public class OrderList {
     private String name;
     private String food;
     private double price;
+    private String restaurant;
 
     public OrderList(String name, String food, double price) {
         this.name = name;
         this.food = food;
         this.price = price;
+    }
+
+    public OrderList(String name, String food, double price, String restaurant) {
+        this.name = name;
+        this.food = food;
+        this.price = price;
+        this.restaurant = restaurant;
+    }
+
+    public void setRestaurant(String order) {
+        this.restaurant = restaurant;
     }
 
     public String getName() {
@@ -24,6 +36,10 @@ public class OrderList {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getRestaurant() {
+        return restaurant;
     }
 
     public static List<OrderList> getOrdersByMenuItem(List<String[]> orderList, String menuItem) {
