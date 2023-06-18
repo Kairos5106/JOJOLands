@@ -22,6 +22,7 @@ import DSTeam3.maps.locations.SavageGardenMenu;
 import DSTeam3.maps.locations.TownHallMenu;
 import DSTeam3.maps.locations.TrattoriaTrussardiMenu;
 import DSTeam3.maps.locations.VineyardMenu;
+import DSTeam3.source.DDDDC.PathFinder;
 import DSTeam3.source.GoldenSpirit;
 import DSTeam3.source.HeavensDoor;
 import DSTeam3.source.Joestars.*;
@@ -39,6 +40,7 @@ public class GameInterface extends UserInterface{
     Map map;
     ArrayList<Menu> listOfLocationMenus = new ArrayList<>(); // holds all of the menu interfaces of each location as well as the special functions
 
+    PathFinder pathFinder = new PathFinder();
     HeavensDoor heavensDoor = new HeavensDoor();
     TheJoestars joestars = new TheJoestars();
     GoldenSpirit goldenSpirit = new GoldenSpirit();
@@ -51,6 +53,8 @@ public class GameInterface extends UserInterface{
     static boolean alreadyGeneratedDefaultMilagro = false;
 
     /* Constructors */
+    public GameInterface(){}
+
     public GameInterface(GameState gameStateToLoad){
         this.gameState = gameStateToLoad;
         loadingSaveFile = true;
@@ -153,6 +157,10 @@ public class GameInterface extends UserInterface{
     
     public boolean wantMoveForward(){
         return currentMenu.wantMoveForward();
+    }
+
+    public boolean initialiseDDDDC(){
+        return currentMenu.initialiseDDDDC();
     }
 
     public boolean hasForwardAdded(){
@@ -280,6 +288,12 @@ public class GameInterface extends UserInterface{
                 String[] nearbyLocationList = getNearbyLocationNames();
                 currentMenu.getCurrentOption().addSuboptions(nearbyLocationList);
                 currentMenu.setOpenMoveLocationsMenu(false);
+            }
+            if(initialiseDDDDC()){
+                PathFinder.PathFinderMethod(getMap().getMapName());
+                currentMenu.setInitialiseDDDDC(false);
+                currentMenu.setReturnToFrontPage(true);
+                divider(70);
             }
             if(initialiseGoldenSpirit()){
                 goldenSpirit.GoldenSpirit();

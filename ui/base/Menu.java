@@ -23,6 +23,7 @@ public class Menu{
     boolean returnToFrontPage = false;
     boolean moveTownHall = false;
     boolean wantMoveForward = false;
+    boolean initialiseDDDDC = false;
     boolean hasForwardAdded = false;
     boolean viewResidentInfo = false;
     boolean sortResidentInfo = false;
@@ -59,7 +60,6 @@ public class Menu{
         this.greeting = greeting;
         this.locationName = locationName; // set to null if not used
     }
-
     public Menu(String greeting, String locationName, String currentMapName){
         this.greeting = greeting;
         this.locationName = locationName;
@@ -247,6 +247,14 @@ public class Menu{
 
     public boolean wantMoveForward(){
         return this.wantMoveForward;
+    }
+
+    public void setInitialiseDDDDC(boolean setting){
+        this.initialiseDDDDC = setting;
+    }
+
+    public boolean initialiseDDDDC(){
+        return this.initialiseDDDDC;
     }
 
     public void setCurrentMapName(String currentMapName){
