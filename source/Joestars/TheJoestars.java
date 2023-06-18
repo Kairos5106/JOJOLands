@@ -159,26 +159,77 @@ public class TheJoestars {
                 String age = residentInfo[1];
                 String gender = residentInfo[2];
 
-                String[] menuItem; //= shuffledMenuItems.get(i % shuffledMenuItems.size());
+                String[] menuItem;
 
                 switch (name) {
                     case "Jonathan Joestar":
-                        menuItem = jonathanFood(shuffledMenuItems);
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+                        OrderList jonathan = new OrderList(name, menuItem[1], Double.parseDouble(menuItem[2]));
+                        // Retrieve the past order list of jonathan
+                        List<OrderList> pastOrders = OrderList.getOrdersByMenuItem(currentMenuItems, jonathan.getFood());
+                        // Create a frequency map to track the occurrence of each food item
+                        Map<String, Integer> frequencyMap = new HashMap<>();
+                        // Update the frequency map based on past orders of Jonathan Joestar
+                        for (OrderList order : pastOrders) {
+                            String food = order.getFood();
+                            frequencyMap.put(food, frequencyMap.getOrDefault(food, 0) + 1);
+                        }
+
+                        String mostFrequentFood = null;
+                        String leastFrequentFood = null;
+                        int maxFrequency = 0;
+                        int minFrequency = Integer.MAX_VALUE;
+
+                        // Determine the most and least frequent food items
+                        for (String food : frequencyMap.keySet()) {
+                            int frequency = frequencyMap.get(food);
+                            if (frequency > maxFrequency) {
+                                maxFrequency = frequency;
+                                mostFrequentFood = food;
+                            }
+                            if (frequency < minFrequency) {
+                                minFrequency = frequency;
+                                leastFrequentFood = food;
+                            }
+                        }
+
+                        // Ensure the difference in frequency between the most and least frequent food is not greater than 1
+                        if (maxFrequency - minFrequency > 1) {
+                            // Swap the most and least frequent food with their neighboring items in the menu
+                            int mostIndex = findFoodIndex(shuffledMenuItems, mostFrequentFood);
+                            int leastIndex = findFoodIndex(shuffledMenuItems, leastFrequentFood);
+                            int neighborIndex = (mostIndex < leastIndex) ? mostIndex + 1 : mostIndex - 1;
+
+                            String[] mostFrequentItem = shuffledMenuItems.get(mostIndex);
+                            String[] leastFrequentItem = shuffledMenuItems.get(leastIndex);
+                            String[] neighborItem = shuffledMenuItems.get(neighborIndex);
+
+                            shuffledMenuItems.set(mostIndex, leastFrequentItem);
+                            shuffledMenuItems.set(leastIndex, mostFrequentItem);
+                            shuffledMenuItems.set(neighborIndex, neighborItem);
+                        }
+
+                        menuItem = shuffledMenuItems.get(0);
                         break;
                     case "Joseph Joestar":
-                        menuItem = josephFood(shuffledMenuItems);
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+
                         break;
                     case "Jotaro Kujo":
-                        menuItem = jotaroFood(shuffledMenuItems);
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+
                         break;
                     case "Josuke Higashikata":
-                        menuItem = josukeFood(shuffledMenuItems );
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+
                         break;
                     case "Giorno Giovanna":
-                        menuItem = giornoFood(shuffledMenuItems);
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+
                         break;
                     case "Jolyne Cujoh":
-                        menuItem = jolyneFood(shuffledMenuItems);
+                        menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
+
                         break;
                     default:
                         menuItem = shuffledMenuItems.get(i % shuffledMenuItems.size());
@@ -199,6 +250,16 @@ public class TheJoestars {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // Helper method to find the index of a food item in the shuffled menu items list
+    private static int findFoodIndex(List<String[]> shuffledMenuItems, String foodName) {
+        for (int i = 0; i < shuffledMenuItems.size(); i++) {
+            if (shuffledMenuItems.get(i)[1].equals(foodName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void displayOrderHistory(String npcName){
@@ -227,39 +288,11 @@ public class TheJoestars {
 
     /* =================================== THE 6 JOESTARS FOOD ASSIGNMENT METHODS =================================== */
 
-    static ArrayList<OrderList> joestarOrderList = new ArrayList<>();
-    Random random = new Random();
-    private String restaurant;
-    private String food;
-    private String price;
-    private int joestarIndex = -1;
-
-    public List<String[]> jonathanFood(List<String[]> shuffledMenuItems) {
-        
-    }
+   
 
 
-
-
-
-
+    /* =============================================================================================================== */
 
 }
 
-class Pair<T> {
-    private final T first;
-    private final T second;
 
-    public Pair(T first, T second) {
-        this.first = first;
-        this.second = second;
-    }
-
-    public T first() {
-        return first;
-    }
-
-    public T second() {
-        return second;
-    }
-}
